@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service Formatter. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-Formatter"
+  xmlns="urn:Convergys-Interface-ECA-Formatter"
+  xmlns:ecaFormatter="urn:Convergys-Interface-ECA-Formatter"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="FormatterType_1">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = FTInternal
+       2 = FTExternal
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="FormatterData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="formatterName" type="xsd:string"/>
+          <xsd:element name="formatterDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="formatterType" type="ecaFormatter:FormatterType_1"/>
+          <xsd:element name="transalateTagsBoo" type="xsd:boolean"/>
+          <xsd:element name="billInsertsBoo" type="xsd:boolean"/>
+          <xsd:element name="maxBillsPerFile" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="billImageRootDir" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="billImageClientRootDir" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="billViewerAppPath" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="permissiveBoo" type="xsd:boolean"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="formatterId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="FormatterDataJoin_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="FormatterPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="formatterId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+
+</xsd:schema>
+
+<!-- eof ECA_Formatter.xsd -->

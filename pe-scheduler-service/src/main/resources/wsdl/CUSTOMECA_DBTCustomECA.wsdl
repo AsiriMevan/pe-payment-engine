@@ -1,0 +1,2113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- Web service interface for component CUSTOMECA service DBTCustomECA. -->
+
+<definitions targetNamespace="urn:Convergys-Interface-CUSTOMECA-DBTCustomECA-WSDL"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:customecaDBTCustomECA="urn:Convergys-Interface-CUSTOMECA-DBTCustomECA"
+	xmlns:customecaDBTCustomECAWSDL="urn:Convergys-Interface-CUSTOMECA-DBTCustomECA-WSDL">
+
+	<types>
+		<!-- XML schema for WSDL artefacts needed to wrap interface artefacts -->
+		<xsd:schema targetNamespace="urn:Convergys-Interface-CUSTOMECA-DBTCustomECA-WSDL"
+			elementFormDefault="qualified"
+			xmlns="urn:Convergys-Interface-CUSTOMECA-DBTCustomECA-WSDL"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:Convergys-Interface-Base"
+			xmlns:commonIML="urn:Convergys-Interface-CommonIML" xmlns:platform="urn:Convergys-Interface-Platform">
+			<!-- import the referenced types -->
+			<xsd:import namespace="urn:Convergys-Interface-Base"
+				schemaLocation="schema/Base/Base.xsd" />
+
+			<xsd:import namespace="urn:Convergys-Interface-CommonIML"
+				schemaLocation="schema/CommonIML/CommonIML.xsd" />
+
+			<xsd:import namespace="urn:Convergys-Interface-Platform"
+				schemaLocation="schema/Platform/Platform.xsd" />
+
+
+			<!-- import the types associated with this service -->
+			<xsd:import namespace="urn:Convergys-Interface-CUSTOMECA-DBTCustomECA"
+				schemaLocation="schema/CUSTOMECA/CUSTOMECA_DBTCustomECA.xsd" />
+
+			<!-- elements for method inputs and outputs -->
+
+			<xsd:element name="dbtAdoptParent"
+				type="customecaDBTCustomECA:DbtAdoptParentInput" />
+
+			<xsd:element name="dbtAdoptParentOutput" type="base:VoidType" />
+
+			<xsd:element name="dbtAssociateCommitmentToCustomer"
+				type="customecaDBTCustomECA:DbtAssociateCommitmentToCustomerInput" />
+
+			<xsd:element name="dbtAssociateCommitmentToCustomerOutput"
+				type="customecaDBTCustomECA:DbtAssociateCommitmentToCustomerOutput" />
+
+			<xsd:element name="dbtCancelBillChangeRequest"
+				type="customecaDBTCustomECA:DbtCancelBillChangeRequestInput" />
+
+			<xsd:element name="dbtCancelBillChangeRequestOutput"
+				type="base:VoidType" />
+
+			<xsd:element name="dbtCreateBillChangeRequest"
+				type="customecaDBTCustomECA:DbtCreateBillChangeRequestInput" />
+
+			<xsd:element name="dbtCreateBillChangeRequestOutput"
+				type="base:VoidType" />
+
+			<xsd:element name="dbtCreateDeposit"
+				type="customecaDBTCustomECA:DbtCreateDepositInput" />
+
+			<xsd:element name="dbtCreateDepositOutput"
+				type="customecaDBTCustomECA:DbtCreateDepositOutput" />
+
+			<xsd:element name="dbtCreateModifyCommitmentMembers"
+				type="customecaDBTCustomECA:DbtCreateModifyCommitmentMembersInput" />
+
+			<xsd:element name="dbtCreateModifyCommitmentMembersOutput"
+				type="customecaDBTCustomECA:DbtCreateModifyCommitmentMembersOutput" />
+
+			<xsd:element name="dbtCreateModifyPaymentExtension"
+				type="customecaDBTCustomECA:DbtCreateModifyPaymentExtensionInput" />
+
+			<xsd:element name="dbtCreateModifyPaymentExtensionOutput"
+				type="customecaDBTCustomECA:DbtCreateModifyPaymentExtensionOutput" />
+
+			<xsd:element name="dbtCreateOneTimeCharge"
+				type="customecaDBTCustomECA:DbtCreateOneTimeChargeInput" />
+
+			<xsd:element name="dbtCreateOneTimeChargeOutput"
+				type="customecaDBTCustomECA:DbtCreateOneTimeChargeOutput" />
+
+			<xsd:element name="dbtCreatePhysicalPaymentAndAccountPayments"
+				type="customecaDBTCustomECA:DbtCreatePhysicalPaymentAndAccountPaymentsInput" />
+
+			<xsd:element name="dbtCreatePhysicalPaymentAndAccountPaymentsOutput"
+				type="customecaDBTCustomECA:DbtCreatePhysicalPaymentAndAccountPaymentsOutput" />
+
+			<xsd:element name="dbtCreateSubscription"
+				type="customecaDBTCustomECA:DbtCreateSubscriptionInput" />
+
+			<xsd:element name="dbtCreateSubscriptionOutput"
+				type="customecaDBTCustomECA:DbtCreateSubscriptionOutput" />
+
+			<xsd:element name="dbtDepositSetOff"
+				type="customecaDBTCustomECA:DbtDepositSetOffInput" />
+
+			<xsd:element name="dbtDepositSetOffOutput"
+				type="customecaDBTCustomECA:DbtDepositSetOffOutput" />
+
+			<xsd:element name="dbtManageEnterpriseRental"
+				type="customecaDBTCustomECA:DbtManageEnterpriseRentalInput" />
+
+			<xsd:element name="dbtManageEnterpriseRentalOutput"
+				type="customecaDBTCustomECA:DbtManageEnterpriseRentalOutput" />
+
+			<xsd:element name="dbtManageFeatureCommitmentRental"
+				type="customecaDBTCustomECA:DbtManageFeatureCommitmentRentalInput" />
+
+			<xsd:element name="dbtManageFeatureCommitmentRentalOutput"
+				type="customecaDBTCustomECA:DbtManageFeatureCommitmentRentalOutput" />
+
+			<xsd:element name="dbtModifyCommitmentInstance"
+				type="customecaDBTCustomECA:DbtModifyCommitmentInstanceInput" />
+
+			<xsd:element name="dbtModifyCommitmentInstanceOutput"
+				type="customecaDBTCustomECA:DbtModifyCommitmentInstanceOutput" />
+
+			<xsd:element name="dbtModifySubscription"
+				type="customecaDBTCustomECA:DbtModifySubscriptionInput" />
+
+			<xsd:element name="dbtModifySubscriptionOutput" type="base:VoidType" />
+
+			<xsd:element name="dbtPostChequeInSuspendStatus"
+				type="customecaDBTCustomECA:DbtPostChequeInSuspendStatusInput" />
+
+			<xsd:element name="dbtPostChequeInSuspendStatusOutput"
+				type="base:VoidType" />
+
+			<xsd:element name="dbtProcessDunningRequests"
+				type="customecaDBTCustomECA:DbtProcessDunningRequestsInput" />
+
+			<xsd:element name="dbtProcessDunningRequestsOutput"
+				type="customecaDBTCustomECA:DbtProcessDunningRequestsOutput" />
+
+			<xsd:element name="dbtProductTerminateAndActivate"
+				type="customecaDBTCustomECA:DbtProductTerminateAndActivateInput" />
+
+			<xsd:element name="dbtProductTerminateAndActivateOutput"
+				type="customecaDBTCustomECA:DbtProductTerminateAndActivateOutput" />
+
+			<xsd:element name="dbtQueryAccountAttributehistory"
+				type="customecaDBTCustomECA:DbtQueryAccountAttributehistoryInput" />
+
+			<xsd:element name="dbtQueryAccountAttributehistoryOutput"
+				type="customecaDBTCustomECA:DbtQueryAccountAttributehistoryOutput" />
+
+			<xsd:element name="dbtQueryAllBillChangeRequests"
+				type="customecaDBTCustomECA:DbtQueryAllBillChangeRequestsInput" />
+
+			<xsd:element name="dbtQueryAllBillChangeRequestsOutput"
+				type="customecaDBTCustomECA:DbtQueryAllBillChangeRequestsOutput" />
+
+			<xsd:element name="dbtQueryAllCommitmentPolicies"
+				type="customecaDBTCustomECA:DbtQueryAllCommitmentPoliciesInput" />
+
+			<xsd:element name="dbtQueryAllCommitmentPoliciesOutput"
+				type="customecaDBTCustomECA:DbtQueryAllCommitmentPoliciesOutput" />
+
+			<xsd:element name="dbtQueryAllDeposits"
+				type="customecaDBTCustomECA:DbtQueryAllDepositsInput" />
+
+			<xsd:element name="dbtQueryAllDepositsOutput"
+				type="customecaDBTCustomECA:DbtQueryAllDepositsOutput" />
+
+			<xsd:element name="dbtQueryAllFinancialTransForAccount"
+				type="customecaDBTCustomECA:DbtQueryAllFinancialTransForAccountInput" />
+
+			<xsd:element name="dbtQueryAllFinancialTransForAccountOutput"
+				type="customecaDBTCustomECA:DbtQueryAllFinancialTransForAccountOutput" />
+
+			<xsd:element name="dbtQueryAllFinancialTransForCustomer"
+				type="customecaDBTCustomECA:DbtQueryAllFinancialTransForCustomerInput" />
+
+			<xsd:element name="dbtQueryAllFinancialTransForCustomerOutput"
+				type="customecaDBTCustomECA:DbtQueryAllFinancialTransForCustomerOutput" />
+
+			<xsd:element name="dbtQueryAllGracePeriodCreditType"
+				type="customecaDBTCustomECA:DbtQueryAllGracePeriodCreditTypeInput" />
+
+			<xsd:element name="dbtQueryAllGracePeriodCreditTypeOutput"
+				type="customecaDBTCustomECA:DbtQueryAllGracePeriodCreditTypeOutput" />
+
+			<xsd:element name="dbtQueryAllPaymentDetails"
+				type="customecaDBTCustomECA:DbtQueryAllPaymentDetailsInput" />
+
+			<xsd:element name="dbtQueryAllPaymentDetailsOutput"
+				type="customecaDBTCustomECA:DbtQueryAllPaymentDetailsOutput" />
+
+			<xsd:element name="dbtQueryBalanceForAccount"
+				type="customecaDBTCustomECA:DbtQueryBalanceForAccountInput" />
+
+			<xsd:element name="dbtQueryBalanceForAccountOutput"
+				type="customecaDBTCustomECA:DbtQueryBalanceForAccountOutput" />
+
+			<xsd:element name="dbtQueryBalanceForCustomer"
+				type="customecaDBTCustomECA:DbtQueryBalanceForCustomerInput" />
+
+			<xsd:element name="dbtQueryBalanceForCustomerOutput"
+				type="customecaDBTCustomECA:DbtQueryBalanceForCustomerOutput" />
+
+			<xsd:element name="dbtQueryCommPolicyDetailsForCustomer"
+				type="customecaDBTCustomECA:DbtQueryCommPolicyDetailsForCustomerInput" />
+
+			<xsd:element name="dbtQueryCommPolicyDetailsForCustomerOutput"
+				type="customecaDBTCustomECA:DbtQueryCommPolicyDetailsForCustomerOutput" />
+
+			<xsd:element name="dbtQueryCustomerAttributehistory"
+				type="customecaDBTCustomECA:DbtQueryCustomerAttributehistoryInput" />
+
+			<xsd:element name="dbtQueryCustomerAttributehistoryOutput"
+				type="customecaDBTCustomECA:DbtQueryCustomerAttributehistoryOutput" />
+
+			<xsd:element name="dbtQueryCustomerGradingHistory"
+				type="customecaDBTCustomECA:DbtQueryCustomerGradingHistoryInput" />
+
+			<xsd:element name="dbtQueryCustomerGradingHistoryOutput"
+				type="customecaDBTCustomECA:DbtQueryCustomerGradingHistoryOutput" />
+
+			<xsd:element name="dbtQueryEbillSubscriptions"
+				type="customecaDBTCustomECA:DbtQueryEbillSubscriptionsInput" />
+
+			<xsd:element name="dbtQueryEbillSubscriptionsOutput"
+				type="customecaDBTCustomECA:DbtQueryEbillSubscriptionsOutput" />
+
+			<xsd:element name="dbtQueryEbillTransactions"
+				type="customecaDBTCustomECA:DbtQueryEbillTransactionsInput" />
+
+			<xsd:element name="dbtQueryEbillTransactionsOutput"
+				type="customecaDBTCustomECA:DbtQueryEbillTransactionsOutput" />
+
+			<xsd:element name="dbtQueryEnterpriseRentalData"
+				type="customecaDBTCustomECA:DbtQueryEnterpriseRentalDataInput" />
+
+			<xsd:element name="dbtQueryEnterpriseRentalDataOutput"
+				type="customecaDBTCustomECA:DbtQueryEnterpriseRentalDataOutput" />
+
+			<xsd:element name="dbtQueryFeatureCommitmentRentalData"
+				type="customecaDBTCustomECA:DbtQueryFeatureCommitmentRentalDataInput" />
+
+			<xsd:element name="dbtQueryFeatureCommitmentRentalDataOutput"
+				type="customecaDBTCustomECA:DbtQueryFeatureCommitmentRentalDataOutput" />
+
+			<xsd:element name="dbtQueryFlySmileDetails"
+				type="customecaDBTCustomECA:DbtQueryFlySmileDetailsInput" />
+
+			<xsd:element name="dbtQueryFlySmileDetailsOutput"
+				type="customecaDBTCustomECA:DbtQueryFlySmileDetailsOutput" />
+
+			<xsd:element name="dbtQueryNexusPointDetails"
+				type="customecaDBTCustomECA:DbtQueryNexusPointDetailsInput" />
+
+			<xsd:element name="dbtQueryNexusPointDetailsOutput"
+				type="customecaDBTCustomECA:DbtQueryNexusPointDetailsOutput" />
+
+			<xsd:element name="dbtQueryPaymentExtension"
+				type="customecaDBTCustomECA:DbtQueryPaymentExtensionInput" />
+
+			<xsd:element name="dbtQueryPaymentExtensionOutput"
+				type="customecaDBTCustomECA:DbtQueryPaymentExtensionOutput" />
+
+			<xsd:element name="dbtQuerySMSExclusions"
+				type="customecaDBTCustomECA:DbtQuerySMSExclusionsInput" />
+
+			<xsd:element name="dbtQuerySMSExclusionsOutput"
+				type="customecaDBTCustomECA:DbtQuerySMSExclusionsOutput" />
+
+			<xsd:element name="dbtQuerySMSNotifications"
+				type="customecaDBTCustomECA:DbtQuerySMSNotificationsInput" />
+
+			<xsd:element name="dbtQuerySMSNotificationsOutput"
+				type="customecaDBTCustomECA:DbtQuerySMSNotificationsOutput" />
+
+			<xsd:element name="dbtQueryStarPointDetails"
+				type="customecaDBTCustomECA:DbtQueryStarPointDetailsInput" />
+
+			<xsd:element name="dbtQueryStarPointDetailsOutput"
+				type="customecaDBTCustomECA:DbtQueryStarPointDetailsOutput" />
+
+			<xsd:element name="dbtQueryStarPointSummary"
+				type="customecaDBTCustomECA:DbtQueryStarPointSummaryInput" />
+
+			<xsd:element name="dbtQueryStarPointSummaryOutput"
+				type="customecaDBTCustomECA:DbtQueryStarPointSummaryOutput" />
+
+			<xsd:element name="dbtQueryUnrealizedCheques"
+				type="customecaDBTCustomECA:DbtQueryUnrealizedChequesInput" />
+
+			<xsd:element name="dbtQueryUnrealizedChequesOutput"
+				type="customecaDBTCustomECA:DbtQueryUnrealizedChequesOutput" />
+
+			<xsd:element name="dbtRealizeCheque"
+				type="customecaDBTCustomECA:DbtRealizeChequeInput" />
+
+			<xsd:element name="dbtRealizeChequeOutput" type="base:VoidType" />
+
+			<xsd:element name="dbtSMSExclusions"
+				type="customecaDBTCustomECA:DbtSMSExclusionsInput" />
+
+			<xsd:element name="dbtSMSExclusionsOutput"
+				type="customecaDBTCustomECA:DbtSMSExclusionsOutput" />
+
+			<xsd:element name="dbtSetCustChildToNewRoot"
+				type="customecaDBTCustomECA:DbtSetCustChildToNewRootInput" />
+
+			<xsd:element name="dbtSetCustChildToNewRootOutput" type="base:VoidType" />
+
+			<!-- elements for exceptions -->
+			<xsd:element name="parameterExceptionError" type="commonIML:ParameterException" />
+			<xsd:element name="applicationExceptionError" type="platform:ApplicationException" />
+
+		</xsd:schema>
+	</types>
+
+	<!-- One request message and one response message per method. -->
+
+
+	<message name="dbtAdoptParent_Request">
+		<part name="dbtAdoptParentParameters" element="customecaDBTCustomECAWSDL:dbtAdoptParent" />
+	</message>
+
+	<message name="dbtAdoptParent_Response">
+		<part name="dbtAdoptParentParameters" element="customecaDBTCustomECAWSDL:dbtAdoptParentOutput" />
+	</message>
+
+
+
+	<message name="dbtAssociateCommitmentToCustomer_Request">
+		<part name="dbtAssociateCommitmentToCustomerParameters"
+			element="customecaDBTCustomECAWSDL:dbtAssociateCommitmentToCustomer" />
+	</message>
+
+	<message name="dbtAssociateCommitmentToCustomer_Response">
+		<part name="dbtAssociateCommitmentToCustomerParameters"
+			element="customecaDBTCustomECAWSDL:dbtAssociateCommitmentToCustomerOutput" />
+	</message>
+
+
+
+	<message name="dbtCancelBillChangeRequest_Request">
+		<part name="dbtCancelBillChangeRequestParameters" element="customecaDBTCustomECAWSDL:dbtCancelBillChangeRequest" />
+	</message>
+
+	<message name="dbtCancelBillChangeRequest_Response">
+		<part name="dbtCancelBillChangeRequestParameters"
+			element="customecaDBTCustomECAWSDL:dbtCancelBillChangeRequestOutput" />
+	</message>
+
+
+
+	<message name="dbtCreateBillChangeRequest_Request">
+		<part name="dbtCreateBillChangeRequestParameters" element="customecaDBTCustomECAWSDL:dbtCreateBillChangeRequest" />
+	</message>
+
+	<message name="dbtCreateBillChangeRequest_Response">
+		<part name="dbtCreateBillChangeRequestParameters"
+			element="customecaDBTCustomECAWSDL:dbtCreateBillChangeRequestOutput" />
+	</message>
+
+
+
+	<message name="dbtCreateDeposit_Request">
+		<part name="dbtCreateDepositParameters" element="customecaDBTCustomECAWSDL:dbtCreateDeposit" />
+	</message>
+
+	<message name="dbtCreateDeposit_Response">
+		<part name="dbtCreateDepositParameters" element="customecaDBTCustomECAWSDL:dbtCreateDepositOutput" />
+	</message>
+
+
+
+	<message name="dbtCreateModifyCommitmentMembers_Request">
+		<part name="dbtCreateModifyCommitmentMembersParameters"
+			element="customecaDBTCustomECAWSDL:dbtCreateModifyCommitmentMembers" />
+	</message>
+
+	<message name="dbtCreateModifyCommitmentMembers_Response">
+		<part name="dbtCreateModifyCommitmentMembersParameters"
+			element="customecaDBTCustomECAWSDL:dbtCreateModifyCommitmentMembersOutput" />
+	</message>
+
+
+
+	<message name="dbtCreateModifyPaymentExtension_Request">
+		<part name="dbtCreateModifyPaymentExtensionParameters"
+			element="customecaDBTCustomECAWSDL:dbtCreateModifyPaymentExtension" />
+	</message>
+
+	<message name="dbtCreateModifyPaymentExtension_Response">
+		<part name="dbtCreateModifyPaymentExtensionParameters"
+			element="customecaDBTCustomECAWSDL:dbtCreateModifyPaymentExtensionOutput" />
+	</message>
+
+
+
+	<message name="dbtCreateOneTimeCharge_Request">
+		<part name="dbtCreateOneTimeChargeParameters" element="customecaDBTCustomECAWSDL:dbtCreateOneTimeCharge" />
+	</message>
+
+	<message name="dbtCreateOneTimeCharge_Response">
+		<part name="dbtCreateOneTimeChargeParameters"
+			element="customecaDBTCustomECAWSDL:dbtCreateOneTimeChargeOutput" />
+	</message>
+
+
+
+	<message name="dbtCreatePhysicalPaymentAndAccountPayments_Request">
+		<part name="dbtCreatePhysicalPaymentAndAccountPaymentsParameters"
+			element="customecaDBTCustomECAWSDL:dbtCreatePhysicalPaymentAndAccountPayments" />
+	</message>
+
+	<message name="dbtCreatePhysicalPaymentAndAccountPayments_Response">
+		<part name="dbtCreatePhysicalPaymentAndAccountPaymentsParameters"
+			element="customecaDBTCustomECAWSDL:dbtCreatePhysicalPaymentAndAccountPaymentsOutput" />
+	</message>
+
+
+
+	<message name="dbtCreateSubscription_Request">
+		<part name="dbtCreateSubscriptionParameters" element="customecaDBTCustomECAWSDL:dbtCreateSubscription" />
+	</message>
+
+	<message name="dbtCreateSubscription_Response">
+		<part name="dbtCreateSubscriptionParameters"
+			element="customecaDBTCustomECAWSDL:dbtCreateSubscriptionOutput" />
+	</message>
+
+
+
+	<message name="dbtDepositSetOff_Request">
+		<part name="dbtDepositSetOffParameters" element="customecaDBTCustomECAWSDL:dbtDepositSetOff" />
+	</message>
+
+	<message name="dbtDepositSetOff_Response">
+		<part name="dbtDepositSetOffParameters" element="customecaDBTCustomECAWSDL:dbtDepositSetOffOutput" />
+	</message>
+
+
+
+	<message name="dbtManageEnterpriseRental_Request">
+		<part name="dbtManageEnterpriseRentalParameters" element="customecaDBTCustomECAWSDL:dbtManageEnterpriseRental" />
+	</message>
+
+	<message name="dbtManageEnterpriseRental_Response">
+		<part name="dbtManageEnterpriseRentalParameters"
+			element="customecaDBTCustomECAWSDL:dbtManageEnterpriseRentalOutput" />
+	</message>
+
+
+
+	<message name="dbtManageFeatureCommitmentRental_Request">
+		<part name="dbtManageFeatureCommitmentRentalParameters"
+			element="customecaDBTCustomECAWSDL:dbtManageFeatureCommitmentRental" />
+	</message>
+
+	<message name="dbtManageFeatureCommitmentRental_Response">
+		<part name="dbtManageFeatureCommitmentRentalParameters"
+			element="customecaDBTCustomECAWSDL:dbtManageFeatureCommitmentRentalOutput" />
+	</message>
+
+
+
+	<message name="dbtModifyCommitmentInstance_Request">
+		<part name="dbtModifyCommitmentInstanceParameters"
+			element="customecaDBTCustomECAWSDL:dbtModifyCommitmentInstance" />
+	</message>
+
+	<message name="dbtModifyCommitmentInstance_Response">
+		<part name="dbtModifyCommitmentInstanceParameters"
+			element="customecaDBTCustomECAWSDL:dbtModifyCommitmentInstanceOutput" />
+	</message>
+
+
+
+	<message name="dbtModifySubscription_Request">
+		<part name="dbtModifySubscriptionParameters" element="customecaDBTCustomECAWSDL:dbtModifySubscription" />
+	</message>
+
+	<message name="dbtModifySubscription_Response">
+		<part name="dbtModifySubscriptionParameters"
+			element="customecaDBTCustomECAWSDL:dbtModifySubscriptionOutput" />
+	</message>
+
+
+
+	<message name="dbtPostChequeInSuspendStatus_Request">
+		<part name="dbtPostChequeInSuspendStatusParameters"
+			element="customecaDBTCustomECAWSDL:dbtPostChequeInSuspendStatus" />
+	</message>
+
+	<message name="dbtPostChequeInSuspendStatus_Response">
+		<part name="dbtPostChequeInSuspendStatusParameters"
+			element="customecaDBTCustomECAWSDL:dbtPostChequeInSuspendStatusOutput" />
+	</message>
+
+
+
+	<message name="dbtProcessDunningRequests_Request">
+		<part name="dbtProcessDunningRequestsParameters" element="customecaDBTCustomECAWSDL:dbtProcessDunningRequests" />
+	</message>
+
+	<message name="dbtProcessDunningRequests_Response">
+		<part name="dbtProcessDunningRequestsParameters"
+			element="customecaDBTCustomECAWSDL:dbtProcessDunningRequestsOutput" />
+	</message>
+
+
+
+	<message name="dbtProductTerminateAndActivate_Request">
+		<part name="dbtProductTerminateAndActivateParameters"
+			element="customecaDBTCustomECAWSDL:dbtProductTerminateAndActivate" />
+	</message>
+
+	<message name="dbtProductTerminateAndActivate_Response">
+		<part name="dbtProductTerminateAndActivateParameters"
+			element="customecaDBTCustomECAWSDL:dbtProductTerminateAndActivateOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryAccountAttributehistory_Request">
+		<part name="dbtQueryAccountAttributehistoryParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAccountAttributehistory" />
+	</message>
+
+	<message name="dbtQueryAccountAttributehistory_Response">
+		<part name="dbtQueryAccountAttributehistoryParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAccountAttributehistoryOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryAllBillChangeRequests_Request">
+		<part name="dbtQueryAllBillChangeRequestsParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAllBillChangeRequests" />
+	</message>
+
+	<message name="dbtQueryAllBillChangeRequests_Response">
+		<part name="dbtQueryAllBillChangeRequestsParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAllBillChangeRequestsOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryAllCommitmentPolicies_Request">
+		<part name="dbtQueryAllCommitmentPoliciesParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAllCommitmentPolicies" />
+	</message>
+
+	<message name="dbtQueryAllCommitmentPolicies_Response">
+		<part name="dbtQueryAllCommitmentPoliciesParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAllCommitmentPoliciesOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryAllDeposits_Request">
+		<part name="dbtQueryAllDepositsParameters" element="customecaDBTCustomECAWSDL:dbtQueryAllDeposits" />
+	</message>
+
+	<message name="dbtQueryAllDeposits_Response">
+		<part name="dbtQueryAllDepositsParameters" element="customecaDBTCustomECAWSDL:dbtQueryAllDepositsOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryAllFinancialTransForAccount_Request">
+		<part name="dbtQueryAllFinancialTransForAccountParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAllFinancialTransForAccount" />
+	</message>
+
+	<message name="dbtQueryAllFinancialTransForAccount_Response">
+		<part name="dbtQueryAllFinancialTransForAccountParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAllFinancialTransForAccountOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryAllFinancialTransForCustomer_Request">
+		<part name="dbtQueryAllFinancialTransForCustomerParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAllFinancialTransForCustomer" />
+	</message>
+
+	<message name="dbtQueryAllFinancialTransForCustomer_Response">
+		<part name="dbtQueryAllFinancialTransForCustomerParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAllFinancialTransForCustomerOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryAllGracePeriodCreditType_Request">
+		<part name="dbtQueryAllGracePeriodCreditTypeParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAllGracePeriodCreditType" />
+	</message>
+
+	<message name="dbtQueryAllGracePeriodCreditType_Response">
+		<part name="dbtQueryAllGracePeriodCreditTypeParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAllGracePeriodCreditTypeOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryAllPaymentDetails_Request">
+		<part name="dbtQueryAllPaymentDetailsParameters" element="customecaDBTCustomECAWSDL:dbtQueryAllPaymentDetails" />
+	</message>
+
+	<message name="dbtQueryAllPaymentDetails_Response">
+		<part name="dbtQueryAllPaymentDetailsParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryAllPaymentDetailsOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryBalanceForAccount_Request">
+		<part name="dbtQueryBalanceForAccountParameters" element="customecaDBTCustomECAWSDL:dbtQueryBalanceForAccount" />
+	</message>
+
+	<message name="dbtQueryBalanceForAccount_Response">
+		<part name="dbtQueryBalanceForAccountParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryBalanceForAccountOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryBalanceForCustomer_Request">
+		<part name="dbtQueryBalanceForCustomerParameters" element="customecaDBTCustomECAWSDL:dbtQueryBalanceForCustomer" />
+	</message>
+
+	<message name="dbtQueryBalanceForCustomer_Response">
+		<part name="dbtQueryBalanceForCustomerParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryBalanceForCustomerOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryCommPolicyDetailsForCustomer_Request">
+		<part name="dbtQueryCommPolicyDetailsForCustomerParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryCommPolicyDetailsForCustomer" />
+	</message>
+
+	<message name="dbtQueryCommPolicyDetailsForCustomer_Response">
+		<part name="dbtQueryCommPolicyDetailsForCustomerParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryCommPolicyDetailsForCustomerOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryCustomerAttributehistory_Request">
+		<part name="dbtQueryCustomerAttributehistoryParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryCustomerAttributehistory" />
+	</message>
+
+	<message name="dbtQueryCustomerAttributehistory_Response">
+		<part name="dbtQueryCustomerAttributehistoryParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryCustomerAttributehistoryOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryCustomerGradingHistory_Request">
+		<part name="dbtQueryCustomerGradingHistoryParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryCustomerGradingHistory" />
+	</message>
+
+	<message name="dbtQueryCustomerGradingHistory_Response">
+		<part name="dbtQueryCustomerGradingHistoryParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryCustomerGradingHistoryOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryEbillSubscriptions_Request">
+		<part name="dbtQueryEbillSubscriptionsParameters" element="customecaDBTCustomECAWSDL:dbtQueryEbillSubscriptions" />
+	</message>
+
+	<message name="dbtQueryEbillSubscriptions_Response">
+		<part name="dbtQueryEbillSubscriptionsParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryEbillSubscriptionsOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryEbillTransactions_Request">
+		<part name="dbtQueryEbillTransactionsParameters" element="customecaDBTCustomECAWSDL:dbtQueryEbillTransactions" />
+	</message>
+
+	<message name="dbtQueryEbillTransactions_Response">
+		<part name="dbtQueryEbillTransactionsParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryEbillTransactionsOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryEnterpriseRentalData_Request">
+		<part name="dbtQueryEnterpriseRentalDataParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryEnterpriseRentalData" />
+	</message>
+
+	<message name="dbtQueryEnterpriseRentalData_Response">
+		<part name="dbtQueryEnterpriseRentalDataParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryEnterpriseRentalDataOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryFeatureCommitmentRentalData_Request">
+		<part name="dbtQueryFeatureCommitmentRentalDataParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryFeatureCommitmentRentalData" />
+	</message>
+
+	<message name="dbtQueryFeatureCommitmentRentalData_Response">
+		<part name="dbtQueryFeatureCommitmentRentalDataParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryFeatureCommitmentRentalDataOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryFlySmileDetails_Request">
+		<part name="dbtQueryFlySmileDetailsParameters" element="customecaDBTCustomECAWSDL:dbtQueryFlySmileDetails" />
+	</message>
+
+	<message name="dbtQueryFlySmileDetails_Response">
+		<part name="dbtQueryFlySmileDetailsParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryFlySmileDetailsOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryNexusPointDetails_Request">
+		<part name="dbtQueryNexusPointDetailsParameters" element="customecaDBTCustomECAWSDL:dbtQueryNexusPointDetails" />
+	</message>
+
+	<message name="dbtQueryNexusPointDetails_Response">
+		<part name="dbtQueryNexusPointDetailsParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryNexusPointDetailsOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryPaymentExtension_Request">
+		<part name="dbtQueryPaymentExtensionParameters" element="customecaDBTCustomECAWSDL:dbtQueryPaymentExtension" />
+	</message>
+
+	<message name="dbtQueryPaymentExtension_Response">
+		<part name="dbtQueryPaymentExtensionParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryPaymentExtensionOutput" />
+	</message>
+
+
+
+	<message name="dbtQuerySMSExclusions_Request">
+		<part name="dbtQuerySMSExclusionsParameters" element="customecaDBTCustomECAWSDL:dbtQuerySMSExclusions" />
+	</message>
+
+	<message name="dbtQuerySMSExclusions_Response">
+		<part name="dbtQuerySMSExclusionsParameters"
+			element="customecaDBTCustomECAWSDL:dbtQuerySMSExclusionsOutput" />
+	</message>
+
+
+
+	<message name="dbtQuerySMSNotifications_Request">
+		<part name="dbtQuerySMSNotificationsParameters" element="customecaDBTCustomECAWSDL:dbtQuerySMSNotifications" />
+	</message>
+
+	<message name="dbtQuerySMSNotifications_Response">
+		<part name="dbtQuerySMSNotificationsParameters"
+			element="customecaDBTCustomECAWSDL:dbtQuerySMSNotificationsOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryStarPointDetails_Request">
+		<part name="dbtQueryStarPointDetailsParameters" element="customecaDBTCustomECAWSDL:dbtQueryStarPointDetails" />
+	</message>
+
+	<message name="dbtQueryStarPointDetails_Response">
+		<part name="dbtQueryStarPointDetailsParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryStarPointDetailsOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryStarPointSummary_Request">
+		<part name="dbtQueryStarPointSummaryParameters" element="customecaDBTCustomECAWSDL:dbtQueryStarPointSummary" />
+	</message>
+
+	<message name="dbtQueryStarPointSummary_Response">
+		<part name="dbtQueryStarPointSummaryParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryStarPointSummaryOutput" />
+	</message>
+
+
+
+	<message name="dbtQueryUnrealizedCheques_Request">
+		<part name="dbtQueryUnrealizedChequesParameters" element="customecaDBTCustomECAWSDL:dbtQueryUnrealizedCheques" />
+	</message>
+
+	<message name="dbtQueryUnrealizedCheques_Response">
+		<part name="dbtQueryUnrealizedChequesParameters"
+			element="customecaDBTCustomECAWSDL:dbtQueryUnrealizedChequesOutput" />
+	</message>
+
+
+
+	<message name="dbtRealizeCheque_Request">
+		<part name="dbtRealizeChequeParameters" element="customecaDBTCustomECAWSDL:dbtRealizeCheque" />
+	</message>
+
+	<message name="dbtRealizeCheque_Response">
+		<part name="dbtRealizeChequeParameters" element="customecaDBTCustomECAWSDL:dbtRealizeChequeOutput" />
+	</message>
+
+
+
+	<message name="dbtSMSExclusions_Request">
+		<part name="dbtSMSExclusionsParameters" element="customecaDBTCustomECAWSDL:dbtSMSExclusions" />
+	</message>
+
+	<message name="dbtSMSExclusions_Response">
+		<part name="dbtSMSExclusionsParameters" element="customecaDBTCustomECAWSDL:dbtSMSExclusionsOutput" />
+	</message>
+
+
+
+	<message name="dbtSetCustChildToNewRoot_Request">
+		<part name="dbtSetCustChildToNewRootParameters" element="customecaDBTCustomECAWSDL:dbtSetCustChildToNewRoot" />
+	</message>
+
+	<message name="dbtSetCustChildToNewRoot_Response">
+		<part name="dbtSetCustChildToNewRootParameters"
+			element="customecaDBTCustomECAWSDL:dbtSetCustChildToNewRootOutput" />
+	</message>
+
+
+
+	<!-- one fault message per exception -->
+	<message name="ParameterExceptionError">
+		<part name="error" element="customecaDBTCustomECAWSDL:parameterExceptionError" />
+	</message>
+
+	<message name="ApplicationExceptionError">
+		<part name="error" element="customecaDBTCustomECAWSDL:applicationExceptionError" />
+	</message>
+
+
+	<!-- one portType for the service -->
+	<portType name="CUSTOMECADBTCustomECAPortType">
+		<!-- one operation per method on the service -->
+		<operation name="dbtAdoptParent">
+			<input name="dbtAdoptParent" message="customecaDBTCustomECAWSDL:dbtAdoptParent_Request" />
+			<output name="dbtAdoptParent_Response"
+				message="customecaDBTCustomECAWSDL:dbtAdoptParent_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtAssociateCommitmentToCustomer">
+			<input name="dbtAssociateCommitmentToCustomer"
+				message="customecaDBTCustomECAWSDL:dbtAssociateCommitmentToCustomer_Request" />
+			<output name="dbtAssociateCommitmentToCustomer_Response"
+				message="customecaDBTCustomECAWSDL:dbtAssociateCommitmentToCustomer_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtCancelBillChangeRequest">
+			<input name="dbtCancelBillChangeRequest"
+				message="customecaDBTCustomECAWSDL:dbtCancelBillChangeRequest_Request" />
+			<output name="dbtCancelBillChangeRequest_Response"
+				message="customecaDBTCustomECAWSDL:dbtCancelBillChangeRequest_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtCreateBillChangeRequest">
+			<input name="dbtCreateBillChangeRequest"
+				message="customecaDBTCustomECAWSDL:dbtCreateBillChangeRequest_Request" />
+			<output name="dbtCreateBillChangeRequest_Response"
+				message="customecaDBTCustomECAWSDL:dbtCreateBillChangeRequest_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtCreateDeposit">
+			<input name="dbtCreateDeposit"
+				message="customecaDBTCustomECAWSDL:dbtCreateDeposit_Request" />
+			<output name="dbtCreateDeposit_Response"
+				message="customecaDBTCustomECAWSDL:dbtCreateDeposit_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtCreateModifyCommitmentMembers">
+			<input name="dbtCreateModifyCommitmentMembers"
+				message="customecaDBTCustomECAWSDL:dbtCreateModifyCommitmentMembers_Request" />
+			<output name="dbtCreateModifyCommitmentMembers_Response"
+				message="customecaDBTCustomECAWSDL:dbtCreateModifyCommitmentMembers_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtCreateModifyPaymentExtension">
+			<input name="dbtCreateModifyPaymentExtension"
+				message="customecaDBTCustomECAWSDL:dbtCreateModifyPaymentExtension_Request" />
+			<output name="dbtCreateModifyPaymentExtension_Response"
+				message="customecaDBTCustomECAWSDL:dbtCreateModifyPaymentExtension_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtCreateOneTimeCharge">
+			<input name="dbtCreateOneTimeCharge"
+				message="customecaDBTCustomECAWSDL:dbtCreateOneTimeCharge_Request" />
+			<output name="dbtCreateOneTimeCharge_Response"
+				message="customecaDBTCustomECAWSDL:dbtCreateOneTimeCharge_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtCreatePhysicalPaymentAndAccountPayments">
+			<input name="dbtCreatePhysicalPaymentAndAccountPayments"
+				message="customecaDBTCustomECAWSDL:dbtCreatePhysicalPaymentAndAccountPayments_Request" />
+			<output name="dbtCreatePhysicalPaymentAndAccountPayments_Response"
+				message="customecaDBTCustomECAWSDL:dbtCreatePhysicalPaymentAndAccountPayments_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtCreateSubscription">
+			<input name="dbtCreateSubscription"
+				message="customecaDBTCustomECAWSDL:dbtCreateSubscription_Request" />
+			<output name="dbtCreateSubscription_Response"
+				message="customecaDBTCustomECAWSDL:dbtCreateSubscription_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtDepositSetOff">
+			<input name="dbtDepositSetOff"
+				message="customecaDBTCustomECAWSDL:dbtDepositSetOff_Request" />
+			<output name="dbtDepositSetOff_Response"
+				message="customecaDBTCustomECAWSDL:dbtDepositSetOff_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtManageEnterpriseRental">
+			<input name="dbtManageEnterpriseRental"
+				message="customecaDBTCustomECAWSDL:dbtManageEnterpriseRental_Request" />
+			<output name="dbtManageEnterpriseRental_Response"
+				message="customecaDBTCustomECAWSDL:dbtManageEnterpriseRental_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtManageFeatureCommitmentRental">
+			<input name="dbtManageFeatureCommitmentRental"
+				message="customecaDBTCustomECAWSDL:dbtManageFeatureCommitmentRental_Request" />
+			<output name="dbtManageFeatureCommitmentRental_Response"
+				message="customecaDBTCustomECAWSDL:dbtManageFeatureCommitmentRental_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtModifyCommitmentInstance">
+			<input name="dbtModifyCommitmentInstance"
+				message="customecaDBTCustomECAWSDL:dbtModifyCommitmentInstance_Request" />
+			<output name="dbtModifyCommitmentInstance_Response"
+				message="customecaDBTCustomECAWSDL:dbtModifyCommitmentInstance_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtModifySubscription">
+			<input name="dbtModifySubscription"
+				message="customecaDBTCustomECAWSDL:dbtModifySubscription_Request" />
+			<output name="dbtModifySubscription_Response"
+				message="customecaDBTCustomECAWSDL:dbtModifySubscription_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtPostChequeInSuspendStatus">
+			<input name="dbtPostChequeInSuspendStatus"
+				message="customecaDBTCustomECAWSDL:dbtPostChequeInSuspendStatus_Request" />
+			<output name="dbtPostChequeInSuspendStatus_Response"
+				message="customecaDBTCustomECAWSDL:dbtPostChequeInSuspendStatus_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtProcessDunningRequests">
+			<input name="dbtProcessDunningRequests"
+				message="customecaDBTCustomECAWSDL:dbtProcessDunningRequests_Request" />
+			<output name="dbtProcessDunningRequests_Response"
+				message="customecaDBTCustomECAWSDL:dbtProcessDunningRequests_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtProductTerminateAndActivate">
+			<input name="dbtProductTerminateAndActivate"
+				message="customecaDBTCustomECAWSDL:dbtProductTerminateAndActivate_Request" />
+			<output name="dbtProductTerminateAndActivate_Response"
+				message="customecaDBTCustomECAWSDL:dbtProductTerminateAndActivate_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryAccountAttributehistory">
+			<input name="dbtQueryAccountAttributehistory"
+				message="customecaDBTCustomECAWSDL:dbtQueryAccountAttributehistory_Request" />
+			<output name="dbtQueryAccountAttributehistory_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryAccountAttributehistory_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryAllBillChangeRequests">
+			<input name="dbtQueryAllBillChangeRequests"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllBillChangeRequests_Request" />
+			<output name="dbtQueryAllBillChangeRequests_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllBillChangeRequests_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryAllCommitmentPolicies">
+			<input name="dbtQueryAllCommitmentPolicies"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllCommitmentPolicies_Request" />
+			<output name="dbtQueryAllCommitmentPolicies_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllCommitmentPolicies_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryAllDeposits">
+			<input name="dbtQueryAllDeposits"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllDeposits_Request" />
+			<output name="dbtQueryAllDeposits_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllDeposits_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryAllFinancialTransForAccount">
+			<input name="dbtQueryAllFinancialTransForAccount"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllFinancialTransForAccount_Request" />
+			<output name="dbtQueryAllFinancialTransForAccount_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllFinancialTransForAccount_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryAllFinancialTransForCustomer">
+			<input name="dbtQueryAllFinancialTransForCustomer"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllFinancialTransForCustomer_Request" />
+			<output name="dbtQueryAllFinancialTransForCustomer_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllFinancialTransForCustomer_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryAllGracePeriodCreditType">
+			<input name="dbtQueryAllGracePeriodCreditType"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllGracePeriodCreditType_Request" />
+			<output name="dbtQueryAllGracePeriodCreditType_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllGracePeriodCreditType_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryAllPaymentDetails">
+			<input name="dbtQueryAllPaymentDetails"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllPaymentDetails_Request" />
+			<output name="dbtQueryAllPaymentDetails_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryAllPaymentDetails_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryBalanceForAccount">
+			<input name="dbtQueryBalanceForAccount"
+				message="customecaDBTCustomECAWSDL:dbtQueryBalanceForAccount_Request" />
+			<output name="dbtQueryBalanceForAccount_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryBalanceForAccount_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryBalanceForCustomer">
+			<input name="dbtQueryBalanceForCustomer"
+				message="customecaDBTCustomECAWSDL:dbtQueryBalanceForCustomer_Request" />
+			<output name="dbtQueryBalanceForCustomer_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryBalanceForCustomer_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryCommPolicyDetailsForCustomer">
+			<input name="dbtQueryCommPolicyDetailsForCustomer"
+				message="customecaDBTCustomECAWSDL:dbtQueryCommPolicyDetailsForCustomer_Request" />
+			<output name="dbtQueryCommPolicyDetailsForCustomer_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryCommPolicyDetailsForCustomer_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryCustomerAttributehistory">
+			<input name="dbtQueryCustomerAttributehistory"
+				message="customecaDBTCustomECAWSDL:dbtQueryCustomerAttributehistory_Request" />
+			<output name="dbtQueryCustomerAttributehistory_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryCustomerAttributehistory_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryCustomerGradingHistory">
+			<input name="dbtQueryCustomerGradingHistory"
+				message="customecaDBTCustomECAWSDL:dbtQueryCustomerGradingHistory_Request" />
+			<output name="dbtQueryCustomerGradingHistory_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryCustomerGradingHistory_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryEbillSubscriptions">
+			<input name="dbtQueryEbillSubscriptions"
+				message="customecaDBTCustomECAWSDL:dbtQueryEbillSubscriptions_Request" />
+			<output name="dbtQueryEbillSubscriptions_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryEbillSubscriptions_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryEbillTransactions">
+			<input name="dbtQueryEbillTransactions"
+				message="customecaDBTCustomECAWSDL:dbtQueryEbillTransactions_Request" />
+			<output name="dbtQueryEbillTransactions_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryEbillTransactions_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryEnterpriseRentalData">
+			<input name="dbtQueryEnterpriseRentalData"
+				message="customecaDBTCustomECAWSDL:dbtQueryEnterpriseRentalData_Request" />
+			<output name="dbtQueryEnterpriseRentalData_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryEnterpriseRentalData_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryFeatureCommitmentRentalData">
+			<input name="dbtQueryFeatureCommitmentRentalData"
+				message="customecaDBTCustomECAWSDL:dbtQueryFeatureCommitmentRentalData_Request" />
+			<output name="dbtQueryFeatureCommitmentRentalData_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryFeatureCommitmentRentalData_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryFlySmileDetails">
+			<input name="dbtQueryFlySmileDetails"
+				message="customecaDBTCustomECAWSDL:dbtQueryFlySmileDetails_Request" />
+			<output name="dbtQueryFlySmileDetails_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryFlySmileDetails_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryNexusPointDetails">
+			<input name="dbtQueryNexusPointDetails"
+				message="customecaDBTCustomECAWSDL:dbtQueryNexusPointDetails_Request" />
+			<output name="dbtQueryNexusPointDetails_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryNexusPointDetails_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryPaymentExtension">
+			<input name="dbtQueryPaymentExtension"
+				message="customecaDBTCustomECAWSDL:dbtQueryPaymentExtension_Request" />
+			<output name="dbtQueryPaymentExtension_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryPaymentExtension_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQuerySMSExclusions">
+			<input name="dbtQuerySMSExclusions"
+				message="customecaDBTCustomECAWSDL:dbtQuerySMSExclusions_Request" />
+			<output name="dbtQuerySMSExclusions_Response"
+				message="customecaDBTCustomECAWSDL:dbtQuerySMSExclusions_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQuerySMSNotifications">
+			<input name="dbtQuerySMSNotifications"
+				message="customecaDBTCustomECAWSDL:dbtQuerySMSNotifications_Request" />
+			<output name="dbtQuerySMSNotifications_Response"
+				message="customecaDBTCustomECAWSDL:dbtQuerySMSNotifications_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryStarPointDetails">
+			<input name="dbtQueryStarPointDetails"
+				message="customecaDBTCustomECAWSDL:dbtQueryStarPointDetails_Request" />
+			<output name="dbtQueryStarPointDetails_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryStarPointDetails_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryStarPointSummary">
+			<input name="dbtQueryStarPointSummary"
+				message="customecaDBTCustomECAWSDL:dbtQueryStarPointSummary_Request" />
+			<output name="dbtQueryStarPointSummary_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryStarPointSummary_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtQueryUnrealizedCheques">
+			<input name="dbtQueryUnrealizedCheques"
+				message="customecaDBTCustomECAWSDL:dbtQueryUnrealizedCheques_Request" />
+			<output name="dbtQueryUnrealizedCheques_Response"
+				message="customecaDBTCustomECAWSDL:dbtQueryUnrealizedCheques_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtRealizeCheque">
+			<input name="dbtRealizeCheque"
+				message="customecaDBTCustomECAWSDL:dbtRealizeCheque_Request" />
+			<output name="dbtRealizeCheque_Response"
+				message="customecaDBTCustomECAWSDL:dbtRealizeCheque_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtSMSExclusions">
+			<input name="dbtSMSExclusions"
+				message="customecaDBTCustomECAWSDL:dbtSMSExclusions_Request" />
+			<output name="dbtSMSExclusions_Response"
+				message="customecaDBTCustomECAWSDL:dbtSMSExclusions_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+		<operation name="dbtSetCustChildToNewRoot">
+			<input name="dbtSetCustChildToNewRoot"
+				message="customecaDBTCustomECAWSDL:dbtSetCustChildToNewRoot_Request" />
+			<output name="dbtSetCustChildToNewRoot_Response"
+				message="customecaDBTCustomECAWSDL:dbtSetCustChildToNewRoot_Response" />
+
+			<fault name="Fault_ParameterException" message="customecaDBTCustomECAWSDL:ParameterExceptionError" />
+			<fault name="Fault_ApplicationException"
+				message="customecaDBTCustomECAWSDL:ApplicationExceptionError" />
+		</operation>
+
+	</portType>
+
+	<!-- one binding for the service -->
+	<binding name="CUSTOMECADBTCustomECABinding"
+		type="customecaDBTCustomECAWSDL:CUSTOMECADBTCustomECAPortType">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+			style="document" />
+
+		<!-- one operation binding per method on the service -->
+		<operation name="dbtAdoptParent">
+			<soap:operation soapAction="" />
+			<input name="dbtAdoptParent">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtAdoptParent_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtAssociateCommitmentToCustomer">
+			<soap:operation soapAction="" />
+			<input name="dbtAssociateCommitmentToCustomer">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtAssociateCommitmentToCustomer_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtCancelBillChangeRequest">
+			<soap:operation soapAction="" />
+			<input name="dbtCancelBillChangeRequest">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtCancelBillChangeRequest_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtCreateBillChangeRequest">
+			<soap:operation soapAction="" />
+			<input name="dbtCreateBillChangeRequest">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtCreateBillChangeRequest_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtCreateDeposit">
+			<soap:operation soapAction="" />
+			<input name="dbtCreateDeposit">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtCreateDeposit_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtCreateModifyCommitmentMembers">
+			<soap:operation soapAction="" />
+			<input name="dbtCreateModifyCommitmentMembers">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtCreateModifyCommitmentMembers_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtCreateModifyPaymentExtension">
+			<soap:operation soapAction="" />
+			<input name="dbtCreateModifyPaymentExtension">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtCreateModifyPaymentExtension_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtCreateOneTimeCharge">
+			<soap:operation soapAction="" />
+			<input name="dbtCreateOneTimeCharge">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtCreateOneTimeCharge_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtCreatePhysicalPaymentAndAccountPayments">
+			<soap:operation soapAction="" />
+			<input name="dbtCreatePhysicalPaymentAndAccountPayments">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtCreatePhysicalPaymentAndAccountPayments_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtCreateSubscription">
+			<soap:operation soapAction="" />
+			<input name="dbtCreateSubscription">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtCreateSubscription_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtDepositSetOff">
+			<soap:operation soapAction="" />
+			<input name="dbtDepositSetOff">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtDepositSetOff_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtManageEnterpriseRental">
+			<soap:operation soapAction="" />
+			<input name="dbtManageEnterpriseRental">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtManageEnterpriseRental_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtManageFeatureCommitmentRental">
+			<soap:operation soapAction="" />
+			<input name="dbtManageFeatureCommitmentRental">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtManageFeatureCommitmentRental_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtModifyCommitmentInstance">
+			<soap:operation soapAction="" />
+			<input name="dbtModifyCommitmentInstance">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtModifyCommitmentInstance_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtModifySubscription">
+			<soap:operation soapAction="" />
+			<input name="dbtModifySubscription">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtModifySubscription_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtPostChequeInSuspendStatus">
+			<soap:operation soapAction="" />
+			<input name="dbtPostChequeInSuspendStatus">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtPostChequeInSuspendStatus_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtProcessDunningRequests">
+			<soap:operation soapAction="" />
+			<input name="dbtProcessDunningRequests">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtProcessDunningRequests_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtProductTerminateAndActivate">
+			<soap:operation soapAction="" />
+			<input name="dbtProductTerminateAndActivate">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtProductTerminateAndActivate_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryAccountAttributehistory">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryAccountAttributehistory">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryAccountAttributehistory_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryAllBillChangeRequests">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryAllBillChangeRequests">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryAllBillChangeRequests_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryAllCommitmentPolicies">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryAllCommitmentPolicies">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryAllCommitmentPolicies_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryAllDeposits">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryAllDeposits">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryAllDeposits_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryAllFinancialTransForAccount">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryAllFinancialTransForAccount">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryAllFinancialTransForAccount_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryAllFinancialTransForCustomer">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryAllFinancialTransForCustomer">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryAllFinancialTransForCustomer_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryAllGracePeriodCreditType">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryAllGracePeriodCreditType">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryAllGracePeriodCreditType_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryAllPaymentDetails">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryAllPaymentDetails">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryAllPaymentDetails_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryBalanceForAccount">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryBalanceForAccount">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryBalanceForAccount_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryBalanceForCustomer">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryBalanceForCustomer">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryBalanceForCustomer_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryCommPolicyDetailsForCustomer">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryCommPolicyDetailsForCustomer">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryCommPolicyDetailsForCustomer_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryCustomerAttributehistory">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryCustomerAttributehistory">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryCustomerAttributehistory_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryCustomerGradingHistory">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryCustomerGradingHistory">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryCustomerGradingHistory_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryEbillSubscriptions">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryEbillSubscriptions">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryEbillSubscriptions_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryEbillTransactions">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryEbillTransactions">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryEbillTransactions_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryEnterpriseRentalData">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryEnterpriseRentalData">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryEnterpriseRentalData_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryFeatureCommitmentRentalData">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryFeatureCommitmentRentalData">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryFeatureCommitmentRentalData_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryFlySmileDetails">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryFlySmileDetails">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryFlySmileDetails_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryNexusPointDetails">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryNexusPointDetails">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryNexusPointDetails_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryPaymentExtension">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryPaymentExtension">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryPaymentExtension_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQuerySMSExclusions">
+			<soap:operation soapAction="" />
+			<input name="dbtQuerySMSExclusions">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQuerySMSExclusions_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQuerySMSNotifications">
+			<soap:operation soapAction="" />
+			<input name="dbtQuerySMSNotifications">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQuerySMSNotifications_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryStarPointDetails">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryStarPointDetails">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryStarPointDetails_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryStarPointSummary">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryStarPointSummary">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryStarPointSummary_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtQueryUnrealizedCheques">
+			<soap:operation soapAction="" />
+			<input name="dbtQueryUnrealizedCheques">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtQueryUnrealizedCheques_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtRealizeCheque">
+			<soap:operation soapAction="" />
+			<input name="dbtRealizeCheque">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtRealizeCheque_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtSMSExclusions">
+			<soap:operation soapAction="" />
+			<input name="dbtSMSExclusions">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtSMSExclusions_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="dbtSetCustChildToNewRoot">
+			<soap:operation soapAction="" />
+			<input name="dbtSetCustChildToNewRoot">
+				<soap:body use="literal" />
+			</input>
+			<output name="dbtSetCustChildToNewRoot_Response">
+				<soap:body use="literal" />
+			</output>
+			<fault name="Fault_ParameterException">
+				<soap:fault name="Fault_ParameterException" use="literal" />
+			</fault>
+			<fault name="Fault_ApplicationException">
+				<soap:fault name="Fault_ApplicationException" use="literal" />
+			</fault>
+		</operation>
+
+	</binding>
+
+	<!-- one WSDL service for the interface service -->
+	<service name="CUSTOMECADBTCustomECA">
+		<port name="CUSTOMECADBTCustomECAPort"
+			binding="customecaDBTCustomECAWSDL:CUSTOMECADBTCustomECABinding">
+			<!-- this address is just a dummy because the spec demands one -->
+			<soap:address
+				location="http://unconfigured.host.com/CUSTOMECADBTCustomECAPort" />
+		</port>
+	</service>
+</definitions>
+
+<!-- eof CUSTOMECA_DBTCustomECA.wsdl -->

@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<bean id="queryHandler" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="SQL_CCBS_PROFILE_BY_ID"
+					value="SELECT DC.MOBILE_NO,C.CONTRACT_SUBSIDIARY_TYPE,  DC.PRE_POST,CSP.IDENTIFICATION_NUMBER,CSP.OLD_NIC_NO,CSP.SUBSCRIBER_PROFILE_ID,
+                                                         CSN.SUBSCRIBER_NODE_ID, CSP.IDENTIFICATION_TYPE,CSP.TITLE,CSP.NAME1,CSP.NAME2,CSP.TAX_TYPE,C.CONTRACT_ID,
+                                                         C.OCS_HYBRID,PV.SWITCH_STATUS,PV.STATUS_REASON_ID,CSR.DESCRIPTION, C.ADDRESS_ID,
+                                  CSA.LINE1,CSA.LINE2,CSA.LINE3,CSA.POSTAL_CODE,CSA.EMAIL_ADDRESS,C.BILL_RUN_CODE,
+                                   (SELECT NVL(line1,' ')||'%'||NVL(line2,' ')||'%'||NVL(line3,' ')||'%'||NVL(postal_code,' ')||'%'||NVL(email_address,' ')  
+                                    FROM  CAM_SUBSCRIBER_ADDRESS csa1
+                                   WHERE subscriber_profile_id=csp.subscriber_profile_id 
+                                    AND  default_address='T' AND rownum &lt; 2
+                                    ) cx_default_address,     
+                                    cam_node_creation.find_immediate_pr_of_sn(csn.subscriber_node_id) pr_code,                             
+                                   (SELECT csa2.email_address from CAM_SUBSCRIBER_ADDRESS csa2 where csa2.address_id = (SELECT address_id
+                                    FROM CAM_SUBSCRIBER_NODE csn1 
+                                    WHERE csn1.subscriber_node_id =  cam_node_creation.find_immediate_pr_of_sn(csn.subscriber_node_id))) pr_email
+                                    FROM CAM_SUBSCRIBER_PROFILE CSP,CAM_SUBSCRIBER_NODE CSN,CAM_CONTRACT C,CAM_CONTRACT_PACKAGE CCP,CAM_CONNECTION CC,DYN_1_CONNECTION DC,PROV_SWITCH_IMAGE PV,CAM_SUBSCRIBER_ADDRESS CSA, CAM_STATUS_REASON CSR
+                                                WHERE CSP.SUBSCRIBER_PROFILE_ID=CSN.SUBSCRIBER_PROFILE_ID AND
+                                                          CSN.SUBSCRIBER_NODE_ID=C.SUBSCRIBER_NODE_ID AND
+                                                          C.CONTRACT_ID=CCP.CONTRACT_ID AND
+                                                          CCP.CONTRACT_PACKAGE_ID=CC.PACKAGE_CONTRACT_ID AND
+                                                          CC.CONNECTION_ID=DC.CONNECTION_ID AND
+                                                          CC.IMAGE_ID=PV.IMAGE_ID AND
+                                                          C.ADDRESS_ID =CSA.ADDRESS_ID AND
+                                                          DC.SERVICE_ID IN (1,2,500) AND 
+                                                          CCP.PACKAGE_ID  NOT IN ('I_DATA_DATA','I_DATA_PDATA')  AND
+                                                          PV.STATUS_REASON_ID =  CSR.STATUS_REASON_ID(+) AND
+                                                          (CSP.IDENTIFICATION_NUMBER= UPPER(?) OR CSP.OLD_NIC_NO=UPPER(?) ) AND (CSP.IDENTIFICATION_TYPE= ? )" />
+
+				<entry key="SQL_CCBS_VOLTE_PROFILE_BY_ID"
+					value="SELECT dc.mobile_no,
+						   c.contract_subsidiary_type,
+						   dc.pre_post,
+						   csp.identification_number,
+						   csp.old_nic_no,
+						   csp.subscriber_profile_id,
+						   to_char(csn.subscriber_node_id) as subscriber_node_id,
+						   csp.identification_type,
+						   csp.title,
+						   csp.name1,
+						   csp.name2,
+						   csp.tax_type,
+						   to_char(c.contract_id) as contract_id,
+						   c.ocs_hybrid,
+						   pv.switch_status,
+						   pv.status_reason_id,
+						   csr.description,
+						   c.address_id,
+						   csa.line1,
+						   csa.line2,
+						   csa.line3,
+						   csa.postal_code,
+						   csa.email_address,
+						   c.bill_run_code,
+						   (SELECT NVL (line1, ' ')|| '%'|| NVL (line2, ' ')|| '%'|| NVL (line3, ' ')|| '%'
+								   || NVL (postal_code, ' ')|| '%'|| NVL (email_address, ' ')
+							  FROM CAM_SUBSCRIBER_ADDRESS csa1
+							  WHERE subscriber_profile_id = csp.subscriber_profile_id
+								   AND default_address = 'T'
+								   AND ROWNUM &lt; 2)
+							  cx_default_address,
+							  to_char(cam_node_creation.find_immediate_pr_of_sn (csn.subscriber_node_id))
+							  pr_code,
+							  (SELECT csa2.email_address
+							  FROM cam_subscriber_address csa2
+							  WHERE csa2.address_id = (SELECT address_id
+														FROM cam_subscriber_node csn1
+														WHERE csn1.subscriber_node_id =  cam_node_creation.find_immediate_pr_of_sn(csn.subscriber_node_id))) pr_email
+														FROM cam_subscriber_profile csp,cam_subscriber_node csn,cam_contract c,cam_contract_package ccp,cam_connection cc,dyn_1_connection dc,prov_switch_image pv,cam_subscriber_address csa, cam_status_reason csr
+																	WHERE csp.subscriber_profile_id=csn.subscriber_profile_id AND
+																			  csn.subscriber_node_id=c.subscriber_node_id AND
+																			  c.contract_id=ccp.contract_id AND
+																			  ccp.contract_package_id=cc.package_contract_id AND
+																			  cc.connection_id=dc.connection_id AND
+																			  cc.image_id=pv.image_id AND
+																			  c.address_id =csa.address_id AND
+																			  dc.service_id =450 AND
+																			  ccp.package_id  NOT IN ('I_DATA_DATA','I_DATA_PDATA')  AND
+																			  pv.status_reason_id =  csr.status_reason_id(+) AND
+																			  (csp.identification_number= UPPER(?) OR csp.old_nic_no=UPPER(?)) AND (csp.identification_type= ?)
+																			UNION
+																			SELECT su.sub_number,
+																				   'DCS' as contract_subsidiary_type,
+																				   su.pre_post,
+																				   csp.identification_number,
+																				   csp.old_nic_no,
+																				   csp.subscriber_profile_id,
+																				   ba.ind_customer_id as subscriber_node_id,
+																				   csp.identification_type,
+																				   csp.title,
+																				   csp.name1,
+																				   csp.name2,
+																				   csp.tax_type,
+																				   ba.account_num as contract_id,
+																				   'N' as ocs_hybrid,
+																				   su.subscriber_status,
+																				   su.status_reason_id,
+																				   csr.description,
+																				   ba.address_id,
+																				   csa.line1,
+																				   csa.line2,
+																				   csa.line3,
+																				   csa.postal_code,
+																				   csa.email_address,
+																				   ba.bill_run_code,
+																					 (SELECT    NVL (line1, ' ')|| '%'|| NVL (line2, ' ')
+																						   || '%'|| NVL (line3, ' ')|| '%'
+																						   || NVL (postal_code, ' ')
+																						   || '%'|| NVL (email_address, ' ')
+																					  FROM cam_subscriber_address csa1
+																					  WHERE  subscriber_profile_id = csp.subscriber_profile_id
+																						   AND default_address = 'T'
+																						   AND ROWNUM &lt; 2)
+																					  cx_default_address,
+																					ba.ind_customer_id as pr_code,
+																					cont.email_address pr_email
+																			  FROM cam_subscriber_profile csp, billing_account ba, subscriber su,cam_subscriber_address csa,cam_status_reason csr , contact cont
+																			  WHERE csp.subscriber_profile_id = ba.subscriber_profile_id
+																				   AND ba.account_num = su.account_num
+																				   AND (csp.identification_number = UPPER (?)
+																						OR csp.old_nic_no = UPPER (?))
+																				   AND (csp.identification_type = ?)
+																				   AND ba.address_id =csa.address_id
+																				   AND su.status_reason_id =  csr.status_reason_id(+)
+																				   AND ba.contact_id = cont.contact_id(+)" />
+
+
+				<entry key="SQL_NFC_EMAIL_BY_CONTRACT"
+					value="SELECT email_address FROM contactdetails@rbm WHERE (customer_ref, ADDRESS_SEQ) IN (
+                              SELECT cd.customer_ref, MAX (ADDRESS_SEQ) seq FROM contactdetails@rbm cd, ACCOUNT@rbm ac
+                             WHERE cd.customer_ref = ac.customer_ref AND cd.end_dat IS NULL AND ac.account_num = ?
+                              GROUP BY cd.customer_ref)" />
+
+
+				<entry key="SQL_TBIZ_PROFILE_BY_ID"
+					value="{call PKG_CPOS_PG.query_customer(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}" />
+				<entry key="SQL_WIFI_PROFILE_BY_ID"
+					value="SELECT wc.cust_id,
+													            wa.account_id,
+													            wcp.CUST_IDENTIFIER,
+													            wc.id_number,
+													            wc.OLD_NIC_NO,
+													            wc.id_type,
+													            wc.address_line1,
+													            wc.address_line2,
+													            wc.address_line3,
+													            wc.postal_code ,
+													            wc.email,
+													            wc.title, 
+													            wc.first_name,
+													            wc.last_name,            
+													            wa.bill_run_code,
+													            wa.billing_email,
+													            wa.status
+													FROM WIFI.WIFI_CUSTOMER wc , WIFI.WIFI_ACCOUNT wa,WIFI.WIFI_CUST_PRODUCT wcp
+													WHERE (wc.id_number = UPPER(?) OR wc.OLD_NIC_NO=UPPER(?)) AND wa.ACCOUNT_ID=wcp.ACCOUNT_ID and
+ 													            wc.id_type = ? AND
+													            wa.cust_id  = wc.cust_id" />
+
+				<entry key="SQL_CCBS_PROFILE_BY_MSISDN"
+					value="SELECT dc.mobile_no, c.contract_subsidiary_type, dc.pre_post,
+							   csp.identification_number, csp.old_nic_no,
+							   csp.subscriber_profile_id, to_char(csn.subscriber_node_id) as subscriber_node_id,
+							   csp.identification_type, csp.title, csp.name1, csp.name2,
+							   csp.tax_type, to_char(c.contract_id) as contract_id,
+							   c.ocs_hybrid, pv.switch_status,
+							   pv.status_reason_id, csr.description,
+							   c.address_id, csa.line1, csa.line2, csa.line3,
+							   csa.postal_code, csa.email_address, c.bill_run_code,
+							   (SELECT    NVL (line1, ' ')
+									   || '%'
+									   || NVL (line2, ' ')
+									   || '%'
+									   || NVL (line3, ' ')
+									   || '%'
+									   || NVL (postal_code, ' ')
+									   || '%'
+									   || NVL (email_address, ' ')
+								  FROM cam_subscriber_address csa1
+								  WHERE  subscriber_profile_id = csp.subscriber_profile_id
+									   AND default_address = 'T'
+									   AND ROWNUM &lt; 2)
+								  cx_default_address,
+								  to_char(cam_node_creation.find_immediate_pr_of_sn (csn.subscriber_node_id))
+								  pr_code,
+								  (SELECT csa2.email_address
+								  FROM cam_subscriber_address csa2
+								  WHERE csa2.address_id =
+										  (SELECT address_id
+											FROM cam_subscriber_node csn1
+											WHERE csn1.subscriber_node_id =
+													 cam_node_creation.find_immediate_pr_of_sn (
+														csn.subscriber_node_id)))
+														   pr_email
+														   FROM cam_subscriber_profile csp,
+														   cam_subscriber_node csn,
+														   cam_contract c,
+														   cam_contract_package ccp,
+														   cam_connection cc,
+														   dyn_1_connection dc,
+														   prov_switch_image pv,
+														   cam_subscriber_address csa,
+														   cam_status_reason csr
+														   WHERE csp.subscriber_profile_id = csn.subscriber_profile_id
+														   AND csn.subscriber_node_id = c.subscriber_node_id
+														   AND c.contract_id = ccp.contract_id
+														   AND ccp.contract_package_id = cc.package_contract_id
+														   AND cc.connection_id = dc.connection_id
+														   AND cc.image_id = pv.image_id
+														   AND c.address_id = csa.address_id
+														   AND dc.service_id IN (1, 2, 3, 500, 450)
+														   AND ccp.package_id NOT IN ('I_DATA_DATA', 'I_DATA_PDATA')
+														   AND pv.status_reason_id = csr.status_reason_id(+)
+														   AND dc.mobile_no IN (" />
+
+				<entry key="SQL_CCBS_PROFILE_BY_CONTRACT"
+					value="SELECT dc.mobile_no,
+							   c.contract_subsidiary_type, dc.pre_post,
+							   csp.identification_number, csp.old_nic_no,
+							   csp.subscriber_profile_id,
+							   to_char(csn.subscriber_node_id) as subscriber_node_id,
+							   csp.identification_type, csp.title, csp.name1,
+							   csp.name2, csp.tax_type,
+							   to_char(c.contract_id) as contract_id, c.ocs_hybrid,
+							   pv.switch_status, pv.status_reason_id,
+							   csr.description, c.address_id,
+							   csa.line1, csa.line2, csa.line3,
+							   csa.postal_code, csa.email_address, c.bill_run_code,
+							   (SELECT    NVL (line1, ' ')
+									   || '%'
+									   || NVL (line2, ' ')
+									   || '%'
+									   || NVL (line3, ' ')
+									   || '%'
+									   || NVL (postal_code, ' ')
+									   || '%'
+									   || NVL (email_address, ' ')
+								  FROM cam_subscriber_address csa1
+								  WHERE subscriber_profile_id = csp.subscriber_profile_id
+									   AND default_address = 'T'
+									   AND ROWNUM &lt; 2)
+								       cx_default_address,
+							      to_char(cam_node_creation.find_immediate_pr_of_sn (csn.subscriber_node_id))
+								  pr_code,
+							      (SELECT csa2.email_address
+								  FROM cam_subscriber_address csa2
+								  WHERE csa2.address_id =
+										  (SELECT address_id
+											 FROM cam_subscriber_node csn1
+											WHERE csn1.subscriber_node_id =
+													 cam_node_creation.find_immediate_pr_of_sn (
+														csn.subscriber_node_id)))
+								        pr_email
+									    FROM cam_subscriber_profile csp,
+										   cam_subscriber_node csn,
+										   cam_contract c,
+										   cam_contract_package ccp,
+										   cam_connection cc,
+										   dyn_1_connection dc,
+										   prov_switch_image pv,
+										   cam_subscriber_address csa,
+										   cam_status_reason csr
+									    WHERE csp.subscriber_profile_id = csn.subscriber_profile_id
+										   AND csn.subscriber_node_id = c.subscriber_node_id
+										   AND c.contract_id = ccp.contract_id
+										   AND ccp.contract_package_id = cc.package_contract_id
+										   AND cc.connection_id = dc.connection_id
+										   AND cc.image_id = pv.image_id
+										   AND c.address_id = csa.address_id
+										   AND dc.service_id IN (1, 2, 3, 500, 450)
+										   AND ccp.package_id NOT IN ('I_DATA_DATA', 'I_DATA_PDATA')
+										   AND pv.status_reason_id = csr.status_reason_id(+)
+										   AND ccp.contract_id  IN (" />
+
+				<entry key="SQL_DCS_PROFILE_BY_MSISDN" value="SELECT su.sub_number as MOBILE_NO,
+							   'DCS' as contract_subsidiary_type,
+							   su.pre_post, csp.identification_number,
+							   csp.old_nic_no, csp.subscriber_profile_id,
+								ba.ind_customer_id subscriber_node_id, csp.identification_type,
+							   csp.title, csp.name1, csp.name2, csp.tax_type,
+							   ba.account_num as contract_id,
+							   'N' as ocs_hybrid, su.subscriber_status as SWITCH_STATUS, su.status_reason_id, csr.description,
+							   ba.address_id, csa.line1, csa.line2, csa.line3,
+							   csa.postal_code, csa.email_address, ba.bill_run_code,
+							   (SELECT    NVL (line1, ' ')
+									   || '%'
+									   || NVL (line2, ' ')
+									   || '%'
+									   || NVL (line3, ' ')
+									   || '%'
+									   || NVL (postal_code, ' ')
+									   || '%'
+									   || NVL (email_address, ' ')
+								  FROM cam_subscriber_address csa1
+								  WHERE subscriber_profile_id = csp.subscriber_profile_id
+									   AND default_address = 'T'
+									   AND ROWNUM &lt; 2)
+								cx_default_address,
+								ba.ind_customer_id as pr_code,
+							    cont.email_address as pr_email
+							    FROM cam_subscriber_profile csp, billing_account ba, subscriber su,cam_subscriber_address csa,cam_status_reason csr, contact cont
+							    WHERE csp.subscriber_profile_id = ba.subscriber_profile_id
+							    AND ba.account_num = su.account_num
+							    AND ba.address_id =csa.address_id
+							    AND su.status_reason_id =  csr.status_reason_id(+)
+							    AND ba.contact_id = cont.contact_id(+)
+							    AND sub_number IN ("/>
+
+				<entry key="SQL_DCS_PROFILE_BY_CONTRACT" value="SELECT su.sub_number as MOBILE_NO,
+							   'DCS' as contract_subsidiary_type, su.pre_post,
+							   csp.identification_number,csp.old_nic_no,
+							   csp.subscriber_profile_id, ba.ind_customer_id subscriber_node_id,
+							   csp.identification_type, csp.title, csp.name1,
+							   csp.name2, csp.tax_type,
+							   ba.account_num as contract_id,'N' as ocs_hybrid,
+							   su.subscriber_status as SWITCH_STATUS, su.status_reason_id, csr.description,
+							   ba.address_id, csa.line1,
+							   csa.line2, csa.line3, csa.postal_code, csa.email_address,
+							   ba.bill_run_code,
+							   (SELECT    NVL (line1, ' ')
+									   || '%'
+									   || NVL (line2, ' ')
+									   || '%'
+									   || NVL (line3, ' ')
+									   || '%'
+									   || NVL (postal_code, ' ')
+									   || '%'
+									   || NVL (email_address, ' ')
+								  FROM cam_subscriber_address csa1
+								 WHERE     subscriber_profile_id = csp.subscriber_profile_id
+									   AND default_address = 'T'
+									   AND ROWNUM &lt; 2)
+								 cx_default_address,
+								 ba.ind_customer_id as pr_code,
+								 cont.email_address as pr_email
+								 FROM cam_subscriber_profile csp, billing_account ba, subscriber su,cam_subscriber_address csa,cam_status_reason csr, contact cont
+								 WHERE csp.subscriber_profile_id = ba.subscriber_profile_id
+								 AND ba.account_num = su.account_num
+								 AND ba.address_id =csa.address_id
+								 AND su.status_reason_id =  csr.status_reason_id(+)
+								 AND ba.contact_id = cont.contact_id(+) AND su.main_number='Y'
+								 AND ba.account_num  IN ("/>
+
+				<entry key="SQL_WIFI_PROFILE_BY_CONTRACT"
+					value="SELECT wc.cust_id,
+					 		wcp.CUST_IDENTIFIER,
+			                wa.account_id,
+			                wc.id_number,
+			                wc.old_nic_no,
+			                wc.id_type,
+			                wc.address_line1,
+			                wc.address_line2,
+			                wc.address_line3,
+			                wc.postal_code ,
+			                wc.email,
+			                wc.title, 
+			                wc.first_name,
+			                wc.last_name,            
+			                wa.bill_run_code,
+			                wa.billing_email,
+			                wa.status
+			    FROM WIFI.WIFI_CUSTOMER wc , WIFI.WIFI_ACCOUNT wa,WIFI.WIFI_CUST_PRODUCT wcp
+			    WHERE  wa.cust_id  = wc.cust_id AND WA.ACCOUNT_ID=WCP.ACCOUNT_ID AND
+			                 wa.account_id  IN (" />
+
+				<entry key="SQL_WIFI_PROFILE_BY_CONNECTION_REF"
+					value="SELECT wc.cust_id,
+							wcp.CUST_IDENTIFIER,
+			                wa.account_id,
+			                wc.id_number,
+			                wc.old_nic_no,
+			                wc.id_type,
+			                wc.address_line1,
+			                wc.address_line2,
+			                wc.address_line3,
+			                wc.postal_code ,
+			                wc.email,
+			                wc.title, 
+			                wc.first_name,
+			                wc.last_name,            
+			                wa.bill_run_code,
+			                wa.billing_email,
+			                wa.status
+			    FROM WIFI.WIFI_CUSTOMER wc , WIFI.WIFI_ACCOUNT wa,WIFI.WIFI_CUST_PRODUCT wcp
+			    WHERE  wa.cust_id  = wc.cust_id AND WA.ACCOUNT_ID=WCP.ACCOUNT_ID AND
+			                 wcp.CUST_IDENTIFIER  IN (" />
+
+				<entry key="SQL_TBIZ_PROFILE_BY_ACCOUNT"
+					value="{call PKG_CPOS_PG.query_customer(NULL, NULL, NULL, NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)  }" />
+
+				<entry key="SQL_TBIZ_PROFILE_BY_CONTRACT_LIST"
+					value="select aa.idno,aa.old_nic,aa.registry_type,aa.name,aa.address1,aa.address2,aa.address3,aa.postal_code, 
+                                                aa.email,aa.contact_no,'DBN' SBU,aa.area||aa.subno conn_ref,aa.account_no,aa.account_type,aa.product_type, 
+                                                aa.contract_no,aa.contract_email,aa.pr_code,aa.pr_email,aa.connection_status,bb.code discon_reason_code, 
+                                                bb.description discon_reason,aa.billing_cycle,'1' invalid_connref,'1' invalid_contractno
+                                                from  
+                                                (select e.idno, e.old_nic, e.registry_type, e.name, nvl(e.bco,e.co) address1, nvl(e.baddress,e.address) address2 , 
+                                                nvl(e.baddress2,e.address2) address3, e.postal_code, e.email, e.contact_no,
+                                                   a.area,
+                                                   a.subno,
+                                                   a.contrno account_no,
+                                                   case when a.tdp_prepaid_profile_sur = 4 then 1 
+                                                        else 2 
+                                                   end account_type,
+                                                   case 
+                                                    when a.subscr_Type  = 'C' then 'CDMA'
+                                                    when a.subscr_Type = 'V'  then 
+                                                        ( select decode(exc,'LTEB','LTE',
+                                                                            'IMS3','LTE',
+                                                                            'WIFI','WIFI', 'OTHER')                                                                        
+                                                          from nogr
+                                                          where area = a.area
+                                                          and   subscr_Type ='V'
+                                                          and a.subno between firstno and lastno)
+                                                    when a.subscr_Type not in ('C','V') then 'OTHER'         
+                                                   end product_type,
+                                                   e.contrno contract_no,
+                                                   a.email contract_email,
+                                                   e.contrno pr_code,
+                                                   e.email pr_email,
+                                                   case  
+                                                    when b.stattxt in ('PASR','PEND','PENP','PNCV','PREF') then 'NC'
+                                                    when b.stattxt in ('CHGN','CMSG','CONN') then 'C' 
+                                                    when b.stattxt in ('DOAR','DONP','DORF','ONIC') then 'B'
+                                                    when b.stattxt in ('DAAR','DANP','DCSR','DFAX','DIAR','DINP','DISR','DPMT') then 'T'
+                                                    when b.stattxt in ('NACH','NCOV','NCRE','NCRF','NICT','NNCH','NPER','NPMT','NPNE','NREF','NSCH','NSRQ','NSUB','THGN') then 'D'
+                                                   end connection_status,
+                                                   e.billgroup billing_cycle,
+                                                   '1' invalid_connref,
+                                                   '1' invalid_contractno       
+                                                from contract e, subscriber a, sustat b
+                                                where a.status = b.statcode 
+                                                and e.contrno  = a.contrno
+                                                and  a.MAIN_NUMBER = 'Y'
+                                                and e.contrno in (CONTRACT_LIST)         
+                                                ) aa,
+                                                (select a.area, a.subno, b.serord_reason_sur, b.code, b.description, a.serordno
+                                                from sohist a, serord_reason b 
+                                                where a.serord_reason_sur =b.serord_reason_sur
+                                                and a.sotype in (select a.typecode
+                                                            from sotype a
+                                                            where a.so_class in (40,97,99)
+                                                            )                     
+                                                and a.serord_reason_sur is not null
+                                                and a.serordno = (select max(bb.serordno) serordno
+                                                                  from sohist bb
+                                                                  where bb.area = a.area
+                                                                  and bb.subno = a.subno                 
+                                                                  group by bb.area, bb.subno
+                                                                 ) 
+                                                and a.contrno in (CONTRACT_LIST))
+                                                bb 
+                                                where aa.area = bb.area (+)
+                                                and aa.subno = bb.subno (+)" />
+
+				<entry key="SQL_TBIZ_PROFILE_BY_CONN_REF_LIST"
+					value="select aa.idno,aa.old_nic,aa.registry_type,aa.name,aa.address1,aa.address2,aa.address3,aa.postal_code, 
+                                                aa.email,aa.contact_no,'DBN' SBU,aa.area||aa.subno conn_ref,aa.account_no,aa.account_type,aa.product_type, 
+                                                aa.contract_no,aa.contract_email,aa.pr_code,aa.pr_email,aa.connection_status,bb.code discon_reason_code, 
+                                                bb.description discon_reason,aa.billing_cycle,'1' invalid_connref,'1' invalid_contractno
+                                                from  
+                                                (select e.idno, e.old_nic, e.registry_type, e.name, nvl(e.bco,e.co) address1, nvl(e.baddress,e.address) address2 , 
+                                                nvl(e.baddress2,e.address2) address3, e.postal_code, e.email, e.contact_no,
+                                                   a.area,
+                                                   a.subno,
+                                                   a.contrno account_no,
+                                                   case when a.tdp_prepaid_profile_sur = 4 then 1 
+                                                        else 2 
+                                                   end account_type,
+                                                   case 
+                                                    when a.subscr_Type  = 'C' then 'CDMA'
+                                                    when a.subscr_Type = 'V'  then 
+                                                        ( select decode(exc,'LTEB','LTE',
+                                                                            'IMS3','LTE',
+                                                                            'WIFI','WIFI', 'OTHER')                                                                        
+                                                          from nogr
+                                                          where area = a.area
+                                                          and   subscr_Type ='V'
+                                                          and a.subno between firstno and lastno)
+                                                    when a.subscr_Type not in ('C','V') then 'OTHER'         
+                                                   end product_type,
+                                                   e.contrno contract_no,
+                                                   a.email contract_email,
+                                                   e.contrno pr_code,
+                                                   e.email pr_email,
+                                                   case  
+                                                    when b.stattxt in ('PASR','PEND','PENP','PNCV','PREF') then 'NC'
+                                                    when b.stattxt in ('CHGN','CMSG','CONN') then 'C' 
+                                                    when b.stattxt in ('DOAR','DONP','DORF','ONIC') then 'B'
+                                                    when b.stattxt in ('DAAR','DANP','DCSR','DFAX','DIAR','DINP','DISR','DPMT') then 'T'
+                                                    when b.stattxt in ('NACH','NCOV','NCRE','NCRF','NICT','NNCH','NPER','NPMT','NPNE','NREF','NSCH','NSRQ','NSUB','THGN') then 'D'
+                                                   end connection_status,
+                                                   e.billgroup billing_cycle,
+                                                   '1' invalid_connref,
+                                                   '1' invalid_contractno       
+                                                from contract e, subscriber a, sustat b
+                                                where a.status = b.statcode 
+                                                and e.contrno  = a.contrno
+                                                 and (a.area||a.subno) in (CONN_REF_LIST)        
+                                                ) aa,
+                                                (select a.area, a.subno, b.serord_reason_sur, b.code, b.description, a.serordno
+                                                from sohist a, serord_reason b 
+                                                where a.serord_reason_sur =b.serord_reason_sur
+                                                and a.sotype in (select a.typecode
+                                                            from sotype a
+                                                            where a.so_class in (40,97,99)
+                                                            )                     
+                                                and a.serord_reason_sur is not null
+                                                and a.serordno = (select max(bb.serordno) serordno
+                                                                  from sohist bb
+                                                                  where bb.area = a.area
+                                                                  and bb.subno = a.subno                 
+                                                                  group by bb.area, bb.subno
+                                                                 ) 
+                                                and  (a.area||a.subno) in (CONN_REF_LIST)  
+                                                )
+                                                bb 
+                                                where aa.area = bb.area (+)
+                                                and aa.subno = bb.subno (+)" />
+
+				<entry key="SQL_CCBS_PROFILE_BY_INVOICE_NO"
+					value="SELECT DC.MOBILE_NO,C.CONTRACT_SUBSIDIARY_TYPE,  DC.PRE_POST,CSP.IDENTIFICATION_NUMBER,CSP.OLD_NIC_NO,CSP.SUBSCRIBER_PROFILE_ID,CSN.SUBSCRIBER_NODE_ID, CSP.IDENTIFICATION_TYPE,CSP.TITLE,CSP.NAME1,CSP.NAME2,CSP.TAX_TYPE,C.CONTRACT_ID,C.OCS_HYBRID,PV.SWITCH_STATUS,PV.STATUS_REASON_ID,CSR.DESCRIPTION, C.ADDRESS_ID,
+                                  	CSA.LINE1,CSA.LINE2,CSA.LINE3,CSA.POSTAL_CODE,CSA.EMAIL_ADDRESS,C.BILL_RUN_CODE,
+                                  	 (SELECT NVL(line1,' ')||'%'||NVL(line2,' ')||'%'||NVL(line3,' ')||'%'||NVL(postal_code,' ')||'%'||NVL(email_address,' ')  
+                                    FROM  CAM_SUBSCRIBER_ADDRESS csa1
+                                   WHERE subscriber_profile_id=csp.subscriber_profile_id 
+                                    AND  default_address='T' AND rownum &lt; 2
+                                    ) cx_default_address,     
+                                    cam_node_creation.find_immediate_pr_of_sn(csn.subscriber_node_id) pr_code,                             
+                                   (SELECT csa2.email_address from CAM_SUBSCRIBER_ADDRESS csa2 where csa2.address_id = (SELECT address_id
+                                    FROM CAM_SUBSCRIBER_NODE csn1 
+                                    WHERE csn1.subscriber_node_id =  cam_node_creation.find_immediate_pr_of_sn(csn.subscriber_node_id))) pr_email
+                            	FROM CAM_SUBSCRIBER_PROFILE CSP,CAM_SUBSCRIBER_NODE CSN,CAM_CONTRACT C,CAM_CONTRACT_PACKAGE CCP,CAM_CONNECTION CC,DYN_1_CONNECTION DC,PROV_SWITCH_IMAGE PV,CAM_SUBSCRIBER_ADDRESS CSA, CAM_STATUS_REASON CSR
+                            	WHERE CSP.SUBSCRIBER_PROFILE_ID=CSN.SUBSCRIBER_PROFILE_ID AND
+                                      CSN.SUBSCRIBER_NODE_ID=C.SUBSCRIBER_NODE_ID AND
+                                      C.CONTRACT_ID=CCP.CONTRACT_ID AND
+                                      CCP.CONTRACT_PACKAGE_ID=CC.PACKAGE_CONTRACT_ID AND
+                                      CC.CONNECTION_ID=DC.CONNECTION_ID AND
+                                      CC.IMAGE_ID=PV.IMAGE_ID AND
+                                      C.ADDRESS_ID =CSA.ADDRESS_ID AND
+                                      DC.SERVICE_ID IN (1,2,3,500,450) AND 
+                                      PV.STATUS_REASON_ID =  CSR.STATUS_REASON_ID(+) AND
+                                      C.CONTRACT_ID  IN ( Select ACCOUNT_NUM
+															from dbt_prcontracthisotry@rbm
+															where (pr_customer_ref,pr_invoice_num) in 
+                												(select prcustomer_ref,invoice_num
+                												from dbt_contractbillsummary@rbm
+                													where invoice_num=UPPER(?)))" />
+
+				<entry key="SQL_TELBIZ_PROFILE_BY_INVOICE_NO"
+					value="{call PKG_CPOS_PG.query_customer(NULL, NULL, NULL, ?, ?, ?, ?, NULL, NULL, ?, ?, ?, ?)  }" />
+
+				<entry key="SQL_CCBS_ACCOUNT_NO_BY_INVOICE_NO"
+					value="SELECT ACCOUNT_NUM  FROM  CCBS2.DBT_CONTRACTBILLSUMMARY_V WHERE INVOICE_NUM =UPPER(?)" />
+					
+				<entry key="SQL_DBN_ACCOUNT_NUM_BY_INVOICE_NO"
+					value="select ACCOUNT_NUM from billsummary@rbm where invoice_num=UPPER(?)" />
+
+				<entry key="SQL_NFC_WIFI_ACCOUNT_NO_BY_INVOICE_NO"
+					value="select ACCOUNT_NUM from (
+select INVOICE_NUM,ACCOUNT_NUM from billsummary@rbm where ACCOUNT_NUM in (
+select ACCOUNT_NUM from account@rbm where CUSTOMER_REF in (select CUSTOMER_REF from customerattributes@rbm where BILL_RUN_CODE ='WBR1'))) where INVOICE_NUM =?" />
+
+				<entry key="SQL_DCS_MOBILE_BY_CONTRACT"
+					   value="SELECT su.main_number, su.sub_number AS mobile_no, su.account_num AS contract_id FROM subscriber su WHERE su.account_num = UPPER( ? )"/>
+
+				<entry key="SQL_CONTRACT_BY_MOBILE"
+					   value="SELECT to_char(ccp.contract_id) as contract_id
+					FROM dyn_1_connection dyn,cam_contract_package  ccp, cam_connection cc
+					WHERE dyn.mobile_no = ? AND  dyn.connection_id=cc.connection_id
+					AND cc.package_contract_id = ccp.contract_package_id AND rownum &lt; 2
+					UNION
+					SELECT ba.account_num as contract_id
+					FROM billing_account ba, subscriber su
+					WHERE ba.account_num = su.account_num AND sub_number = ?"/>
+
+				<entry key="SQL_WIFI_CONTRACT_BY_MOBILE"
+					value="SELECT wc.cust_id,
+					       wcp.CUST_IDENTIFIER,
+					       wa.account_id,
+					       wc.id_number,
+					       wc.id_type,
+					       wc.address_line1,
+					       wc.address_line2,
+					       wc.address_line3,
+					       wc.postal_code,
+					       wc.email,
+					       wc.title,
+					       wc.first_name,
+					       wc.last_name,
+					       wa.bill_run_code,
+					       wa.billing_email,
+					       wa.status
+					  FROM WIFI.WIFI_CUSTOMER wc, WIFI.WIFI_ACCOUNT wa, WIFI.WIFI_CUST_PRODUCT wcp
+					 WHERE     wa.cust_id = wc.cust_id
+					       AND WA.ACCOUNT_ID = WCP.ACCOUNT_ID AND rownum &lt; 2
+					       AND ( wcp.CUST_IDENTIFIER =? OR  wa.account_id=?)" />
+
+				<entry key="SQL_MOBILE_BY_CONTRACT"
+					value="SELECT dyn.mobile_no 
+								 FROM  dyn_1_connection dyn,cam_contract_package  ccp, cam_connection cc    
+								 WHERE ccp.contract_id = ?  AND    
+									            ccp.contract_package_id =  cc.package_contract_id AND 
+									            cc.connection_id = dyn.connection_id  AND
+									            rownum &lt; 2 " />
+
+				<entry key="SQL_HOTLINE_REMARKS"
+					value="SELECT  to_char(ccn.contract_id) contract_id,ccn.note,ccn.created_user,ccn.created_date
+                   		         FROM  cam_contract_note ccn
+                   		         WHERE ccn.contract_id IN (" />
+
+				<entry key="SQL_DCS_REMARKS"
+					   value="SELECT en.ACCOUNT_NUM AS contract_id, en.EDIT_NOTE AS note, en.CREATED_USER, en.CREATED_DATE
+					   FROM DCS.ENT_NOTE en
+					   WHERE en.ACCOUNT_NUM IN (" />
+
+			<!--  	<entry key="SQL_CCBS_WIFI_REMARKS" 
+					value="SELECT  wa.ACCOUNT_ID contract_id,wa.REMARKS note,wa.CREATED_USER,wa.CREATED_DATE 
+                  	         FROM  WIFI.WIFI_ACCOUNT wa 
+                   		         WHERE wa.ACCOUNT_ID =" />   -->
+                   		         
+	         	<entry key="SQL_CCBS_WIFI_REMARKS" 
+					value="SELECT  wa.ACCOUNT_ID contract_id,wa.REMARKS note,wa.CREATED_USER,wa.CREATED_DATE 
+                  	         FROM  WIFI.WIFI_ACCOUNT wa 
+                   		         WHERE wa.ACCOUNT_ID IN (" />
+
+				<entry key="SQL_TBIZ_REMARK_BY_CONTRACT"
+					value="select a.contrno ContractNo, a.edit_note Notes, a.edited_by CreatedUser,
+				 a.edited_date CreatedDate from edit_notes a where a.contrno in (CONTRACT_LIST) order by a.contrno" />
+
+				<entry key="SQL_TBIZ_OS"
+					value="{call PKG_CPOS_PG.query_outstanding(?, ?, ?, ?, ?, ?)  }" />
+
+				<entry key="SQL_TBIZ_CONTRACT_OS"
+					value="select aa.area||aa.subno connref, aa.contrno, 
+                        nvl(bb.TotalBillOS,0) Tot_BillOS, 
+                        nvl(bb.TotalOS,0) Total_OS, 
+                        nvl(bb.MinRecAmt,0) MinRec_Amt, 
+                        nvl(cc.LastBill_Value,0) LastBill_Value,  
+                        aa.CreditStatus Credit_Status, 
+                        nvl(bb.UnbilledValue,0) Unbilled_Value,
+                        aa.main_number MainNo
+                    from     
+                    (select a.contrno, 
+                            a.area, 
+                            a.subno,
+                            case  
+                                when b.stattxt in ('PASR','PEND','PENP','PNCV','PREF') then 'NC'
+                                when b.stattxt in ('CHGN','CMSG','CONN') then 'C' 
+                                when b.stattxt in ('DOAR','DONP','DORF','ONIC') then 'B'
+                                when b.stattxt in ('DAAR','DANP','DCSR','DFAX','DIAR','DINP','DISR','DPMT') then 'T'
+                                when b.stattxt in ('NACH','NCOV','NCRE','NCRF','NICT','NNCH','NPER','NPMT','NPNE','NREF','NSCH','NSRQ','NSUB','THGN') then 'D'
+                            end CreditStatus,
+                            a.main_number
+                     from subscriber a, sustat b
+                     where a.status = b.statcode
+                     and a.contrno in (CONTRACT_LIST)                                                  
+                     ) aa,
+                    (select a.contrno, b.area, b.subno,
+                            PKG_CPOS_PG.get_billOS(a.contrno,sysdate) TotalBillOS,
+                            PKG_CPOS_PG.get_totos(a.contrno) + unbilled_with_tax.get_value(a.contrno) TotalOS, 
+                            PKG_CPOS_PG.get_minrecamt(a.contrno) MinRecAmt, 
+                            unbilled_with_tax.get_value(a.contrno) UnbilledValue
+                    from contract a, subscriber b
+                    where a.contrno = b.contrno
+                    and a.contrno in (CONTRACT_LIST)               
+                    ) bb,                                         
+                    (select a.contrno, a.total_amount LastBill_Value, b.area, b.subno
+                    from ar_debts a, subscriber b
+                    where a.contrno = b.contrno
+                    and a.contrno in (CONTRACT_LIST)    
+                    and a.invdate =  (select max(invdate)
+                                      from ar_debts
+                                      where contrno = a.contrno
+                                      )                      
+                    ) cc
+                    where aa.contrno = bb.contrno (+)
+                    and aa.contrno = cc.contrno (+)
+                    and aa.area = bb.area (+)
+                    and aa.subno = bb.subno (+)
+                    and aa.area = cc.area (+)
+                    and aa.subno = cc.subno (+)" />
+
+				<entry key="SQL_TBIZ_MOBILE_OS"
+					value="select aa.area||aa.subno connref, aa.contrno, 
+                        nvl(bb.TotalBillOS,0) Tot_BillOS, 
+                        nvl(bb.TotalOS,0) Total_OS, 
+                        nvl(bb.MinRecAmt,0) MinRec_Amt, 
+                        nvl(cc.LastBill_Value,0) LastBill_Value,  
+                        aa.CreditStatus Credit_Status, 
+                        nvl(bb.UnbilledValue,0) Unbilled_Value,
+                        'Y' MainNo
+                    from 
+                    (select a.contrno, 
+                            a.area, 
+                            a.subno,
+                            case  
+                                when b.stattxt in ('PASR','PEND','PENP','PNCV','PREF') then 'NC'
+                                when b.stattxt in ('CHGN','CMSG','CONN') then 'C' 
+                                when b.stattxt in ('DOAR','DONP','DORF','ONIC') then 'B'
+                                when b.stattxt in ('DAAR','DANP','DCSR','DFAX','DIAR','DINP','DISR','DPMT') then 'T'
+                                when b.stattxt in ('NACH','NCOV','NCRE','NCRF','NICT','NNCH','NPER','NPMT','NPNE','NREF','NSCH','NSRQ','NSUB','THGN') then 'D'
+                            end CreditStatus,
+                            a.main_number
+                     from subscriber a, sustat b
+                     where a.status = b.statcode
+                     and (a.area||a.subno) in (CONN_REF_LIST)                                                       
+                     ) aa,
+                    (select a.contrno, b.area, b.subno,
+                            PKG_CPOS_PG.get_billOS(a.contrno,sysdate) TotalBillOS,
+                            PKG_CPOS_PG.get_totos(a.contrno) + unbilled_with_tax.get_value(a.contrno) TotalOS, 
+                            PKG_CPOS_PG.get_minrecamt(a.contrno) MinRecAmt, 
+                            unbilled_with_tax.get_value(a.contrno) UnbilledValue
+                    from contract a, subscriber b
+                    where a.contrno = b.contrno
+                    and (b.area||b.subno) in (CONN_REF_LIST)                   
+                    ) bb,                                         
+                    (select a.contrno, a.total_amount LastBill_Value, b.area, b.subno
+                    from ar_debts a, subscriber b
+                    where a.contrno = b.contrno
+                    and (b.area||b.subno) in (CONN_REF_LIST)    
+                    and a.invdate =  (select max(invdate)
+                                      from ar_debts
+                                      where contrno = a.contrno
+                                      )                      
+                    ) cc
+                    where aa.contrno = bb.contrno (+)
+                    and aa.contrno = cc.contrno (+)
+                    and aa.area = bb.area (+)
+                    and aa.subno = bb.subno (+)
+                    and aa.area = cc.area (+)
+                    and aa.subno = cc.subno (+)" />
+
+				<entry key="SQL_TBIZ_PAYMENT_QRY"
+					value="{call PKG_CPOS_PG.query_payment(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}" />
+					
+				
+				<entry key="SQL_CCBS_SYSTEM_QRY_CONREF"
+					value="SELECT 'DCS' as SYSID, su.subscriber_status as SWITCH_STATUS, su.PRE_POST, ba.account_num as CONTRACT_ID
+								FROM  billing_account ba, subscriber su
+								WHERE  ba.account_num = su.account_num AND su.sub_number = LTRIM(?, '0')
+							UNION
+						   SELECT 'CCBS' as SYSID, PV.SWITCH_STATUS, DC.PRE_POST, to_char(CCP.CONTRACT_ID)
+						   		FROM PROV_SWITCH_IMAGE PV, DYN_1_CONNECTION DC, CAM_CONNECTION CC, CAM_CONTRACT_PACKAGE CCP
+						   		WHERE DC.CONNECTION_ID = CC.CONNECTION_ID AND CC.IMAGE_ID = PV.IMAGE_ID
+						   		AND CC.PACKAGE_CONTRACT_ID = CCP.CONTRACT_PACKAGE_ID
+						   		AND DC.SERVICE_ID = 450 AND DC.MOBILE_NO = LTRIM(?, '0')" />
+
+				<entry key="SQL_CCBS_SYSTEM_QRY_CONTRACT"
+					value="SELECT 'CCBS' as SYSID, PV.SWITCH_STATUS, DC.PRE_POST, CCP.CONTRACT_ID,DC.MOBILE_NO FROM PROV_SWITCH_IMAGE PV, DYN_1_CONNECTION DC, CAM_CONNECTION CC, CAM_CONTRACT_PACKAGE CCP WHERE DC.CONNECTION_ID = CC.CONNECTION_ID AND CC.IMAGE_ID = PV.IMAGE_ID AND CC.PACKAGE_CONTRACT_ID = CCP.CONTRACT_PACKAGE_ID AND DC.SERVICE_ID = 450 AND CCP.CONTRACT_ID=?" />
+			
+				<entry key="SQL_CCBS_SBU_BY_CONTRACT_ID"
+					value="SELECT C.CONTRACT_SUBSIDIARY_TYPE FROM CAM_CONTRACT C WHERE C.CONTRACT_ID=?" />
+
+				<entry key="SQL_DCS_SBU_BY_CONTRACT_ID"
+               		value="SELECT 'DCS' AS CONTRACT_SUBSIDIARY_TYPE FROM subscriber su WHERE su.account_num=?" />
+			
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="paymentHandler" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="SQL_PAYMENT_NEXT_SEQ" value="SELECT nextval('payment_post_seq')" />
+				<entry key="SQL_PAYMENT_CANCEL_NEXT_SEQ" value="SELECT PAYMENT_CANCEL_SEQ.NEXTVAL FROM DUAL" />
+				<entry key="SQL_RBM_PAYMENT_POST"
+					value="INSERT INTO pe.RBM_PAYMENT (REQ_ID, SUBSCRIBER_NODE_ID, CONTRACT_ID, CONN_REF, PRODUCT_CATEGORY, SUBSIDIARY_CODE, CONNECTION_TYPE, PHYSICAL_PAYMENT_DATE, PAYMENT_AMOUNT, PAYMENT_CURRENCY, PAYMENT_METHOD_ID, PHYSICAL_PAYMENT_TEXT, PAYMENT_REF, RECEIPT_NUMBER, RECEIPT_BRANCH, BRANCH_COUNTER, RECEIPT_USER, RECEIPT_DATE, PAYMENT_MODE, PAYMENT_TEXT, TERMINAL_ID, CHQ_NO, CHQ_BANK, CHQ_BRANCH, CHQ_DATE, CHQ_SUSPEND, CARD_TYPE, CARD_AGENT, CARD_NO, CARD_APRV_CODE, MODULE_NAME, TRANSFERRED, TRANSFER_MODE, TRANSFER_NO, REMARKS, REASON_CODE, CREATED_DATE, CREATED_USER, COMMAND_READ, PRODUCT_TYPE, CONTACT_NO, CONNECTION_STATUS)
+												VALUES   (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?,?,?, ?, ?, ?, ?, ?,?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, current_timestamp,CURRENT_USER,'N', ?, ?, ?)" />
+
+				<entry key="SQL_OCS_PAYMENT_POST"
+					value="INSERT INTO PE.OCS_PAYMENT	(REQ_ID, SUBSCRIBER_NODE_ID, CONTRACT_ID, CONN_REF, PRODUCT_CATEGORY, SUBSIDIARY_CODE, CONNECTION_TYPE, PHYSICAL_PAYMENT_DATE, PAYMENT_AMOUNT, PAYMENT_REF,  RECEIPT_NUMBER, RECEIPT_BRANCH, BRANCH_COUNTER, RECEIPT_USER, RECEIPT_DATE, PAYMENT_MODE, CHQ_NO, CHQ_BANK, CHQ_BRANCH, REMARKS, REASON_CODE, CREATED_DATE, CREATED_USER,  COMMAND_READ , PRODUCT_TYPE, CONTACT_NO, TRAN_TYPE_ID,ERROR_DESC)
+					VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, current_timestamp, CURRENT_USER, 'N', ?, ? ,?,?)" />
+				<entry key="SQL_DBN_PAYMENT_POST"
+					value="INSERT INTO PE.DBN_PAYMENT	(REQ_ID, ACCOUNT_NO, CONTRACT_ID, CONN_REF, CONNECTION_TYPE, PAYMENT_AMOUNT, PAYMENT_METHOD_ID, PAYMENT_MODE, PAYMENT_REF, CHQ_BANK, CHQ_NO, CHQ_BRANCH, CHQ_DATE, CHQ_SUSPEND, CARD_TYPE, CARD_AGENT, CARD_NO, CARD_APRV_CODE, RECEIPT_NUMBER, RECEIPT_BRANCH, BRANCH_COUNTER, RECEIPT_USER,  RECEIPT_DATE, TRANSFERRED, TRANSFER_MODE,  TRANSFER_NO, REMARKS, CONTACT_NO, REASON_CODE, PHYSICAL_PAYMENT_DATE, CREATED_DATE, CREATED_USER,  COMMAND_READ, PRODUCT_TYPE, TERMINAL_ID, MODULE_NAME,INVOICE_LIST,CONNECTION_STATUS)
+												VALUES (?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,  sysdate, USER, 'N', ? ,?, ?, ?, ?)" />
+				<entry key="SQL_CHQ_FORCEFUL_REALIZE"
+					value="INSERT INTO PE.FORCEFUL_REALIZE_CHEQUES (REQ_ID,SUBSCRIBER_NODE_ID, CONTRACT_ID, PRODUCT_CATEGORY, SUBSIDIARY_CODE, CONNECTION_TYPE, PAYMENT_AMOUNT,CHQ_BANK,CHQ_BRANCH,CHQ_NO,CHQ_DATE,TERMINAL_ID,RECEIPT_NUMBER,RECEIPT_BRANCH,BRANCH_COUNTER,RECEIPT_DATE, RECEIPT_USER,  PHYSICAL_PAYMENT_DATE, CREATED_DATE, CREATED_USER,  COMMAND_READ , PRODUCT_TYPE, REALTIME,CONN_REF,PAYMENT_REF,REMARKS,CONNECTION_STATUS)
+												VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, current_timestamp, CURRENT_USER, 'N', ?, ?, ?, ?, ?,?)" />
+				<entry key="SQL_PAYMENT_CANCEL"
+					value="INSERT INTO pe.cancel_payment (REQ_ID, PRODUCT_CATEGORY, SUBSIDIARY_CODE, QUERY_SYSTEM,SUBSCRIBER_NODE_ID, CONTRACT_ID,RBM_PHYSICAL_SEQ,RBM_ACCOUNT_SEQ, CHQ_RETURN, CHQ_SUSPEND,REVERSAL_TYPE , TRANSFERRED, TRANSFER_MODE, TRANSFER_NO, TRANSFERED_REF,MISTAKE_BY, REMARKS, CANCELLED_REASON, CANCELLED_USER, APPROVED_USER,  PRODUCT_TYPE, RECEIPT_NUMBER, RECEIPT_BRANCH, BRANCH_COUNTER, RECEIPT_USER, RECEIPT_DATE, CHQ_BANK, CHQ_NO, CHQ_BRANCH, TERMINAL_ID, SOURCE_SYSTEM, PHYSICAL_PAYMENT_DATE, CREATED_DATE, CREATED_USER, COMMAND_READ,PAYMENT_AMOUNT)
+                                            			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_USER, 'N',?)" />
+				<!-- Query pending payments from PE -->
+
+				<!-- entry key="SQL_PEND_PAYMENTS_BY_BRANCH_DATE" value="SELECT * FROM 
+					PENDING_PAYMENTS_VIEW ppv WHERE ppv.receipt_branch= ? AND TRUNC(ppv.receipt_date) 
+					= TRUNC(TO_DATE(?, 'yyyy/mm/dd'))" / -->
+
+				<!-- <entry key="SQL_PEND_PAYMENTS_BY_CONTRACT_DATE" value="SELECT * 
+					FROM PENDING_PAYMENTS_VIEW ppv WHERE ppv.product_category=? AND ppv.contract_id 
+					= ? AND (ppv.receipt_date &gt; TO_DATE(? , 'YYYY/MM/DD HH24:MI:SS') AND ppv.receipt_date 
+					&lt; TO_DATE(? , 'YYYY/MM/DD HH24:MI:SS'))" /> -->
+
+				<!-- <entry key="SQL_PEND_PAYMENTS_BY_BRANCH_USER_DATE" value="SELECT 
+					* FROM PENDING_PAYMENTS_VIEW ppv WHERE ppv.product_category=? AND ppv.receipt_user=? 
+					AND ppv.receipt_branch=? AND (ppv.receipt_date &gt; TO_DATE(? , 'YYYY/MM/DD 
+					HH24:MI:SS') AND ppv.receipt_date &lt; TO_DATE(? , 'YYYY/MM/DD HH24:MI:SS'))" 
+					/> -->
+
+				<!-- <entry key="SQL_PEND_PAYMENTS_BY_USER_DATE" value="SELECT * FROM 
+					PENDING_PAYMENTS_VIEW ppv WHERE ppv.product_category=? AND ppv.receipt_user=? 
+					AND (ppv.receipt_date &gt; TO_DATE(? , 'YYYY/MM/DD HH24:MI:SS') AND ppv.receipt_date 
+					&lt; TO_DATE(? , 'YYYY/MM/DD HH24:MI:SS'))" /> -->
+
+<!--				todo - why this has cpos schema - need to verify-->
+				<entry key="SQL_CPOS_EXECUTION_LOG"
+					value="INSERT INTO CPOS.POS_API_EXECUTION_LOG (REQUEST_ID,KEY,VALUE,APPLICATION_NAME,API_NAME,REQUESTED_USER,REQUESTED_DATE,
+					REQUEST_IP,EXECUTION_STATUS,EXECUTION_DESC) VALUES (?,?,?,?,?,?,sysdate,?,?,?)" />
+
+				<entry key="SQL_CPOS_MOBILE_FOR_CONTRACT"
+					value="select cmv.mobile_no from contract_mobile_v cmv where cmv.contract_id=?" />
+
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>
+

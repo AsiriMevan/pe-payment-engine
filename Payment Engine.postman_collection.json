@@ -1,0 +1,1269 @@
+{
+	"info": {
+		"_postman_id": "09dc2419-441f-486f-8e4f-a2bc36479905",
+		"name": "Payment Engine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "IP500",
+			"item": [
+				{
+					"name": "IP500 Old",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"custRef\": \"197736405023\",\r\n    \"oldCustRef\": \"\",\r\n    \"custRefType\": \"NIC\",\r\n    \"productCategory\": \"1\",\r\n    \"sbu\": \"3\",\r\n    \"billInvoiceNo\": \"\",\r\n    \"reqType\": \"1\",\r\n    \"requestUserId\": \"Daminda\",\r\n    \"remoteIP\": \"172.22.73.7\",\r\n    \"sourceSystem\": \"CPOS\",\r\n    \"accounts\": [\r\n        {\r\n            \"connRef\": \"\",\r\n            \"contractNo\": \"\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.26.75.75:8180/pe-presentaion/pe/ccbsprofile",
+							"protocol": "http",
+							"host": [
+								"172",
+								"26",
+								"75",
+								"75"
+							],
+							"port": "8180",
+							"path": [
+								"pe-presentaion",
+								"pe",
+								"ccbsprofile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP500 New",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"custRef\": \"197736405023\",\r\n    \"oldCustRef\": \"\",\r\n    \"custRefType\": \"NIC\",\r\n    \"productCategory\": \"1\",\r\n    \"sbu\": \"3\",\r\n    \"billInvoiceNo\": \"\",\r\n    \"reqType\": \"1\",\r\n    \"requestUserId\": \"Daminda\",\r\n    \"remoteIP\": \"172.22.73.7\",\r\n    \"sourceSystem\": \"CPOS\",\r\n    \"accounts\": [\r\n        {\r\n            \"connRef\": \"\",\r\n            \"contractNo\": \"\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pecloud-qa.dialog.lk/pe-customer-info-service/pe/ccbsprofile?traceId=ABC202210270504",
+							"protocol": "https",
+							"host": [
+								"pecloud-qa",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"pe-customer-info-service",
+								"pe",
+								"ccbsprofile"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202210270504"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP500 New MIFE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c80e7e3e-761c-3e08-b48f-a77a16a6ac80",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"custRef\": \"197736405023\",\r\n    \"oldCustRef\": \"\",\r\n    \"custRefType\": \"NIC\",\r\n    \"productCategory\": \"1\",\r\n    \"sbu\": \"0\",\r\n    \"billInvoiceNo\": \"\",\r\n    \"reqType\": \"1\",\r\n    \"requestUserId\": \"Daminda\",\r\n    \"remoteIP\": \"172.22.73.7\",\r\n    \"sourceSystem\": \"CPOS\",\r\n    \"accounts\": [\r\n        {\r\n            \"connRef\": \"\",\r\n            \"contractNo\": \"\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mife-stg.dialog.lk/apicall/crm/pe/ccbsprofile/v1.0/ccbsprofile?traceId=ABC202203180202",
+							"protocol": "https",
+							"host": [
+								"mife-stg",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"apicall",
+								"crm",
+								"pe",
+								"ccbsprofile",
+								"v1.0",
+								"ccbsprofile"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202203180202"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IP501",
+			"item": [
+				{
+					"name": "IP501 Old",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productCategory\": 1,\r\n    \"accounts\": [\r\n        {\r\n            \"connRef\": \"765893158\",\r\n            \"contractNo\": \"\",\r\n            \"sbu\": 1,\r\n            \"productType\": 1,\r\n            \"accountType\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.26.75.75:8180/pe-presentaion/pe/peprofile",
+							"protocol": "http",
+							"host": [
+								"172",
+								"26",
+								"75",
+								"75"
+							],
+							"port": "8180",
+							"path": [
+								"pe-presentaion",
+								"pe",
+								"peprofile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP501 New",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productCategory\": 1,\r\n    \"accounts\": [\r\n        {\r\n            \"connRef\": \"765893158\",\r\n            \"contractNo\": \"\",\r\n            \"sbu\": 1,\r\n            \"productType\": 1,\r\n            \"accountType\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pecloud-qa.dialog.lk/pe-billing-service/pe/peprofile?traceId=ABC202210100354",
+							"protocol": "https",
+							"host": [
+								"pecloud-qa",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"pe-billing-service",
+								"pe",
+								"peprofile"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202210100354"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP501 New MIFE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c80e7e3e-761c-3e08-b48f-a77a16a6ac80",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productCategory\": 3,\r\n    \"accounts\": [\r\n        {\r\n            \"connRef\": \"767925692\",\r\n            \"contractNo\": \"97015775\",\r\n            \"sbu\": 3,\r\n            \"productType\": 0,\r\n            \"accountType\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mife-stg.dialog.lk/apicall/crm/pe/peprofile/v1.0/peprofile?traceId=ABC202203180202",
+							"protocol": "https",
+							"host": [
+								"mife-stg",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"apicall",
+								"crm",
+								"pe",
+								"peprofile",
+								"v1.0",
+								"peprofile"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202203180202"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IP502",
+			"item": [
+				{
+					"name": "IP502 Old",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"accounts\": [\r\n    {\r\n      \"connRef\": \"773337736\",\r\n      \"contractNo\": \"32929792\",\r\n      \"sbu\": 3,\r\n      \"productType\": 0,\r\n      \"accountType\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.26.75.75:8180/pe-presentaion/pe/rbmprofile",
+							"protocol": "http",
+							"host": [
+								"172",
+								"26",
+								"75",
+								"75"
+							],
+							"port": "8180",
+							"path": [
+								"pe-presentaion",
+								"pe",
+								"rbmprofile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP502 New",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"accounts\": [\r\n    {\r\n      \"connRef\": \"773337736\",\r\n      \"contractNo\": \"32929792\",\r\n      \"sbu\": 3,\r\n      \"productType\": 0,\r\n      \"accountType\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pecloud-qa.dialog.lk/pe-billing-service/pe/rbmprofile?traceId=ABC202203210915",
+							"protocol": "https",
+							"host": [
+								"pecloud-qa",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"pe-billing-service",
+								"pe",
+								"rbmprofile"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202203210915"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP502 New MIFE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c80e7e3e-761c-3e08-b48f-a77a16a6ac80",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"accounts\": [\r\n    {\r\n      \"connRef\": \"773337736\",\r\n      \"contractNo\": \"32929792\",\r\n      \"sbu\": 3,\r\n      \"productType\": 0,\r\n      \"accountType\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mife-stg.dialog.lk/apicall/crm/pe/rbmprofile/v1.0/rbmprofile?traceId=ABC202203180202",
+							"protocol": "https",
+							"host": [
+								"mife-stg",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"apicall",
+								"crm",
+								"pe",
+								"rbmprofile",
+								"v1.0",
+								"rbmprofile"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202203180202"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IP503",
+			"item": [
+				{
+					"name": "IP503 Old",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"accounts\": [\r\n    {\r\n      \"connRef\": \"767925692\",\r\n      \"contractNo\": \"97015775\",\r\n      \"sbu\": 3,\r\n      \"productType\": 0,\r\n      \"accountType\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.26.75.75:8180/pe-presentaion/pe/ocsprofile",
+							"protocol": "http",
+							"host": [
+								"172",
+								"26",
+								"75",
+								"75"
+							],
+							"port": "8180",
+							"path": [
+								"pe-presentaion",
+								"pe",
+								"ocsprofile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP503 New",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"accounts\": [\r\n    {\r\n      \"connRef\": \"767925692\",\r\n      \"contractNo\": \"97015775\",\r\n      \"sbu\": 3,\r\n      \"productType\": 0,\r\n      \"accountType\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pecloud-qa.dialog.lk/pe-billing-service/pe/ocsprofile?traceId=ABC202203210915",
+							"protocol": "https",
+							"host": [
+								"pecloud-qa",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"pe-billing-service",
+								"pe",
+								"ocsprofile"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202203210915"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP503 New MIFE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c80e7e3e-761c-3e08-b48f-a77a16a6ac80",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"accounts\": [\r\n    {\r\n      \"connRef\": \"767925692\",\r\n      \"contractNo\": \"97015775\",\r\n      \"sbu\": 3,\r\n      \"productType\": 0,\r\n      \"accountType\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mife-stg.dialog.lk/apicall/crm/pe/ocsprofile/v1.0/ocsprofile?traceId=ABC202210250458",
+							"protocol": "https",
+							"host": [
+								"mife-stg",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"apicall",
+								"crm",
+								"pe",
+								"ocsprofile",
+								"v1.0",
+								"ocsprofile"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202210250458"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IP504",
+			"item": [
+				{
+					"name": "IP504 Old",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"productCategory\":1,\r\n   \"accounts\":[\r\n      {\r\n         \"sbu\":3,\r\n         \"contractNo\":\"90003485\",\r\n         \"productType\":1\r\n      }\r\n   ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.26.75.75:8180/pe-presentaion/pe/remarks",
+							"protocol": "http",
+							"host": [
+								"172",
+								"26",
+								"75",
+								"75"
+							],
+							"port": "8180",
+							"path": [
+								"pe-presentaion",
+								"pe",
+								"remarks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP504 New",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"productCategory\":1,\r\n   \"accounts\":[\r\n      {\r\n         \"sbu\":3,\r\n         \"contractNo\":\"90003485\",\r\n         \"productType\":1\r\n      }\r\n   ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pecloud-qa.dialog.lk/pe-billing-service/pe/remarks/?traceId=ABC123456789654",
+							"protocol": "https",
+							"host": [
+								"pecloud-qa",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"pe-billing-service",
+								"pe",
+								"remarks",
+								""
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC123456789654"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP504 New MIFE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c80e7e3e-761c-3e08-b48f-a77a16a6ac80",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"productCategory\":1,\r\n   \"accounts\":[\r\n      {\r\n         \"sbu\":3,\r\n         \"contractNo\":\"60714801\",\r\n         \"productType\":0\r\n      }\r\n   ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mife-stg.dialog.lk/apicall/crm/pe/remarks/v1.0/remarks?traceId=ABC202205300409",
+							"protocol": "https",
+							"host": [
+								"mife-stg",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"apicall",
+								"crm",
+								"pe",
+								"remarks",
+								"v1.0",
+								"remarks"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202205300409"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IP505",
+			"item": [
+				{
+					"name": "IP505 Old",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productCategory\": 1,\r\n    \"receiptFromDate\": null,\r\n    \"receiptToDate\": null,\r\n    \"receiptBranch\": \"53632\",\r\n    \"branchCounter\": \"PMT\",\r\n    \"contractNo\": \"90003485\",\r\n    \"chequebankCode\": null,\r\n    \"chequebankBranchCode\": null,\r\n    \"chequeNo\": null,\r\n    \"receiptUser\": \"007\",\r\n    \"receipts\": [\r\n        {\r\n            \"receiptNo\": \"DBDPBACK00016137\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.26.75.75:8180/pe-presentaion/pe/payment",
+							"protocol": "http",
+							"host": [
+								"172",
+								"26",
+								"75",
+								"75"
+							],
+							"port": "8180",
+							"path": [
+								"pe-presentaion",
+								"pe",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP505 New",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productCategory\": 1,\r\n    \"receiptFromDate\": null,\r\n    \"receiptToDate\": null,\r\n    \"receiptBranch\": \"53632\",\r\n    \"branchCounter\": \"PMT\",\r\n    \"contractNo\": \"90003485\",\r\n    \"chequebankCode\": null,\r\n    \"chequebankBranchCode\": null,\r\n    \"chequeNo\": null,\r\n    \"receiptUser\": \"007\",\r\n    \"receipts\": [\r\n        {\r\n            \"receiptNo\": \"DBDPBACK00016137\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pecloud-qa.dialog.lk/pe-retrival-cancelation-service/pe/payment?traceId=202211280905",
+							"protocol": "https",
+							"host": [
+								"pecloud-qa",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"pe-retrival-cancelation-service",
+								"pe",
+								"payment"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "202211280905"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP505 New MIFE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "83b51978-a8ab-3610-b166-a6c02e8d9947",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productCategory\": 1,\r\n    \"receiptBranch\": \"NSB\",\r\n    \"receipts\": [\r\n        {\r\n            \"receiptNo\": \"DBDPDSC00484134\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mife-stg.dialog.lk/apicall/crm/pe/payment/v1.0/payment?traceId=ABC202210250436",
+							"protocol": "https",
+							"host": [
+								"mife-stg",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"apicall",
+								"crm",
+								"pe",
+								"payment",
+								"v1.0",
+								"payment"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202210250436"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IP506",
+			"item": [
+				{
+					"name": "IP506 Old",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\":1,\r\n  \"receiptBranch\": \"53632\",\r\n  \"receipts\": [\r\n    {\r\n      \"receiptNo\": \"DBDPBACK00016132\" \r\n    },\r\n     {\r\n      \"receiptNo\": \"DBDPBACK00016133\" \r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.26.75.75:8180/pe-presentaion/pe/payment/pending",
+							"protocol": "http",
+							"host": [
+								"172",
+								"26",
+								"75",
+								"75"
+							],
+							"port": "8180",
+							"path": [
+								"pe-presentaion",
+								"pe",
+								"payment",
+								"pending"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP506 New",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\":1,\r\n  \"receiptBranch\": \"53632\",\r\n  \"receipts\": [\r\n    {\r\n      \"receiptNo\": \"DBDPBACK00016132\" \r\n    },\r\n     {\r\n      \"receiptNo\": \"DBDPBACK00016133\" \r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pecloud-qa.dialog.lk/pe-retrival-cancelation-service/pe/payment/pending?traceId=ABC202203210915",
+							"protocol": "https",
+							"host": [
+								"pecloud-qa",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"pe-retrival-cancelation-service",
+								"pe",
+								"payment",
+								"pending"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202203210915"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP506 New MIFE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c80e7e3e-761c-3e08-b48f-a77a16a6ac80",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\":1,\r\n  \"receiptBranch\": \"53632\",\r\n  \"receipts\": [\r\n    {\r\n      \"receiptNo\": \"DBDPBACK00016132\" \r\n    },\r\n     {\r\n      \"receiptNo\": \"DBDPBACK00016133\" \r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mife-stg.dialog.lk/apicall/crm/pe/pendingpayment/v1.0/payment/pending?traceId=ABC202203210915",
+							"protocol": "https",
+							"host": [
+								"mife-stg",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"apicall",
+								"crm",
+								"pe",
+								"pendingpayment",
+								"v1.0",
+								"payment",
+								"pending"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202203210915"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IP510",
+			"item": [
+				{
+					"name": "IP510 Old",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"sbu\": 0,\r\n  \"accountNo\": \"1111\",\r\n  \"contractNo\": \"12121\",\r\n  \"connRef\": \"777335343\",\r\n  \"accountType\": 2,\r\n  \"physicalPaymentDate\": 1632730704,\r\n  \"paymentText\": \"test\",\r\n  \"paymentRef\": \"carg111\",\r\n  \"receiptDate\": 1632730704,\r\n  \"receiptNo\": \"8990092\",\r\n  \"receiptBranch\": \"HO\",\r\n  \"receiptUser\": \"CC001\",\r\n  \"branchCounter\": \"123\",\r\n  \"paymentAmount\": 100.78,\r\n  \"paymentCurrency\": \"LKR\",\r\n  \"paymentMethodId\": 1,\r\n  \"paymentMode\": \"CHE\",\r\n  \"chqBank\": \"144444\",\r\n  \"chqBranch\": \"HO\",\r\n  \"chqNo\": \"12252005\",\r\n  \"chqDate\": 1632730704,\r\n  \"cardType\": \"VISA\",\r\n  \"cardAgent\": \"HNB\",\r\n  \"cardNo\": \"1212-1212-1212-1212\",\r\n  \"cardAprvCode\": \"678\",\r\n  \"moduleName\": \"CPOS\",\r\n  \"chqSuspend\": \"CREDIT\",\r\n  \"terminalID\": \"172.22.73.x\",\r\n  \"transferredType\": 1,\r\n  \"transferredNo\": \"232434\",\r\n  \"transferredMode\": null,\r\n  \"transferReasonCode\": \"SP\",\r\n  \"remarks\": \"test\",\r\n  \"contactNo\": \"777335343\",\r\n  \"productType\": 0,\r\n  \"connectionStatus\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.26.75.75:8180/pe-presentaion/pe/payment",
+							"protocol": "http",
+							"host": [
+								"172",
+								"26",
+								"75",
+								"75"
+							],
+							"port": "8180",
+							"path": [
+								"pe-presentaion",
+								"pe",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP510 New",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"sbu\": 0,\r\n  \"accountNo\": \"1111\",\r\n  \"contractNo\": \"12121\",\r\n  \"connRef\": \"777335343\",\r\n  \"accountType\": 2,\r\n  \"physicalPaymentDate\": 1632730704,\r\n  \"paymentText\": \"test\",\r\n  \"paymentRef\": \"carg111\",\r\n  \"receiptDate\": 1632730704,\r\n  \"receiptNo\": \"8990092\",\r\n  \"receiptBranch\": \"HO\",\r\n  \"receiptUser\": \"CC001\",\r\n  \"branchCounter\": \"123\",\r\n  \"paymentAmount\": 100.78,\r\n  \"paymentCurrency\": \"LKR\",\r\n  \"paymentMethodId\": 1,\r\n  \"paymentMode\": \"CHE\",\r\n  \"chqBank\": \"144444\",\r\n  \"chqBranch\": \"HO\",\r\n  \"chqNo\": \"12252005\",\r\n  \"chqDate\": 1632730704,\r\n  \"cardType\": \"VISA\",\r\n  \"cardAgent\": \"HNB\",\r\n  \"cardNo\": \"1212-1212-1212-1212\",\r\n  \"cardAprvCode\": \"678\",\r\n  \"moduleName\": \"CPOS\",\r\n  \"chqSuspend\": \"CREDIT\",\r\n  \"terminalID\": \"172.22.73.x\",\r\n  \"transferredType\": 1,\r\n  \"transferredNo\": \"232434\",\r\n  \"transferredMode\": null,\r\n  \"transferReasonCode\": \"SP\",\r\n  \"remarks\": \"test\",\r\n  \"contactNo\": \"777335343\",\r\n  \"productType\": 0,\r\n  \"connectionStatus\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pecloud-qa.dialog.lk/pe-payment-delegation-service/pe/payment?traceId=ABC202211221241",
+							"protocol": "https",
+							"host": [
+								"pecloud-qa",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"pe-payment-delegation-service",
+								"pe",
+								"payment"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202211221241"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP510 New MIFE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c80e7e3e-761c-3e08-b48f-a77a16a6ac80",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"sbu\": 3,\r\n  \"accountNo\": \"1111\",\r\n  \"contractNo\": \"12121\",\r\n  \"connRef\": \"777335343\",\r\n  \"accountType\": 2,\r\n  \"physicalPaymentDate\": 1632730704,\r\n  \"paymentText\": \"test\",\r\n  \"paymentRef\": \"carg111\",\r\n  \"receiptDate\": 1632730704,\r\n  \"receiptNo\": \"899009111\",\r\n  \"receiptBranch\": \"HO\",\r\n  \"receiptUser\": \"CC001\",\r\n  \"branchCounter\": \"123\",\r\n  \"paymentAmount\": 100.7,\r\n  \"paymentCurrency\": \"LKR\",\r\n  \"paymentMethodId\": 1,\r\n  \"paymentMode\": \"CHE\",\r\n  \"chqBank\": \"144444\",\r\n  \"chqBranch\": \"HO\",\r\n  \"chqNo\": \"12252005\",\r\n  \"chqDate\": 1632730704,\r\n  \"cardType\": \"VISA\",\r\n  \"cardAgent\": \"HNB\",\r\n  \"cardNo\": \"1212-1212-1212-1212\",\r\n  \"cardAprvCode\": \"678\",\r\n  \"moduleName\": \"CPOS\",\r\n  \"chqSuspend\": \"CREDIT\",\r\n  \"terminalID\": \"172.22.73.x\",\r\n  \"transferredType\": 1,\r\n  \"transferredNo\": \"232434\",\r\n  \"transferredMode\": \"test\",\r\n  \"transferReasonCode\": \"SP\",\r\n  \"remarks\": \"test\",\r\n  \"contactNo\": \"777335343\",\r\n  \"productType\": 0,\r\n    \"connectionStatus\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mife-stg.dialog.lk/apicall/crm/pe/postpayment/v1.0/payment?traceId=ABC202206060227",
+							"protocol": "https",
+							"host": [
+								"mife-stg",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"apicall",
+								"crm",
+								"pe",
+								"postpayment",
+								"v1.0",
+								"payment"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202206060227"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IP511",
+			"item": [
+				{
+					"name": "IP511 Old",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"sbu\": 2,\r\n  \"querySystem\": 3,\r\n  \"accountNo\": \"1111\",\r\n  \"contractNo\": \"60714800\",\r\n  \"physicalSeq\": 48,\r\n  \"accountSeq\": -1,\r\n  \"chqReturn\": \"N\",\r\n  \"chqSuspend\": \"SUSPEND\",\r\n  \"reversalType\": \"T\",\r\n  \"transferredType\": 1,\r\n  \"transferredNo\": \"60714800\",\r\n  \"transferredMode\": \"R\",\r\n  \"transferredRef\": \"FBPPARP00029615\",\r\n  \"mistakeBy\": \"002\",\r\n  \"remarks\": null,\r\n  \"cancelledReason\": \"RC50\",\r\n  \"cancelledUser\": \"002\",\r\n  \"approvedUser\": \"002\",\r\n  \"terminalID\": \"10.0.21.234\",\r\n  \"sourceSystem\": \"CPOS\",\r\n  \"physicalPaymentDate\": 25082017,\r\n  \"chqReturnType\": \"N\",//without this fields it is working\r\n  \"productType\": 0,\r\n  \"receiptNo\": \"FBPPARP00029611\",\r\n  \"receiptBranch\": \"710\",\r\n  \"receiptUser\": \"002\",\r\n  \"branchCounter\": \"PMT\",\r\n  \"receiptDate\": 23082017,\r\n  \"chqBank\": null,\r\n  \"chqBranch\": null,\r\n  \"chqNo\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.26.75.75:8180/pe-presentaion/pe/payment/cancel",
+							"protocol": "http",
+							"host": [
+								"172",
+								"26",
+								"75",
+								"75"
+							],
+							"port": "8180",
+							"path": [
+								"pe-presentaion",
+								"pe",
+								"payment",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP511 New",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"sbu\": 2,\r\n  \"querySystem\": 3,\r\n  \"accountNo\": \"1111\",\r\n  \"contractNo\": \"60714800\",\r\n  \"physicalSeq\": 48,\r\n  \"accountSeq\": -1,\r\n  \"chqReturn\": \"N\",\r\n  \"chqSuspend\": \"SUSPEND\",\r\n  \"reversalType\": \"T\",\r\n  \"transferredType\": 1,\r\n  \"transferredNo\": \"60714800\",\r\n  \"transferredMode\": \"R\",\r\n  \"transferredRef\": \"FBPPARP00029615\",\r\n  \"mistakeBy\": \"002\",\r\n  \"remarks\": null,\r\n  \"cancelledReason\": \"RC50\",\r\n  \"cancelledUser\": \"002\",\r\n  \"approvedUser\": \"002\",\r\n  \"terminalID\": \"10.0.21.234\",\r\n  \"sourceSystem\": \"CPOS\",\r\n  \"physicalPaymentDate\": 25082017,\r\n  \"chqReturnType\": \"N\",\r\n  \"productType\": 0,\r\n  \"receiptNo\": \"FBPPARP00029611\",\r\n  \"receiptBranch\": \"710\",\r\n  \"receiptUser\": \"002\",\r\n  \"branchCounter\": \"PMT\",\r\n  \"receiptDate\": 23082017,\r\n  \"chqBank\": null,\r\n  \"chqBranch\": null,\r\n  \"chqNo\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pecloud-qa.dialog.lk/pe-retrival-cancelation-service/pe/payment/cancel?traceId=ABC202208220113",
+							"protocol": "https",
+							"host": [
+								"pecloud-qa",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"pe-retrival-cancelation-service",
+								"pe",
+								"payment",
+								"cancel"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202208220113"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP511 New MIFE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c80e7e3e-761c-3e08-b48f-a77a16a6ac80",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"sbu\": 3,\r\n  \"querySystem\": 3,\r\n  \"accountNo\": \"1111\",\r\n  \"contractNo\": \"2434\",\r\n  \"physicalSeq\": 24351,\r\n  \"accountSeq\": 455555,\r\n  \"chqReturn\": \"Y\",\r\n  \"chqSuspend\": \"CREDIT\",\r\n  \"reversalType\": \"R\",\r\n  \"transferredType\": 1,\r\n  \"transferredNo\": \"232411\",\r\n  \"transferredMode\": \"test\",\r\n  \"transferredRef\": \"8999\",\r\n  \"mistakeBy\": \"Mohan\",\r\n  \"remarks\": \"test\",\r\n  \"cancelledReason\": \"Cx request\",\r\n  \"cancelledUser\": \"Mohan\",\r\n  \"approvedUser\": \"Mohan\",\r\n  \"terminalID\": \"172.22.73.x\",\r\n  \"sourceSystem\": \"CPOS\",\r\n  \"physicalPaymentDate\": 1632730704,\r\n  \"chqReturnType\": \"CB\",\r\n  \"productType\": 0,\r\n  \"receiptNo\": \"243224\",\r\n  \"receiptBranch\": \"HO\",\r\n  \"receiptUser\": \"CC001\",\r\n  \"branchCounter\": \"123\",\r\n  \"receiptDate\": 1632730704,\r\n  \"chqBank\": \"144444\",\r\n  \"chqBranch\": \"HO\",\r\n  \"chqNo\": \"122525\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mife-stg.dialog.lk/apicall/crm/pe/cancelpayment/v1.0/payment/cancel?traceId=ABC202205301039",
+							"protocol": "https",
+							"host": [
+								"mife-stg",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"apicall",
+								"crm",
+								"pe",
+								"cancelpayment",
+								"v1.0",
+								"payment",
+								"cancel"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202205301039"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IP512",
+			"item": [
+				{
+					"name": "IP512 Old",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"chqBank\": \"111\",\r\n  \"chqBranch\": \"02\",\r\n  \"chqNo\": \"122595\",\r\n  \"physicalPaymentDate\": 1632730704,\r\n  \"receiptsInfo\": [\r\n    {\r\n      \"sbu\": 3,\r\n      \"connRef\": \"1\",\r\n      \"receiptNo\": \"52101404187\",\r\n      \"contractNo\": \"123\",\r\n      \"accountNo\": \"1111\",\r\n      \"paymentAmount\": 100.7,\r\n      \"productType\": 0,\r\n      \"receiptBranch\": \"HO\",\r\n      \"receiptUser\": \"CC001\",\r\n      \"branchCounter\": \"123\",\r\n      \"receiptDate\": 1632730704\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.26.75.75:8180/pe-presentaion/pe/cheque/realize",
+							"protocol": "http",
+							"host": [
+								"172",
+								"26",
+								"75",
+								"75"
+							],
+							"port": "8180",
+							"path": [
+								"pe-presentaion",
+								"pe",
+								"cheque",
+								"realize"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP512 New",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"chqBank\": \"111\",\r\n  \"chqBranch\": \"02\",\r\n  \"chqNo\": \"122525\",\r\n  \"physicalPaymentDate\": 1632730704,\r\n  \"receiptsInfo\": [\r\n    {\r\n      \"sbu\": 3,\r\n      \"connRef\": \"1\",\r\n      \"receiptNo\": \"5001404107\",\r\n      \"contractNo\": \"123\",\r\n      \"accountNo\": \"1111\",\r\n      \"paymentAmount\": 100.7,\r\n      \"productType\": 0,\r\n      \"receiptBranch\": \"HO\",\r\n      \"receiptUser\": \"CC001\",\r\n      \"branchCounter\": \"123\",\r\n      \"receiptDate\": 1632730704\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pecloud-qa.dialog.lk/pe-payment-delegation-service/pe/cheque/realize?traceId=ABC202203210915",
+							"protocol": "https",
+							"host": [
+								"pecloud-qa",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"pe-payment-delegation-service",
+								"pe",
+								"cheque",
+								"realize"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202203210915"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IP512 MIFE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c80e7e3e-761c-3e08-b48f-a77a16a6ac80",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productCategory\": 1,\r\n  \"chqBank\": \"111\",\r\n  \"chqBranch\": \"02\",\r\n  \"chqNo\": \"122525\",\r\n  \"physicalPaymentDate\": 1632730704,\r\n  \"receiptsInfo\": [\r\n    {\r\n      \"sbu\": 3,\r\n      \"connRef\": \"1\",\r\n      \"receiptNo\": \"50014204107\",\r\n      \"contractNo\": \"123\",\r\n      \"accountNo\": \"1111\",\r\n      \"paymentAmount\": 100.7,\r\n      \"productType\": 0,\r\n      \"receiptBranch\": \"HO\",\r\n      \"receiptUser\": \"CC001\",\r\n      \"branchCounter\": \"123\",\r\n      \"receiptDate\": 1632730704\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mife-stg.dialog.lk/apicall/crm/pe/cheque/v1.0/cheque/realize?traceId=ABC202203210915",
+							"protocol": "https",
+							"host": [
+								"mife-stg",
+								"dialog",
+								"lk"
+							],
+							"path": [
+								"apicall",
+								"crm",
+								"pe",
+								"cheque",
+								"v1.0",
+								"cheque",
+								"realize"
+							],
+							"query": [
+								{
+									"key": "traceId",
+									"value": "ABC202203210915"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

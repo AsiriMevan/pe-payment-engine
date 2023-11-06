@@ -1,0 +1,18 @@
+{
+  "custRef": "197736405023",
+  "oldCustRef": "",
+  "custRefType": "NIC",
+  "productCategory": "1",
+  "sbu": "3",
+  "billInvoiceNo": "",
+  "reqType": "1",
+  "requestUserId": "Daminda",
+  "remoteIP": "172.22.73.7",
+  "sourceSystem": "CPOS",
+  "accounts": [
+    {
+      "connRef": "",
+      "contractNo": ""
+    }
+  ]
+}

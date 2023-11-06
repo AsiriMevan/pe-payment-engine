@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service Product. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-Product"
+  xmlns="urn:Convergys-Interface-ECA-Product"
+  xmlns:ecaProduct="urn:Convergys-Interface-ECA-Product"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaAccount="urn:Convergys-Interface-ECA-Account"
+  xmlns:ecaEvent="urn:Convergys-Interface-ECA-Event"
+  xmlns:ecaUSTax="urn:Convergys-Interface-ECA-USTax"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Account"
+    schemaLocation="../../schema/ECA/ECA_Account.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Event"
+    schemaLocation="../../schema/ECA/ECA_Event.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-USTax"
+    schemaLocation="../../schema/ECA/ECA_USTax.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="ProductType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = PT_STANDARD_PRODUCT
+       2 = PT_PEER_GROUPING_PRODUCT
+       3 = PT_PEER_PRODUCT
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="ParentProductData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="parentProductPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="parentProductData" type="ecaProduct:ProductData_6" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductAttrData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="attributeBillName" type="xsd:string"/>
+          <xsd:element name="mandatoryBoo" type="xsd:boolean"/>
+          <xsd:element name="provAttrNum" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attributeUnits" type="ecaEvent:AttributeUnits" minOccurs="0" nillable="true"/>
+          <xsd:element name="productAttrPK" type="ecaProduct:ProductAttrPK"/>
+          <xsd:element name="attributeUaName" type="xsd:string"/>
+          <xsd:element name="displayPosition" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="productId" type="xsd:int"/>
+          <xsd:element name="productAttrSubId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductAttrPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="productId" type="xsd:int"/>
+          <xsd:element name="productAttrSubId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductAttrSummary_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="attributeUaName" type="xsd:string"/>
+          <xsd:element name="displayPosition" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="productId" type="xsd:int"/>
+          <xsd:element name="productAttrSubId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="salesStartDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesEndDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="productFamilyId" type="xsd:int"/>
+          <xsd:element name="parentProductPK" type="ecaProduct:ProductPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustProductClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="parentProductData" type="ecaProduct:ProductData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustProductClassData" type="ecaUSTax:USTProductClassData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="productName" type="xsd:string"/>
+          <xsd:element name="productDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="productUnitSingularName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="productUnitPluralName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="parametricBoo" type="xsd:boolean"/>
+          <xsd:element name="productId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductData_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="salesStartDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesEndDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="productFamilyId" type="xsd:int"/>
+          <xsd:element name="ustProductClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustProductClassData" type="ecaUSTax:USTProductClassData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="productName" type="xsd:string"/>
+          <xsd:element name="productDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="productUnitSingularName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="productUnitPluralName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="parametricBoo" type="xsd:boolean"/>
+          <xsd:element name="productType" type="ecaProduct:ProductType"/>
+          <xsd:element name="hasMultipleParentsBoo" type="xsd:boolean"/>
+          <xsd:element name="productId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productSummaryJoin" type="ecaProduct:ProductSummaryJoin_5_1"/>
+          <xsd:element name="parentProductDataJoin" type="ecaProduct:ProductDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustProductClassDataJoin" type="ecaUSTax:USTProductClassDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductDataJoin_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productSummaryJoin" type="ecaProduct:ProductSummaryJoin_6"/>
+          <xsd:element name="ustProductClassDataJoin" type="ecaUSTax:USTProductClassDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="productId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductSummary_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productName" type="xsd:string"/>
+          <xsd:element name="productDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="productUnitSingularName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="productUnitPluralName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="parametricBoo" type="xsd:boolean"/>
+          <xsd:element name="productId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductSummary_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productName" type="xsd:string"/>
+          <xsd:element name="productDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="productUnitSingularName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="productUnitPluralName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="parametricBoo" type="xsd:boolean"/>
+          <xsd:element name="productType" type="ecaProduct:ProductType"/>
+          <xsd:element name="hasMultipleParentsBoo" type="xsd:boolean"/>
+          <xsd:element name="productId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductSummaryJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductSummaryJoin_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllProductsInput_5_2">
+        <xsd:sequence>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastProductPK" type="ecaProduct:ProductPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="productDataJoin" type="ecaProduct:ProductDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productSummaryJoin" type="ecaProduct:ProductSummaryJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllProductsInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="lastProductPK" type="ecaProduct:ProductPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="productDataJoin" type="ecaProduct:ProductDataJoin_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="productSummaryJoin" type="ecaProduct:ProductSummaryJoin_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllProductsOutput_5_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProduct:QueryAllProductsResult_5_2"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllProductsOutput_6">
+        <xsd:sequence>
+          <xsd:element name="queryAllProductsResult" type="ecaProduct:QueryAllProductsResult_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllProductsResult_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productDataArray" type="ecaProduct:ArrayOfProductData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productSummaryArray" type="ecaProduct:ArrayOfProductSummary_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllProductsResult_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productAndParentDataArray" type="ecaProduct:ArrayOfQueryProductDataResult_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productSummaryArray" type="ecaProduct:ArrayOfProductSummary_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableProductsForAccountInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastProductPK" type="ecaProduct:ProductPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="salesDtm" type="xsd:dateTime"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="marketSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="parentProductPK" type="ecaProduct:ProductPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableProductsForAccountOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProduct:QueryAvailableProductsForAccountResult_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableProductsForAccountResult_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="dataSet"
+            type="ecaProduct:ProductSummary_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryProductDataInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryProductDataOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProduct:QueryProductDataResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryProductDataResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productData" type="ecaProduct:ProductData_6"/>
+          <xsd:element name="parentProductPKArray" type="ecaProduct:ArrayOfProductPK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllProductAttributeDataInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllProductAttributeDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaProduct:ProductAttrData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllProductsAndAttributesElement_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productSummary" type="ecaProduct:ProductSummary_5_1"/>
+          <xsd:element
+            name="dataSet"
+            type="ecaProduct:ProductAttrSummary_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllProductsAndAttributesInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastProductPK" type="ecaProduct:ProductPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllProductsAndAttributesOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProduct:ReadAllProductsAndAttributesResult_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllProductsAndAttributesResult_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="dataSet"
+            type="ecaProduct:ReadAllProductsAndAttributesElement_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAvailableEventTypesForProductInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAvailableEventTypesForProductOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaEvent:EventTypeSummary_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAvailableProductsForAccountInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastProductPK" type="ecaProduct:ProductPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="salesDtm" type="xsd:dateTime"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="marketSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="parentProductPK" type="ecaProduct:ProductPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAvailableProductsForAccountOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProduct:ReadAvailableProductsForAccountResult_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAvailableProductsForAccountResult_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="dataSet"
+            type="ecaProduct:ProductSummary_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadProductAttributeDataInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="productAttrPK" type="ecaProduct:ProductAttrPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadProductAttributeDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProduct:ProductAttrData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadProductDataInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadProductDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProduct:ProductData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfProductData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaProduct:ProductData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfProductPK">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaProduct:ProductPK"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfProductSummary_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaProduct:ProductSummary_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfProductSummary_6">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaProduct:ProductSummary_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfQueryProductDataResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaProduct:QueryProductDataResult_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_Product.xsd -->

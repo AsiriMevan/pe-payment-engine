@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service OverridePrice. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-OverridePrice"
+  xmlns="urn:Convergys-Interface-ECA-OverridePrice"
+  xmlns:ecaOverridePrice="urn:Convergys-Interface-ECA-OverridePrice"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaProductInstance="urn:Convergys-Interface-ECA-ProductInstance"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-ProductInstance"
+    schemaLocation="../../schema/ECA/ECA_ProductInstance.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="ModificationType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       0 = MT_NO_MODIFIER
+       1 = MT_OVERRIDE
+       2 = MT_MONETARY_MODIFIER
+       3 = MT_PERCENTAGE_MODIFIER
+       4 = MT_NO_CHARGE
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="AddOverridePriceInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="newOverridePriceData" type="ecaOverridePrice:NewOverridePriceData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddOverridePriceInput_2">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="overridePriceDataNoPK" type="ecaOverridePrice:OverridePriceDataNoPK_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddOverridePriceOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaOverridePrice:OverridePricePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddOverridePriceOutput_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaOverridePrice:OverridePricePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="DeleteOverridePriceInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="overridePricePK" type="ecaOverridePrice:OverridePricePK"/>
+          <xsd:element name="productSeq" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyOverridePriceDataPair_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="overridePricePK" type="ecaOverridePrice:OverridePricePK"/>
+          <xsd:element name="oldModifyOverridePriceData" type="ecaOverridePrice:NewOverridePriceData_1"/>
+          <xsd:element name="newModifyOverridePriceData" type="ecaOverridePrice:NewOverridePriceData_1"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyOverridePriceDataPair_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="overridePricePK" type="ecaOverridePrice:OverridePricePK"/>
+          <xsd:element name="oldModifyOverridePriceData" type="ecaOverridePrice:OverridePriceDataNoPK_1"/>
+          <xsd:element name="newModifyOverridePriceData" type="ecaOverridePrice:OverridePriceDataNoPK_1"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyOverridePriceInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="modifyOverridePriceDataPair" type="ecaOverridePrice:ModifyOverridePriceDataPair_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyOverridePriceInput_2">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="modifyOverridePriceDataPair" type="ecaOverridePrice:ModifyOverridePriceDataPair_2"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewOverridePriceData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="oneOffNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="oneOffModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspensionNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspensionModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="notesTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OverridePriceData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="oneOffNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="oneOffModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspensionNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspensionModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="notesTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTerminationMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="overridePriceSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OverridePriceData_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="overridePriceSeq" type="xsd:int"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="oneOffNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="oneOffModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspensionNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspensionModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="notesTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTerminationMny" type="xsd:long" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OverridePriceDataNoPK_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="oneOffNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="oneOffModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspensionNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspensionModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="notesTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTerminationMny" type="xsd:long" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OverridePricePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="overridePriceSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverridePriceForProductInstanceInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverridePriceForProductInstanceInput_2">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="queryTimeframe" type="eca:QueryTimeframe_1"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastOverridePricePK" type="ecaOverridePrice:OverridePricePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="discardTruncated" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverridePriceForProductInstanceOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="overridePriceData"
+            type="ecaOverridePrice:OverridePriceData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverridePriceForProductInstanceOutput_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaOverridePrice:QueryAllOverridePriceForProductInstanceResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverridePriceForProductInstanceResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="overridePriceDataArray" type="ecaOverridePrice:ArrayOfOverridePriceData_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryOverridePriceInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="overridePricePK" type="ecaOverridePrice:OverridePricePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryOverridePriceOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaOverridePrice:OverridePriceData_2"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfOverridePriceData_2">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaOverridePrice:OverridePriceData_2"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_OverridePrice.xsd -->

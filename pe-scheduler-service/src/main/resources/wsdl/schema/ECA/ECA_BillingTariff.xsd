@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service BillingTariff. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-BillingTariff"
+  xmlns="urn:Convergys-Interface-ECA-BillingTariff"
+  xmlns:ecaBillingTariff="urn:Convergys-Interface-ECA-BillingTariff"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaAccount="urn:Convergys-Interface-ECA-Account"
+  xmlns:ecaConfig="urn:Convergys-Interface-ECA-Config"
+  xmlns:ecaContract="urn:Convergys-Interface-ECA-Contract"
+  xmlns:ecaCustomer="urn:Convergys-Interface-ECA-Customer"
+  xmlns:ecaProduct="urn:Convergys-Interface-ECA-Product"
+  xmlns:ecaProductInstance="urn:Convergys-Interface-ECA-ProductInstance"
+  xmlns:ecaRatingTariff="urn:Convergys-Interface-ECA-RatingTariff"
+  xmlns:ecaSubscription="urn:Convergys-Interface-ECA-Subscription"
+  xmlns:ecaSubscriptionType="urn:Convergys-Interface-ECA-SubscriptionType"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Account"
+    schemaLocation="../../schema/ECA/ECA_Account.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Config"
+    schemaLocation="../../schema/ECA/ECA_Config.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Contract"
+    schemaLocation="../../schema/ECA/ECA_Contract.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Customer"
+    schemaLocation="../../schema/ECA/ECA_Customer.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Product"
+    schemaLocation="../../schema/ECA/ECA_Product.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-ProductInstance"
+    schemaLocation="../../schema/ECA/ECA_ProductInstance.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-RatingTariff"
+    schemaLocation="../../schema/ECA/ECA_RatingTariff.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Subscription"
+    schemaLocation="../../schema/ECA/ECA_Subscription.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-SubscriptionType"
+    schemaLocation="../../schema/ECA/ECA_SubscriptionType.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="CatalogueStatus">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = CSDesign
+       2 = CSTest
+       3 = CSLive
+       4 = CSRejected
+       5 = CSSuperseded
+       6 = CSDeleted
+       7 = CSUndefined
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="ModType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       0 = MTNoModifier
+       1 = MTOverride
+       2 = MTMonetaryModifier
+       3 = MTPercentageModifier
+       4 = MTNoCharge
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="PeriodUnitsShort">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = Days
+       2 = Hours
+       3 = Minutes
+       4 = Months
+       5 = Seconds
+       6 = Weeks
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="TariffType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = TTPublic
+       2 = TTPrivate
+       3 = TTPackaged
+       4 = TTCompetitor
+       5 = TTInternalCost
+       6 = TTExternalCost
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="AgeDependentPriceBandData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ageDependentPriceId" type="xsd:int"/>
+          <xsd:element name="catalogueChangeId" type="xsd:int"/>
+          <xsd:element name="adpFromNumber" type="xsd:int"/>
+          <xsd:element name="recurringModTypeId" type="xsd:int"/>
+          <xsd:element name="recurringNumber" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="adpToNumber" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="billdataTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurDiscRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="AgeDependentPriceData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ageDependentPriceId" type="xsd:int"/>
+          <xsd:element name="catalogueChangeId" type="xsd:int"/>
+          <xsd:element name="taxInclusiveBoo" type="xsd:boolean"/>
+          <xsd:element name="ageDependentPriceName" type="xsd:string"/>
+          <xsd:element name="agePeriodUnits" type="xsd:string"/>
+          <xsd:element name="ageDependentPriceDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="AvailableBillingTariffForProductResult_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="dataSet"
+            type="ecaBillingTariff:BillingTariffData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="AvailableBillingTariffForProductResult_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="billingTariffDataArray" type="ecaBillingTariff:ArrayOfBillingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffSummaryArray" type="ecaBillingTariff:ArrayOfBillingTariffSummary_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BillingCatalogueData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="catalogueChangeName" type="xsd:string"/>
+          <xsd:element name="catalogueChangeDesc" type="xsd:string"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="currencyCode" type="xsd:string"/>
+          <xsd:element name="invoicingCoId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="catalogueStatus" type="ecaBillingTariff:CatalogueStatus"/>
+          <xsd:element name="ratingCatalogueData" type="ecaRatingTariff:RatingCatalogueData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="currencyData" type="ecaConfig:CurrencyData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="invoicingCoData" type="ecaConfig:InvoicingCoData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BillingCatalogueDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueDataJoin" type="ecaRatingTariff:RatingCatalogueDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="currencyDataJoin" type="ecaConfig:CurrencyDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="invoicingCoDataJoin" type="ecaConfig:InvoicingCoDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BillingCataloguePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="billingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BillingTariffData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="parentBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="internalCostBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalCostBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="tariffTypeId" type="ecaBillingTariff:TariffType"/>
+          <xsd:element name="productFamilyId" type="xsd:int"/>
+          <xsd:element name="salesStartDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesEndDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxInclusiveBoo" type="xsd:boolean"/>
+          <xsd:element name="contractTermsBoo" type="xsd:boolean"/>
+          <xsd:element name="contractTerm" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractTermUnits" type="ecaContract:ContractTermUnits" minOccurs="0" nillable="true"/>
+          <xsd:element name="parentBillingTariffData" type="ecaBillingTariff:BillingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="internalCostBillingTariffData" type="ecaBillingTariff:BillingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalCostBillingTariffData" type="ecaBillingTariff:BillingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="tariffName" type="xsd:string"/>
+          <xsd:element name="tariffDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingCatalogueData" type="ecaBillingTariff:BillingCatalogueData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BillingTariffDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="billingTariffSummaryJoin" type="ecaBillingTariff:BillingTariffSummaryJoin_5_1"/>
+          <xsd:element name="parentBillingTariffDataJoin" type="ecaBillingTariff:BillingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="internalCostBillingTariffDataJoin" type="ecaBillingTariff:BillingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalCostBillingTariffDataJoin" type="ecaBillingTariff:BillingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BillingTariffPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="billingTariffId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BillingTariffSummary_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="tariffName" type="xsd:string"/>
+          <xsd:element name="tariffDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingCatalogueData" type="ecaBillingTariff:BillingCatalogueData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BillingTariffSummaryJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="billingCatalogueDataJoin" type="ecaBillingTariff:BillingCatalogueDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ConsolidatedProductBillingTariffBand_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productQuantityThreshold" type="xsd:int"/>
+          <xsd:element name="oneOffNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="oneOffPoints" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringPoints" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventPointRate" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTermFixMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTermMultMny" type="xsd:long" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ConsolidatedProductBillingTariffPrices_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedProductBillingTariffData" type="ecaBillingTariff:HistoriedProductBillingTariffData_5_1"/>
+          <xsd:element
+            name="consolidatedProductBillingTariffBands"
+            type="ecaBillingTariff:ConsolidatedProductBillingTariffBand_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ConsolidatedProductBillingTariffPrices_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedProductBillingTariffData" type="ecaBillingTariff:HistoriedProductBillingTariffData_6"/>
+          <xsd:element
+            name="consolidatedProductBillingTariffBands"
+            type="ecaBillingTariff:ConsolidatedProductBillingTariffBand_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="ageDependentPriceData" type="ecaBillingTariff:AgeDependentPriceData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ageDependentPriceBandDataArray" type="ecaBillingTariff:ArrayOfNullableAgeDependentPriceBandData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ConsolidatedProductBillingTariffPrices_7">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedProductBillingTariffData" type="ecaBillingTariff:HistoriedProductBillingTariffData_7"/>
+          <xsd:element
+            name="consolidatedProductBillingTariffBands"
+            type="ecaBillingTariff:ConsolidatedProductBillingTariffBand_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="ageDependentPriceData" type="ecaBillingTariff:AgeDependentPriceData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ageDependentPriceBandDataArray" type="ecaBillingTariff:ArrayOfNullableAgeDependentPriceBandData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="EventDiscountSummary_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventDiscountId" type="xsd:int"/>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="discountName" type="xsd:string"/>
+          <xsd:element name="discountDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingCatalogueData" type="ecaBillingTariff:BillingCatalogueData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedProductBillingTariffData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargePeriod" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargePeriodUnits" type="ecaConfig:PeriodUnits" minOccurs="0" nillable="true"/>
+          <xsd:element name="inAdvanceBoo" type="xsd:boolean"/>
+          <xsd:element name="proRateBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="refundableBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="marginalBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="bonusSchemeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="initRevenueCodeId" type="xsd:int"/>
+          <xsd:element name="recurRevenueCodeId" type="xsd:int"/>
+          <xsd:element name="termRevenueCodeId" type="xsd:int"/>
+          <xsd:element name="earlyTermFixRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTermMultRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTermProRateBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedProductBillingTariffData_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargePeriod" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargePeriodUnits" type="ecaConfig:PeriodUnits" minOccurs="0" nillable="true"/>
+          <xsd:element name="inAdvanceBoo" type="xsd:boolean"/>
+          <xsd:element name="proRateBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="refundableBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="marginalBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="bonusSchemeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="initRevenueCodeId" type="xsd:int"/>
+          <xsd:element name="recurRevenueCodeId" type="xsd:int"/>
+          <xsd:element name="termRevenueCodeId" type="xsd:int"/>
+          <xsd:element name="earlyTermFixRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTermMultRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTermProRateBoo" type="xsd:boolean"/>
+          <xsd:element name="ageDependentPriceId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedProductBillingTariffData_7">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargePeriod" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargePeriodUnits" type="ecaConfig:PeriodUnits" minOccurs="0" nillable="true"/>
+          <xsd:element name="inAdvanceBoo" type="xsd:boolean"/>
+          <xsd:element name="proRateBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="refundableBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="marginalBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="bonusSchemeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="initRevenueCodeId" type="xsd:int"/>
+          <xsd:element name="recurRevenueCodeId" type="xsd:int"/>
+          <xsd:element name="termRevenueCodeId" type="xsd:int"/>
+          <xsd:element name="earlyTermFixRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTermMultRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactRevCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTermProRateBoo" type="xsd:boolean"/>
+          <xsd:element name="ageDependentPriceId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultProdLifetime" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultProdLifetimeUnit" type="ecaBillingTariff:PeriodUnitsShort" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllBillingTariffsForProductInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffDataJoin" type="ecaBillingTariff:BillingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffSummaryJoin" type="ecaBillingTariff:BillingTariffSummaryJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="salesDtm" type="xsd:dateTime"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllBillingTariffsForProductOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:AvailableBillingTariffForProductResult_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableBillingTariffsForProductInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffDataJoin" type="ecaBillingTariff:BillingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffSummaryJoin" type="ecaBillingTariff:BillingTariffSummaryJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="marketSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesDtm" type="xsd:dateTime"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableBillingTariffsForProductInstanceInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffDataJoin" type="ecaBillingTariff:BillingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffSummaryJoin" type="ecaBillingTariff:BillingTariffSummaryJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="marketSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesDtm" type="xsd:dateTime"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableBillingTariffsForProductInstanceOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:AvailableBillingTariffForProductResult_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableBillingTariffsForProductOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:AvailableBillingTariffForProductResult_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableBillingTariffsForSubscriptionInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="billingTariffDataJoin" type="ecaBillingTariff:BillingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffSummaryJoin" type="ecaBillingTariff:BillingTariffSummaryJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="marketSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesDtm" type="xsd:dateTime"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableBillingTariffsForSubscriptionOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:QueryAvailableBillingTariffsResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableBillingTariffsForSubscriptionTypeInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="billingTariffDataJoin" type="ecaBillingTariff:BillingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffSummaryJoin" type="ecaBillingTariff:BillingTariffSummaryJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="marketSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesDtm" type="xsd:dateTime"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableBillingTariffsForSubscriptionTypeOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:QueryAvailableBillingTariffsResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableBillingTariffsResult_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="billingTariffDataArray" type="ecaBillingTariff:ArrayOfBillingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffSummaryArray" type="ecaBillingTariff:ArrayOfBillingTariffSummary_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryConsolidatedProductBillingTariffPricesInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryConsolidatedProductBillingTariffPricesInput_7">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryConsolidatedProductBillingTariffPricesOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:ConsolidatedProductBillingTariffPrices_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryConsolidatedProductBillingTariffPricesOutput_7">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:ConsolidatedProductBillingTariffPrices_7"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RawHistoriedProductBillingTariffBand_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="productQuantityThreshold" type="xsd:int"/>
+          <xsd:element name="oneOffNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="oneOffModTypeId" type="ecaBillingTariff:ModType" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringModTypeId" type="ecaBillingTariff:ModType" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationModTypeId" type="ecaBillingTariff:ModType" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspModTypeId" type="ecaBillingTariff:ModType" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="suspRecurModTypeId" type="ecaBillingTariff:ModType" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="reactModTypeId" type="ecaBillingTariff:ModType" minOccurs="0" nillable="true"/>
+          <xsd:element name="oneOffPoints" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="recurringPoints" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventPointRate" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTermFixMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTermMultMny" type="xsd:long" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllLiveBillingCataloguesOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaBillingTariff:BillingCatalogueData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAvailableBillingTariffsForProductInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="marketSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesDtm" type="xsd:dateTime"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAvailableBillingTariffsForProductInstanceInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="marketSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesDtm" type="xsd:dateTime"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAvailableBillingTariffsForProductInstanceOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:AvailableBillingTariffForProductResult_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAvailableBillingTariffsForProductOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:AvailableBillingTariffForProductResult_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadBillingTariffDataInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadBillingTariffDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:BillingTariffData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadConsolidatedProductBillingTariffPricesInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadConsolidatedProductBillingTariffPricesOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:ConsolidatedProductBillingTariffPrices_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadDiscountResult_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productQuantityThreshold" type="xsd:int"/>
+          <xsd:element name="eventDiscountSummary" type="ecaBillingTariff:EventDiscountSummary_5_1"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadDiscountSummariesForEventDiscountInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadDiscountSummariesForEventDiscountOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaBillingTariff:ReadDiscountResult_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadLiveBillingCatalogueByIcoCurrencyInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="invoicingCoId" type="xsd:int"/>
+          <xsd:element name="currencyCode" type="xsd:string"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadLiveBillingCatalogueByIcoCurrencyOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:BillingCatalogueData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadLiveBillingCatalogueInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadLiveBillingCatalogueOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:BillingCatalogueData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadProductBillingTariffDataInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadProductBillingTariffDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaBillingTariff:HistoriedProductBillingTariffData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadRawProductBillingTariffBandsInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="productPK" type="ecaProduct:ProductPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadRawProductBillingTariffBandsOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaBillingTariff:RawHistoriedProductBillingTariffBand_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfNullableAgeDependentPriceBandData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaBillingTariff:AgeDependentPriceBandData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfBillingTariffData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaBillingTariff:BillingTariffData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfBillingTariffSummary_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaBillingTariff:BillingTariffSummary_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_BillingTariff.xsd -->

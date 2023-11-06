@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service RatingTariff. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-RatingTariff"
+  xmlns="urn:Convergys-Interface-ECA-RatingTariff"
+  xmlns:ecaRatingTariff="urn:Convergys-Interface-ECA-RatingTariff"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaBillingTariff="urn:Convergys-Interface-ECA-BillingTariff"
+  xmlns:ecaConfig="urn:Convergys-Interface-ECA-Config"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-BillingTariff"
+    schemaLocation="../../schema/ECA/ECA_BillingTariff.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Config"
+    schemaLocation="../../schema/ECA/ECA_Config.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="MatchType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = MTLessThan
+       2 = MTGreaterThan
+       3 = MTEqualTo
+       8 = MTNot
+       9 = MTGreaterThanOrEqualTo
+       10 = MTLessThanOrEqualTo
+       11 = MTNotEqualTo
+       16 = MTStartsWith
+       17 = MTStartsWithLessThan
+       18 = MTStartsWithGreaterThan
+       19 = MTStartsWithEqualTo
+       25 = MTStartsWithGreaterThanOrEqualTo
+       26 = MTStartsWithLessThanOrEqualTo
+       27 = MTStartsWithNotEqualTo
+       33 = MTContains
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="QueryAllRatingChargesInput_1">
+        <xsd:sequence>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRatingChargesOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaRatingTariff:RatingChargeData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRatingTariffTypesInput_1">
+        <xsd:sequence>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRatingTariffTypesInput_2">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRatingTariffTypesOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaRatingTariff:RatingTariffTypeData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRatingTariffTypesOutput_2">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaRatingTariff:RatingTariffTypeData_2"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRatePlanElementInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRatePlanElementInput_2">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRatePlanElementOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaRatingTariff:RatingElementPK"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRatePlanElementOutput_2">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaRatingTariff:RatingElementData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRatingTariffTypeInput_1">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypePK" type="ecaRatingTariff:RatingTariffTypePK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRatingTariffTypeInput_2">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypePK" type="ecaRatingTariff:RatingTariffTypePK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRatingTariffTypeOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingTariff:RatingTariffTypeData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRatingTariffTypeOutput_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingTariff:RatingTariffTypeData_2"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingCatalogueData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueName" type="xsd:string"/>
+          <xsd:element name="ratingCatalogueDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="currencyCode" type="xsd:string"/>
+          <xsd:element name="invoicingCoId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="currencyData" type="ecaConfig:CurrencyData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="invoicingCoData" type="ecaConfig:InvoicingCoData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingCatalogueDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="currencyDataJoin" type="ecaConfig:CurrencyDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="invoicingCoDataJoin" type="ecaConfig:InvoicingCoDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingCataloguePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingChargeData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingChargeId" type="xsd:int"/>
+          <xsd:element name="ratingChargeName" type="xsd:string"/>
+          <xsd:element name="ratingChargeDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingElementData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="fixedChargeMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargingRate" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="minCostMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxCostMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="fixedPoints" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="pointRate" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="unitDuration" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="revenueCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustCategoryId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxOverrideId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="unitName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="dropEventBoo" type="xsd:boolean"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="ratingTariffId" type="xsd:int"/>
+          <xsd:element name="costBandId" type="xsd:int"/>
+          <xsd:element name="eventClassId" type="xsd:int"/>
+          <xsd:element name="onNetBoo" type="xsd:boolean"/>
+          <xsd:element name="timeRateId" type="xsd:int"/>
+          <xsd:element name="chargeSegmentId" type="xsd:int"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingElementPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="ratingTariffId" type="xsd:int"/>
+          <xsd:element name="costBandId" type="xsd:int"/>
+          <xsd:element name="eventClassId" type="xsd:int"/>
+          <xsd:element name="onNetBoo" type="xsd:boolean"/>
+          <xsd:element name="timeRateId" type="xsd:int"/>
+          <xsd:element name="chargeSegmentId" type="xsd:int"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="salesStartDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesEndDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="bandingModelId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultCostBandId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifierGroupId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultEventClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="internalRatingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalRatingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplementaryRatingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxInclusiveBoo" type="xsd:boolean"/>
+          <xsd:element name="pluginTariffBoo" type="xsd:boolean"/>
+          <xsd:element name="internalRatingTariffData" type="ecaRatingTariff:RatingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalRatingTariffData" type="ecaRatingTariff:RatingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplementaryRatingTariffData" type="ecaRatingTariff:RatingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="tariffName" type="xsd:string"/>
+          <xsd:element name="tariffDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueData" type="ecaRatingTariff:RatingCatalogueData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffSummaryJoin" type="ecaRatingTariff:RatingTariffSummaryJoin_5_1"/>
+          <xsd:element name="internalRatingTariffDataJoin" type="ecaRatingTariff:RatingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalRatingTariffDataJoin" type="ecaRatingTariff:RatingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplementaryRatingTariffDataJoin" type="ecaRatingTariff:RatingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffSummary_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="tariffName" type="xsd:string"/>
+          <xsd:element name="tariffDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueData" type="ecaRatingTariff:RatingCatalogueData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffSummaryJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueDataJoin" type="ecaRatingTariff:RatingCatalogueDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffTypeData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeName" type="xsd:string"/>
+          <xsd:element name="ratingTariffTypeDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="scalingUnitsPricingName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingChargeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="tariffTypePriorityNum" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="proxyRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffTypeData_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeName" type="xsd:string"/>
+          <xsd:element name="ratingTariffTypeDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="scalingUnitsPricingName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingChargeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="proxyRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffTypePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAvailableRatingTariffsForProductWithEventInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="eventTypeId" type="xsd:int"/>
+          <xsd:element name="salesDtm" type="xsd:dateTime"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAvailableRatingTariffsForProductWithEventOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaRatingTariff:RatingTariffSummary_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadRatingTariffDataInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadRatingTariffDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingTariff:RatingTariffData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+
+</xsd:schema>
+
+<!-- eof ECA_RatingTariff.xsd -->

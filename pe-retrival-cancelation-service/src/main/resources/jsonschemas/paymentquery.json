@@ -1,0 +1,453 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"id": "#paymentquery",
+	"description": "payment query request",
+	"oneOf": [
+		{
+			"properties": {
+				"productCategory": {
+					"description": "CRM query end system",
+					"type": "integer",
+					"enum": [
+						1,
+						2,
+						3
+					]
+				},
+				"receiptBranch": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"branchCounter": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"receipts": {
+					"type": [
+						"array",
+						"null"
+					],
+					"description": "receipts array",
+					"items": {
+						"title": "Receipt",
+						"description": "Receipt reference",
+						"type": "object",
+						"properties": {
+							"receiptNo": {
+								"type": [
+									"null"
+								]
+							}
+						}
+					}
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"productCategory",
+				"receiptBranch",
+				"branchCounter"
+			]
+		},
+		{
+			"properties": {
+				"productCategory": {
+					"description": "CRM query end system",
+					"type": "integer",
+					"enum": [
+						1,
+						2,
+						3,
+						4
+					]
+				},
+				"receiptBranch": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"receipts": {
+					"type": [
+						"array",
+						"null"
+					],
+					"description": "receipts array",
+					"items": {
+						"title": "Receipt",
+						"description": "Receipt reference",
+						"type": "object",
+						"properties": {
+							"receiptNo": {
+								"type": [
+									"string",
+									"null"
+								]
+							}
+						}
+					}
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"productCategory",
+				"receiptBranch",
+				"receipts"
+			]
+		},
+		{
+			"properties": {
+				"productCategory": {
+					"description": "CRM query end system",
+					"type": "integer",
+					"enum": [
+						1,
+						2,
+						3,
+						4
+					]
+				},
+				"receiptBranch": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"receiptFromDate": {
+					"type": [
+						"integer",
+						"null"
+					],
+					"format": "date-time"
+				},
+				"receiptToDate": {
+					"type": [
+						"integer",
+						"null"
+					],
+					"format": "date-time"
+				},
+				"receipts": {
+					"type": [
+						"array",
+						"null"
+					],
+					"description": "receipts array",
+					"items": {
+						"title": "Receipt",
+						"description": "Receipt reference",
+						"type": "object",
+						"properties": {
+							"receiptNo": {
+								"type": [
+									"null"
+								]
+							}
+						}
+					}
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"productCategory",
+				"receiptBranch",
+				"receiptFromDate",
+				"receiptToDate"
+			]
+		},
+		{
+			"properties": {
+				"productCategory": {
+					"description": "CRM query end system",
+					"type": "integer",
+					"enum": [
+						1,
+						2,
+						3,
+						4
+					]
+				},
+				"chequeNo": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"receipts": {
+					"type": [
+						"array",
+						"null"
+					],
+					"description": "receipts array",
+					"items": {
+						"title": "Receipt",
+						"description": "Receipt reference",
+						"type": "object",
+						"properties": {
+							"receiptNo": {
+								"type": [
+									"null"
+								]
+							}
+						}
+					}
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"productCategory",
+				"chequeNo"
+			]
+		},
+		{
+			"properties": {
+				"productCategory": {
+					"description": "CRM query end system",
+					"type": "integer",
+					"enum": [
+						1,
+						2,
+						3,
+						4
+					]
+				},
+				"chequeNo": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"chequebankCode": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"chequebankBranchCode": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"receipts": {
+					"type": [
+						"array",
+						"null"
+					],
+					"description": "receipts array",
+					"items": {
+						"title": "Receipt",
+						"description": "Receipt reference",
+						"type": "object",
+						"properties": {
+							"receiptNo": {
+								"type": [
+									"null"
+								]
+							}
+						}
+					}
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"productCategory",
+				"chequeNo",
+				"chequebankCode",
+				"chequebankBranchCode"
+			]
+		},
+		{
+			"properties": {
+				"productCategory": {
+					"description": "CRM query end system",
+					"type": "integer",
+					"enum": [
+						1,
+						2,
+						3,
+						4
+					]
+				},
+				"receiptFromDate": {
+					"type": [
+						"integer",
+						"null"
+					],
+					"format": "date-time"
+				},
+				"receiptToDate": {
+					"type": [
+						"integer",
+						"null"
+					],
+					"format": "date-time"
+				},
+				"contractNo": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"receipts": {
+					"type": [
+						"array",
+						"null"
+					],
+					"description": "receipts array",
+					"items": {
+						"title": "Receipt",
+						"description": "Receipt reference",
+						"type": "object",
+						"properties": {
+							"receiptNo": {
+								"type": [
+									"null"
+								]
+							}
+						}
+					}
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"productCategory",
+				"receiptFromDate",
+				"receiptToDate",
+				"contractNo"
+			]
+		},
+		{
+			"properties": {
+				"productCategory": {
+					"description": "CRM query end system",
+					"type": "integer",
+					"enum": [
+						1,
+						2,
+						3,
+						4
+					]
+				},
+				"receiptFromDate": {
+					"type": [
+						"integer",
+						"null"
+					],
+					"format": "date-time"
+				},
+				"receiptToDate": {
+					"type": [
+						"integer",
+						"null"
+					],
+					"format": "date-time"
+				},
+				"receiptBranch": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"receiptUser": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"receipts": {
+					"type": [
+						"array",
+						"null"
+					],
+					"description": "receipts array",
+					"items": {
+						"title": "Receipt",
+						"description": "Receipt reference",
+						"type": "object",
+						"properties": {
+							"receiptNo": {
+								"type": [
+									"null"
+								]
+							}
+						}
+					}
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"productCategory",
+				"receiptFromDate",
+				"receiptToDate",
+				"receiptBranch",
+				"receiptUser"
+			]
+		},
+		{
+			"properties": {
+				"productCategory": {
+					"description": "CRM query end system",
+					"type": "integer",
+					"enum": [
+						1,
+						2,
+						3,
+						4
+					]
+				},
+				"receiptFromDate": {
+					"type": [
+						"integer",
+						"null"
+					],
+					"format": "date-time"
+				},
+				"receiptToDate": {
+					"type": [
+						"integer",
+						"null"
+					],
+					"format": "date-time"
+				},
+				"receiptUser": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"receipts": {
+					"type": [
+						"array",
+						"null"
+					],
+					"description": "receipts array",
+					"items": {
+						"title": "Receipt",
+						"description": "Receipt reference",
+						"type": "object",
+						"properties": {
+							"receiptNo": {
+								"type": [
+									"null"
+								]
+							}
+						}
+					}
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"productCategory",
+				"receiptFromDate",
+				"receiptToDate",
+				"receiptUser"
+			]
+		}
+	]
+}

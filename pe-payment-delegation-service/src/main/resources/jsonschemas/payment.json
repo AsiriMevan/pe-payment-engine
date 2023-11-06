@@ -1,0 +1,226 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"id": "#payment",
+	"description": "Bill payment facility request.",
+	"properties": {
+		"productCategory": {
+			"description": "CRM query end system",
+			"type": "integer",
+			"enum": [
+				1,
+				2,
+				3
+			],
+			"minimum": 1
+		},
+		"sbu": {
+			"description": "Service Business Unit",
+			"type": "integer",
+			"enum": [
+				2,
+				3,
+				4
+			],
+			"minimum": 1
+		},
+		"accountNo": {
+			"description": "Account number.",
+			"type": "string",
+			"minLength": 1
+		},
+		"contractNo": {
+			"description": "Contract number.",
+			"type": "string",
+			"minLength": 1
+		},
+		"connRef": {
+			"description": "Connection  reference number(mobile number).",
+			"type": "string"
+		},
+		"accountType": {
+			"description": "Account type.",
+			"type": "integer",
+			"minimum": 1
+		},
+		"physicalPaymentDate": {
+			"description": "Date of the payment.",
+			"type": "integer",
+			"format": "date-time",
+			"minimum": 1
+		},
+		"paymentText": {
+			"description": "Contract number.",
+			"type": "string"
+		},
+		"paymentRef": {
+			"description": "",
+			"type": "string"
+		},
+		"receiptDate": {
+			"description": "",
+			"type": "integer",
+			"format": "date-time",
+			"minimum": 1
+		},
+		"receiptNo": {
+			"description": "",
+			"type": "string",
+			"minLength": 1
+		},
+		"receiptBranch": {
+			"description": "",
+			"type": "string",
+			"minLength": 1
+		},
+		"receiptUser": {
+			"description": "",
+			"type": "string",
+			"minLength": 1
+		},
+		"branchCounter": {
+			"description": "",
+			"type": "string",
+			"minLength": 1
+		},
+		"paymentAmount": {
+			"description": "",
+			"type": "number",
+			"minimum": 0
+		},
+		"paymentCurrency": {
+			"description": "",
+			"type": "string",
+			"minLength": 1
+		},
+		"paymentMethodId": {
+			"description": "",
+			"type": "integer",
+			"minimum": 0
+		},
+		"paymentMode": {
+			"description": "",
+			"type": "string",
+			"minLength": 1
+		},
+		"chqBank": {
+			"description": "",
+			"type": "string"
+		},
+		"chqBranch": {
+			"description": "",
+			"type": "string"
+		},
+		"chqNo": {
+			"description": "",
+			"type": "string"
+		},
+		"chqDate": {
+			"description": "",
+			"type": "integer",
+			"format": "date-time"
+		},
+		"cardType": {
+			"description": "",
+			"type": "string"
+		},
+		"cardAgent": {
+			"description": "",
+			"type": "string"
+		},
+		"cardNo": {
+			"description": "",
+			"type": "string"
+		},
+		"cardAprvCode": {
+			"description": "",
+			"type": "string"
+		},
+		"moduleName": {
+			"description": "",
+			"type": "string",
+			"minLength": 1
+		},
+		"chqSuspend": {
+			"description": "",
+			"type": "string"
+		},
+		"terminalID": {
+			"description": "",
+			"type": "string"
+		},
+		"transferredType": {
+			"description": "",
+			"type": "integer",
+			"enum": [
+				1,
+				2
+			],
+			"minimum": 1
+		},
+		"transferredMode": {
+			"description": "",
+			"type": "string"
+		},
+		"transferReasonCode": {
+			"description": "",
+			"type": "string"
+		},
+		"remarks": {
+			"description": "",
+			"type": "string"
+		},
+		"contactNo": {
+			"description": "",
+			"type": "string"
+		},
+		"productType": {
+			"description": "",
+			"type": "integer",
+			"enum": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6
+			],
+			"minimum": 0
+		},
+		"connectionStatus": {
+			"description": "connection status",
+			"type": "integer",
+			"enum": [
+				1,
+				2,
+				3,
+				4
+			],
+			"minimum": 1
+
+		}
+	},
+	"required": [
+		"productCategory",
+		"transferredType",
+		"accountNo",
+		"contractNo",
+		"sbu",
+		"accountType",
+		"physicalPaymentDate",
+		"paymentAmount",
+		"paymentCurrency",
+		"paymentMethodId",
+		"receiptNo",
+		"receiptBranch",
+		"branchCounter",
+		"receiptUser",
+		"receiptDate",
+		"paymentMode",
+		"moduleName",
+		"terminalID",
+		"productType",
+		"connectionStatus"
+	]
+}

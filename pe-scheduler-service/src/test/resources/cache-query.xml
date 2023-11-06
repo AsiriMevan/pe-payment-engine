@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="paymentCacheH" class="java.util.HashMap">
+		<constructor-arg>
+			<map>							
+				<!-- Mapping data loading queries -->
+				<entry key="SQL_MAP_PAYMODE"
+					value="SELECT rbm_id as rbmId,tbiz_id as tbizId FROM paymode_map pm WHERE pm.cpos_id= ? AND pm.is_default = 'Y'" />
+				<entry key="SQL_MAP_BRANCH"
+					value="SELECT tbiz_id as tbizId FROM paybranch_map pm WHERE pm.cpos_id= ? AND pm.is_default = 'Y'" />
+				<entry key="SQL_MAP_PAYMETHOD"
+					value="SELECT tbiz_id as tbizId FROM paymethod_map pm WHERE pm.cpos_id= ? AND pm.is_default = 'Y'" />
+				<entry key="SQL_MAP_BANKCODE"
+					value="SELECT tbiz_id as tbizId FROM chqbank_map cm WHERE cm.cpos_id= ? AND cm.is_default = 'Y'" />
+				<entry key="SQL_MAP_CANCEL_ADJ_REASON"
+					value="SELECT tbiz_id as tbizId FROM cancel_adj_reason_map  WHERE cpos_id= ? AND is_default = 'Y'" />
+				<entry key="SQL_MAP_USER"
+					value="SELECT tbiz_id as tbizId FROM user_map  WHERE UPPER(cpos_id)= UPPER(?) AND is_default = 'Y'" />
+				<entry key="SQL_MAP_CARD_AGENTCODE"
+					value="SELECT tbiz_id as tbizId FROM card_agent_map cm WHERE cm.cpos_id= ? AND cm.is_default = 'Y'" />
+				<entry key="SQL_MAP_CPOS_BRANCH"
+					value="SELECT cpos_id as cposid FROM paybranch_map pm WHERE pm.tbiz_id= ? AND pm.is_default = 'Y'" />
+				<entry key="SQL_MAP_CPOS_PAYMETHOD"
+					value="SELECT cpos_id as cposid FROM paymethod_map pm WHERE pm.tbiz_id= ? AND pm.is_default = 'Y'" />
+				<entry key="SQL_MAP_CPOS_USER"
+					value="SELECT cpos_id as cposid FROM user_map  WHERE tbiz_id= ? AND is_default = 'Y'" />
+				<entry key="SQL_MAP_CPOS_PAYMODE"
+					value="SELECT cpos_id as cposid FROM paymode_map  WHERE tbiz_id= ? AND is_default = 'Y'" />
+				<entry key="SQL_MAP_CPOS_PAYMODE_FOR_RBM"
+					value="SELECT cpos_id as cposid FROM paymode_map  WHERE rbm_id= ? AND is_default = 'Y'" />
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>
+

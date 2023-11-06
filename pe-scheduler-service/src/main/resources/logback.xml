@@ -1,0 +1,40 @@
+<configuration>
+
+    <property name="LOG_DIR" value="/var/log/dte/"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+<!--                %d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Kalcutta} %5p -&#45;&#45; %C{1} : %m|traceId=%X{traceId}%n-->
+                %d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Kalcutta} %5p --- %C{1} : %m%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="logicLogging" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/pe-scheduler-service-${hostname}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/archived/pe-scheduler-service-${hostname}-%d{yyyy-MM-dd, Asia/Kalcutta}.log
+            </fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Kalcutta} %5p --- %C{1} : %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--    <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+
+    <root name="logicLogging" level="info">
+        <appender-ref ref="logicLogging"/>
+    </root>
+
+    <root level="info">
+        <appender-ref ref="console" />
+    </root>
+
+<!--    <root level="DEBUG">-->
+<!--        <appender-ref ref="console" />-->
+<!--    </root>-->
+    <logger name="httpclient.wire.content" level="DEBUG" />
+
+</configuration>

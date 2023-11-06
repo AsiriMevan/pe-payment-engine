@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service AddonRate. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-AddonRate"
+  xmlns="urn:Convergys-Interface-ECA-AddonRate"
+  xmlns:ecaAddonRate="urn:Convergys-Interface-ECA-AddonRate"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaProductInstance="urn:Convergys-Interface-ECA-ProductInstance"
+  xmlns:ecaRatingTariff="urn:Convergys-Interface-ECA-RatingTariff"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-ProductInstance"
+    schemaLocation="../../schema/ECA/ECA_ProductInstance.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-RatingTariff"
+    schemaLocation="../../schema/ECA/ECA_RatingTariff.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="ReguidingRuleNum">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = REGUIDING_RULE_SLOT_1
+       2 = REGUIDING_RULE_SLOT_2
+       3 = REGUIDING_RULE_SLOT_3
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="AddonRateData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="domainId" type="xsd:int"/>
+          <xsd:element name="parentProductInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK"/>
+          <xsd:element name="eventTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventSource" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="reguidingRateBoo" type="xsd:boolean"/>
+          <xsd:element name="reguidingRuleNum" type="ecaAddonRate:ReguidingRuleNum" minOccurs="0" nillable="true"/>
+          <xsd:element name="createdDtm" type="xsd:dateTime"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="productSeq" type="xsd:int"/>
+          <xsd:element name="addonRateSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddonRatePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="productSeq" type="xsd:int"/>
+          <xsd:element name="addonRateSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateAddonRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="newAddonRateData" type="ecaAddonRate:NewAddonRateData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateAddonRateOutput_1">
+        <xsd:sequence>
+          <xsd:element name="addonRatePK" type="ecaAddonRate:AddonRatePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="DeleteAddonRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="addonRatePK" type="ecaAddonRate:AddonRatePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyAddonRateDataPair_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="addonRatePK" type="ecaAddonRate:AddonRatePK"/>
+          <xsd:element name="oldAddonRateData" type="ecaAddonRate:NewAddonRateData_1"/>
+          <xsd:element name="newAddonRateData" type="ecaAddonRate:NewAddonRateData_1"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyAddonRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element
+            name="modifyAddonRateDataPairArray"
+            type="ecaAddonRate:ModifyAddonRateDataPair_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyAddonRateSuperInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="addonRatePK" type="ecaAddonRate:AddonRatePK"/>
+          <xsd:element name="oldAddonRateData" type="ecaAddonRate:NewAddonRateData_1"/>
+          <xsd:element name="newAddonRateData" type="ecaAddonRate:NewAddonRateData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewAddonRateData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK"/>
+          <xsd:element name="eventTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventSource" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="reguidingRateBoo" type="xsd:boolean"/>
+          <xsd:element name="reguidingRuleNum" type="ecaAddonRate:ReguidingRuleNum" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllAddonRatesForProductInstanceInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="eventTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventSource" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="includeWildCardEventSourceBoo" type="xsd:boolean"/>
+          <xsd:element name="includeWildCardEventTypeBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllAddonRatesForProductInstanceOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="addonRateDataArray"
+            type="ecaAddonRate:AddonRateData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfNewAddonRateData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaAddonRate:NewAddonRateData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_AddonRate.xsd -->

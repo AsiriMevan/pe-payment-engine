@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component CUSTOMECA -->
+<!-- that are service independent. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-CUSTOMECA"
+  xmlns="urn:Convergys-Interface-CUSTOMECA"
+  xmlns:customeca="urn:Convergys-Interface-CUSTOMECA"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="DataObject" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="PrimaryKey" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="customeca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SimplePrimaryKey" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="customeca:DataObject">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfInt64">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="xsd:long"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof CUSTOMECA.xsd -->

@@ -1,0 +1,151 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"id": "#payment",
+	"description": "Bill payment facility request.",
+	"properties": {
+		"productCategory": {
+			"description": "CRM query end system",
+			"type": "integer",
+			"enum": [
+				1,
+				2,
+				3
+			],
+			"minimum": 1
+		},
+		"sbu": {
+			"description": "Service Business Unit",
+			"type": "integer",
+			"enum": [
+				2,
+				3,
+				4
+			],
+			"minimum": 1
+		},
+		"querySystem": {
+			"type": "integer",
+			"minimum": 0
+		},
+		"accountNo": {
+			"type": "string"
+		},
+		"contractNo": {
+			"type": "string"
+		},
+		"physicalSeq": {
+			"type": "integer",
+			"minLength": 1
+		},
+		"accountSeq": {
+			"type": "integer"
+		},
+		"chqReturn": {
+			"type": "string"
+		},
+		"chqSuspend": {
+			"type": "string"
+		},
+		"reversalType": {
+			"type": "string"
+		},
+		"transferredType": {
+			"type": "integer"
+		},
+		"transferredNo": {
+			"type": "string"
+		},
+		"transferredMode": {
+			"type": "string"
+		},
+		"transferredRef": {
+			"type": "string"
+		},
+		"mistakeBy": {
+			"type": "string"
+		},
+		"remarks": {
+			"type": "string"
+		},
+		"cancelledReason": {
+			"type": "string",
+			"minLength": 1
+		},
+		"cancelledUser": {
+			"type": "string",
+			"minLength": 1
+		},
+		"approvedUser": {
+			"type": "string"
+		},
+		"terminalID": {
+			"type": "string"
+		},
+		"sourceSystem": {
+			"type": "string",
+			"minLength": 1
+		},
+		"physicalPaymentDate": {
+			"description": "Date of the payment.",
+			"type": "integer",
+			"format": "date-time"
+		},
+		"chqReturnType": {
+			"type": "string"
+		},
+		"productType": {
+			"description": "",
+			"type": "integer",
+			"enum": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6
+			],
+			"minimum": 0
+		},
+		"receiptNo": {
+			"type": "string"
+		},
+		"receiptBranch": {
+			"type": "string"
+		},
+		"receiptUser": {
+			"type": "string"
+		},
+		"branchCounter": {
+			"type": "string"
+		},
+		"receiptDate": {
+			"description": "Date of the payment.",
+			"type": "integer",
+			"format": "date-time"
+		},
+		"chqBank": {
+			"type": "string"
+		},
+		"chqBranch": {
+			"type": "string"
+		},
+		"chqNo": {
+			"type": "string"
+		},
+		"paymentAmount": {
+			"description": "",
+			"type": "number"
+		}
+	},
+	"required": [
+		"productCategory",
+		"querySystem",
+		"physicalSeq",
+		"cancelledReason",
+		"cancelledUser",
+		"sourceSystem",
+		"productType"
+	]
+}

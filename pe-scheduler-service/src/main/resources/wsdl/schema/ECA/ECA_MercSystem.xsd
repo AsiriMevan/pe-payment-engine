@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service MercSystem. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-MercSystem"
+  xmlns="urn:Convergys-Interface-ECA-MercSystem"
+  xmlns:ecaMercSystem="urn:Convergys-Interface-ECA-MercSystem"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="CallStatistics">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="firstCallTime" type="xsd:long"/>
+          <xsd:element name="sampleCallCount" type="xsd:long"/>
+          <xsd:element name="minSampleCallTime" type="xsd:long"/>
+          <xsd:element name="maxSampleCallTime" type="xsd:long"/>
+          <xsd:element name="sumSampleCallTimes" type="xsd:double"/>
+          <xsd:element name="sumSquaresSampleCallTimes" type="xsd:double"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadBusinessMethodCallStatisticsInput">
+        <xsd:sequence>
+          <xsd:element name="clear" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadBusinessMethodCallStatisticsOutput">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaMercSystem:ArrayOfCallStatistics" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadDatabaseCallStatisticsInput">
+        <xsd:sequence>
+          <xsd:element name="clear" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadDatabaseCallStatisticsOutput">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaMercSystem:ArrayOfCallStatistics" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ThrowOracleExceptionInput">
+        <xsd:sequence>
+          <xsd:element name="errorNumber" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfCallStatistics">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaMercSystem:CallStatistics"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_MercSystem.xsd -->

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service OverrideRate. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-OverrideRate"
+  xmlns="urn:Convergys-Interface-ECA-OverrideRate"
+  xmlns:ecaOverrideRate="urn:Convergys-Interface-ECA-OverrideRate"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaOverridePrice="urn:Convergys-Interface-ECA-OverridePrice"
+  xmlns:ecaProductInstance="urn:Convergys-Interface-ECA-ProductInstance"
+  xmlns:ecaRatingTariff="urn:Convergys-Interface-ECA-RatingTariff"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-OverridePrice"
+    schemaLocation="../../schema/ECA/ECA_OverridePrice.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-ProductInstance"
+    schemaLocation="../../schema/ECA/ECA_ProductInstance.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-RatingTariff"
+    schemaLocation="../../schema/ECA/ECA_RatingTariff.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="AddOverrideRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="newOverrideRateData" type="ecaOverrideRate:NewOverrideRateData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddOverrideRateInput_2">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="overrideRateData" type="ecaOverrideRate:OverrideRateDataNoPK_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddOverrideRateOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaOverrideRate:OverrideRatePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddOverrideRateOutput_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaOverrideRate:OverrideRatePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="DeleteOverrideRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="overrideRateData" type="ecaOverrideRate:OverrideRateData_1"/>
+          <xsd:element name="productSeq" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyOverrideRateDataPair_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="overrideRatePK" type="ecaOverrideRate:OverrideRatePK"/>
+          <xsd:element name="oldModifyOverrideRateData" type="ecaOverrideRate:NewOverrideRateData_1"/>
+          <xsd:element name="newModifyOverrideRateData" type="ecaOverrideRate:NewOverrideRateData_1"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyOverrideRateDataPair_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="overrideRatePK" type="ecaOverrideRate:OverrideRatePK"/>
+          <xsd:element name="oldModifyOverrideRateData" type="ecaOverrideRate:OverrideRateDataNoPK_1"/>
+          <xsd:element name="newModifyOverrideRateData" type="ecaOverrideRate:OverrideRateDataNoPK_1"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyOverrideRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element
+            name="modifyOverrideRateData"
+            type="ecaOverrideRate:ModifyOverrideRateDataPair_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyOverrideRateInput_2">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element
+            name="modifyOverrideRateData"
+            type="ecaOverrideRate:ModifyOverrideRateDataPair_2"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewOverrideRateData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="costBandId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="onNetBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="timeRateId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargeSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="fixedChargeNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="fixedChargeModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargingRateNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargingRateModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="minCostNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="minCostModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxCostNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxCostModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="notesTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OverrideRateData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="overrideRateSeq" type="xsd:int"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="costBandId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="onNetBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="timeRateId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargeSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="fixedChargeNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="fixedChargeModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargingRateNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargingRateModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="minCostNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="minCostModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxCostNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxCostModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="notesTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OverrideRateDataNoPK_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="costBandId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="onNetBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="timeRateId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargeSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="fixedChargeNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="fixedChargeModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargingRateNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargingRateModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="minCostNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="minCostModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxCostNumber" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxCostModTypeId" type="ecaOverridePrice:ModificationType" minOccurs="0" nillable="true"/>
+          <xsd:element name="notesTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OverrideRatePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="overrideRateSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OverrideRateResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="overrideRatePK" type="ecaOverrideRate:OverrideRatePK"/>
+          <xsd:element name="newOverrideRateData" type="ecaOverrideRate:NewOverrideRateData_1"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverrideRatesForProductInstanceInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="whenDat" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverrideRatesForProductInstanceInput_2">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="queryTimeframe" type="eca:QueryTimeframe_1"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastOverrideRatePK" type="ecaOverrideRate:OverrideRatePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="discardTruncated" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverrideRatesForProductInstanceOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaOverrideRate:OverrideRateResult_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverrideRatesForProductInstanceOutput_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaOverrideRate:QueryAllOverrideRatesForProductInstanceResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverrideRatesForProductInstanceResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="overrideRateDataArray" type="ecaOverrideRate:ArrayOfOverrideRateData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryOverrideRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="overrideRatePK" type="ecaOverrideRate:OverrideRatePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryOverrideRateOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaOverrideRate:OverrideRateData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfOverrideRateData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaOverrideRate:OverrideRateData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_OverrideRate.xsd -->

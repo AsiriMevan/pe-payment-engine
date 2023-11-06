@@ -1,0 +1,77 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"id": "#crmprofile",
+	"description": "A pofile from CCBS,Telbiz,RBM",
+	"properties": 
+	{
+		"productCategory": 
+		{
+			"description": "CRM query end system",
+			"type": "integer",
+			"enum": 
+			[
+				1,
+				2,
+				3
+			],
+			"minimum": 1
+		},
+
+		"sbu": 
+		{
+			"description": "Service Business Unit",
+			"type": "integer",
+			"enum": 
+			[
+				0,
+				1,
+				2,
+				3,
+				4
+			],
+			"minimum": 0
+		},
+
+		"reqType": 
+		{
+			"description": "Information request type: detail or partial",
+			"type": "integer",
+			"enum": 
+			[
+				0,
+				1
+			],
+
+			"minimum": 0
+		},
+
+		"requestUserId": 
+		{
+			"description": "API request client user ID",
+			"type": "string"
+		},
+
+		"remoteIP": 
+		{
+			"description": "API request client IP",
+			"type": "string"
+		},
+
+		"sourceSystem": 
+		{
+			"description": "API request client source system",
+			"type": "string"
+		}
+	},
+
+	"required": 
+	[
+		"productCategory",
+		"sbu",
+		"reqType",
+		"requestUserId",
+		"remoteIP",
+		"sourceSystem"
+	]
+}

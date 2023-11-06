@@ -1,0 +1,31 @@
+<configuration>
+
+    <property name="LOG_DIR" value="/var/log/dte/pe-cheque-payment-service"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+               %d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Kalcutta} %5p --- %C{1} : %m%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="logicLogging" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/pe-cheque-payment-service-${hostname}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/archived/pe-cheque-payment-service-${hostname}-%d{yyyy-MM-dd, Asia/Kalcutta}.log
+            </fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Kalcutta} %5p --- %C{1} : %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <root name="logicLogging" level="info">
+        <appender-ref ref="logicLogging"/>
+    </root>
+
+    <root level="info">
+        <appender-ref ref="console" />
+    </root>
+</configuration>

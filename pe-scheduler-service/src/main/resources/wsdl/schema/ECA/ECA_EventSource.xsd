@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service EventSource. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-EventSource"
+  xmlns="urn:Convergys-Interface-ECA-EventSource"
+  xmlns:ecaEventSource="urn:Convergys-Interface-ECA-EventSource"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaAccount="urn:Convergys-Interface-ECA-Account"
+  xmlns:ecaBill="urn:Convergys-Interface-ECA-Bill"
+  xmlns:ecaConfig="urn:Convergys-Interface-ECA-Config"
+  xmlns:ecaEvent="urn:Convergys-Interface-ECA-Event"
+  xmlns:ecaProductInstance="urn:Convergys-Interface-ECA-ProductInstance"
+  xmlns:ecaRatingTariff="urn:Convergys-Interface-ECA-RatingTariff"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Account"
+    schemaLocation="../../schema/ECA/ECA_Account.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Bill"
+    schemaLocation="../../schema/ECA/ECA_Bill.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Config"
+    schemaLocation="../../schema/ECA/ECA_Config.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Event"
+    schemaLocation="../../schema/ECA/ECA_Event.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-ProductInstance"
+    schemaLocation="../../schema/ECA/ECA_ProductInstance.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-RatingTariff"
+    schemaLocation="../../schema/ECA/ECA_RatingTariff.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="AddEventSourceInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="eventSourceData" type="ecaEventSource:ModifyEventSourceData_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddEventSourceInput_7">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="eventSourceData" type="ecaEventSource:ModifyEventSourceData_6"/>
+          <xsd:element name="overrideDefaultPayRechargeEventConfigBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddOrModifyEventSourceSuperInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="addEventSources" type="ecaEventSource:ArrayOfModifyEventSourceData_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifyEventSources" type="ecaEventSource:ArrayOfModifyEventSourceDataPair_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventTypes" type="ecaProductInstance:ArrayOfNewProductInstanceEventTypeData_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifyEventTypeParams" type="ecaProductInstance:ArrayOfModifyProductInstanceEventTypeParams_6" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CustomerEventSourcePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="productSeq" type="xsd:int"/>
+          <xsd:element name="eventSource" type="xsd:string"/>
+          <xsd:element name="eventTypeId" type="xsd:int"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="DoesEventSourceExistInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="eventSource" type="xsd:string"/>
+          <xsd:element name="eventTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="beginDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="DoesEventSourceExistOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedEventSourceData_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventSourceTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorRatingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="creditLimitMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element
+            name="historiedEventSourceGuidingRules"
+            type="ecaEventSource:HistoriedEventSourceGuidingRuleData_5_2"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+          <xsd:element name="eventTypeData" type="ecaEvent:EventTypeData_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffData" type="ecaRatingTariff:RatingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorRatingTariffData" type="ecaRatingTariff:RatingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventSourcePK" type="ecaProductInstance:EventSourcePK"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventSourceLabel" type="xsd:string"/>
+          <xsd:element name="eventTypeSummary" type="ecaEvent:EventTypeSummary_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedEventSourceData_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventSourceTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorRatingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="creditLimitMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element
+            name="historiedEventSourceGuidingRules"
+            type="ecaEventSource:HistoriedEventSourceGuidingRuleData_5_2"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+          <xsd:element name="eventDeletionMode" type="ecaEvent:EventDeletionMode" minOccurs="0" nillable="true"/>
+          <xsd:element name="maskBillRuleId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="maskStoreRuleId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventTypeData" type="ecaEvent:EventTypeData_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffData" type="ecaRatingTariff:RatingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorRatingTariffData" type="ecaRatingTariff:RatingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billMaskRuleData" type="ecaConfig:EventMaskingRuleData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="storeMaskRuleData" type="ecaConfig:EventMaskingRuleData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventSourcePK" type="ecaProductInstance:EventSourcePK"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventSourceLabel" type="xsd:string"/>
+          <xsd:element name="eventTypeSummary" type="ecaEvent:EventTypeSummary_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedEventSourceDataJoin_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="historiedEventSourceSummaryJoin" type="ecaEventSource:HistoriedEventSourceSummaryJoin_5_2"/>
+          <xsd:element name="eventTypeDataJoin" type="ecaEvent:EventTypeDataJoin_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffDataJoin" type="ecaRatingTariff:RatingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorRatingTariffDataJoin" type="ecaRatingTariff:RatingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="receiveAccountDataJoin" type="ecaAccount:AccountDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="guidingRuleRatingTariffDataJoin" type="ecaRatingTariff:RatingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedEventSourceDataJoin_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="historiedEventSourceSummaryJoin" type="ecaEventSource:HistoriedEventSourceSummaryJoin_5_2"/>
+          <xsd:element name="eventTypeDataJoin" type="ecaEvent:EventTypeDataJoin_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffDataJoin" type="ecaRatingTariff:RatingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorRatingTariffDataJoin" type="ecaRatingTariff:RatingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="receiveAccountDataJoin" type="ecaAccount:AccountDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="guidingRuleRatingTariffDataJoin" type="ecaRatingTariff:RatingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billMaskingRuleDataJoin" type="ecaConfig:EventMaskingRuleDataJoin_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="storeMaskingRuleDataJoin" type="ecaConfig:EventMaskingRuleDataJoin_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedEventSourceGuidingRuleData_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="receiveAccountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="eventFilterId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="attributeNumber" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="matchType" type="ecaRatingTariff:MatchType" minOccurs="0" nillable="true"/>
+          <xsd:element name="attributeValue" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="guideRuleDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="receiveAccountData" type="ecaAccount:AccountData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffData" type="ecaRatingTariff:RatingTariffData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedEventSourceSummary_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventSourcePK" type="ecaProductInstance:EventSourcePK"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventSourceLabel" type="xsd:string"/>
+          <xsd:element name="eventTypeSummary" type="ecaEvent:EventTypeSummary_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedEventSourceSummaryJoin_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventTypeSummaryJoin" type="ecaEvent:EventTypeSummaryJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyEventSourceData_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventSource" type="xsd:string"/>
+          <xsd:element name="eventTypeId" type="xsd:int"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventSourceLabel" type="xsd:string"/>
+          <xsd:element name="eventSourceText" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="creditLimitMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorRatingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="copyGuidingRules" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventDeletionMode" type="ecaEvent:EventDeletionMode" minOccurs="0" nillable="true"/>
+          <xsd:element name="maskBillRuleId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="maskStoreRuleId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyEventSourceDataPair_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="oldModifyEventSourceData" type="ecaEventSource:ModifyEventSourceData_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="newModifyEventSourceData" type="ecaEventSource:ModifyEventSourceData_6" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyEventSourceInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element
+            name="modifyEventSourceDataArray"
+            type="ecaEventSource:ModifyEventSourceDataPair_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyEventSourceInput_7">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element
+            name="modifyEventSourceDataArray"
+            type="ecaEventSource:ModifyEventSourceDataPair_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="overrideDefaultPayRechargeEventConfigBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryEventSourceInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="eventSource" type="xsd:string"/>
+          <xsd:element name="historyOption" type="ecaProductInstance:HistoriedSearchOptions"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryEventSourceOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaEventSource:QueryEventSourceResult_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryEventSourceResult_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="dataSet"
+            type="ecaEventSource:QueryEventSourceResultElement_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryEventSourceResultElement_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="historiedEventSourceData" type="ecaEventSource:HistoriedEventSourceData_6"/>
+          <xsd:element name="eventTypeSummary" type="ecaEvent:EventTypeSummary_5_1"/>
+          <xsd:element name="historiedProductInstanceEventTypeData" type="ecaProductInstance:HistoriedProductInstanceEventTypeData_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorRatingTariffSummary" type="ecaRatingTariff:RatingTariffSummary_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffSummary" type="ecaRatingTariff:RatingTariffSummary_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultCompetitorRatingTariffSummary" type="ecaRatingTariff:RatingTariffSummary_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultRatingTariffSummary" type="ecaRatingTariff:RatingTariffSummary_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="itemisationOrderData" type="ecaBill:ItemisationOrderData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextEventSourceStartDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextEventTypeStartDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedEventSourceDataInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="productInstancePK" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="eventSource" type="xsd:string"/>
+          <xsd:element name="eventTypeIdArray" type="eca:ArrayOfInt32" minOccurs="0" nillable="true"/>
+          <xsd:element name="beginDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedEventSourceDataOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaEventSource:QueryHistoriedEventSourceResult_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedEventSourceElement_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventTypeSummary" type="ecaEvent:EventTypeSummary_5_1"/>
+          <xsd:element
+            name="historiedEventSourceDataArray"
+            type="ecaEventSource:HistoriedEventSourceData_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedEventSourceResult_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="dataSet"
+            type="ecaEventSource:QueryHistoriedEventSourceElement_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfCustomerEventSourcePK">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaEventSource:CustomerEventSourcePK"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfModifyEventSourceData_6">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaEventSource:ModifyEventSourceData_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfModifyEventSourceDataPair_6">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaEventSource:ModifyEventSourceDataPair_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_EventSource.xsd -->

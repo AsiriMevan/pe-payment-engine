@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service SubscriptionType. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-SubscriptionType"
+  xmlns="urn:Convergys-Interface-ECA-SubscriptionType"
+  xmlns:ecaSubscriptionType="urn:Convergys-Interface-ECA-SubscriptionType"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaAccount="urn:Convergys-Interface-ECA-Account"
+  xmlns:ecaEvent="urn:Convergys-Interface-ECA-Event"
+  xmlns:ecaUSTax="urn:Convergys-Interface-ECA-USTax"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Account"
+    schemaLocation="../../schema/ECA/ECA_Account.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Event"
+    schemaLocation="../../schema/ECA/ECA_Event.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-USTax"
+    schemaLocation="../../schema/ECA/ECA_USTax.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="QueryAllSubscriptionTypeAttributeDataInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllSubscriptionTypeAttributeDataOutput_5_3">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaSubscriptionType:SubscriptionTypeAttributeData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllSubscriptionTypesAndAttributesElement_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeSummary" type="ecaSubscriptionType:SubscriptionTypeSummary_5_2"/>
+          <xsd:element
+            name="subscriptionTypeAttributeDataArray"
+            type="ecaSubscriptionType:SubscriptionTypeAttributeData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllSubscriptionTypesAndAttributesInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastSubscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllSubscriptionTypesAndAttributesInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastSubscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllSubscriptionTypesAndAttributesOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscriptionType:QueryAllSubscriptionTypesAndAttributesResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllSubscriptionTypesAndAttributesOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscriptionType:QueryAllSubscriptionTypesAndAttributesResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllSubscriptionTypesAndAttributesResult_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="dataSet"
+            type="ecaSubscriptionType:QueryAllSubscriptionTypesAndAttributesElement_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableSubscriptionTypesForAccountInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeDataJoin" type="ecaSubscriptionType:SubscriptionTypeDataJoin_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeSummaryJoin" type="ecaSubscriptionType:SubscriptionTypeSummaryJoin_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastSubscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="salesDtm" type="xsd:dateTime"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="marketSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableSubscriptionTypesForAccountOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscriptionType:QueryAvailableSubscriptionTypesForAccountResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAvailableSubscriptionTypesForAccountResult_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeDataArray" type="ecaSubscriptionType:ArrayOfSubscriptionTypeData_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeSummaryArray" type="ecaSubscriptionType:ArrayOfSubscriptionTypeSummary_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionTypeAttributeDataInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeAttrPK" type="ecaSubscriptionType:SubscriptionTypeAttrPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionTypeAttributeDataOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscriptionType:SubscriptionTypeAttributeData_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionTypeInput_5_2">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeDataJoin" type="ecaSubscriptionType:SubscriptionTypeDataJoin_5_2"/>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionTypeOutput_5_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscriptionType:SubscriptionTypeData_5_2"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionTypeAttrPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeId" type="xsd:int"/>
+          <xsd:element name="subscriptionTypeAttrSubId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionTypeAttributeData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="attributeBillName" type="xsd:string"/>
+          <xsd:element name="mandatoryBoo" type="xsd:boolean"/>
+          <xsd:element name="provAttrNum" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attributeUnits" type="ecaEvent:AttributeUnits" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeAttrPK" type="ecaSubscriptionType:SubscriptionTypeAttrPK"/>
+          <xsd:element name="attributeUaName" type="xsd:string"/>
+          <xsd:element name="displayPosition" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionTypeAttributeDataJoin_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeAttributeSummaryJoin" type="ecaSubscriptionType:SubscriptionTypeAttributeSummaryJoin_5_3"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionTypeAttributeSummary_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeAttrPK" type="ecaSubscriptionType:SubscriptionTypeAttrPK"/>
+          <xsd:element name="attributeUaName" type="xsd:string"/>
+          <xsd:element name="displayPosition" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionTypeAttributeSummaryJoin_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionTypeData_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="salesStartDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesEndDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="provisioningSystemId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustProductClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustProductClassData" type="ecaUSTax:USTProductClassData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="subscriptionTypeName" type="xsd:string"/>
+          <xsd:element name="subscriptionTypeDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionTypeDataJoin_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeSummaryJoin" type="ecaSubscriptionType:SubscriptionTypeSummaryJoin_5_2"/>
+          <xsd:element name="ustProductClassDataJoin" type="ecaUSTax:USTProductClassDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionTypePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionTypeSummary_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeName" type="xsd:string"/>
+          <xsd:element name="subscriptionTypeDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionTypeSummaryJoin_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfSubscriptionTypeData_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaSubscriptionType:SubscriptionTypeData_5_2"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfSubscriptionTypeSummary_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaSubscriptionType:SubscriptionTypeSummary_5_2"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_SubscriptionType.xsd -->

@@ -1,0 +1,462 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "#root",
+	"title": "PE-Schema",
+	"description": "PE JSon Schema",
+	"type": "object",
+	"properties": {
+		"crmprofile": {
+			"type": "object",
+			"id": "#crmprofile",
+			"description": "A pofile from CCBS,Telbiz,RBM",
+			"properties": {
+				"productCategory": {
+					"description": "CRM query end system",
+					"type": "integer",
+					"enum": [
+						1,
+						2,
+						3
+					]
+				},
+				"sbu": {
+					"description": "Service Business Unit",
+					"type": "integer",
+					"enum": [
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				},
+				"reqType": {
+					"description": "Information request type: detail or partial",
+					"type": "integer",
+					"enum": [
+						0,
+						1
+					]
+				},
+				"requestUserId": {
+					"description": "API request client user ID",
+					"type": "string"
+				},
+				"remoteIP": {
+					"description": "API request client IP",
+					"type": "string"
+				},
+				"sourceSystem": {
+					"description": "API request client source system",
+					"type": "string"
+				}
+			},
+			"required": [
+				"productCategory",
+				"sbu",
+				"reqType",
+				"requestUserId",
+				"remoteIP",
+				"sourceSystem"
+			]
+		},
+		"peprofile": {
+			"type": "object",
+			"id": "#peprofile",
+			"description": "PE pofile json query request",
+			"properties": {
+				"productCategory": {
+					"description": "CRM query end system",
+					"type": "integer",
+					"enum": [
+						1,
+						2,
+						3
+					]
+				},
+				"accounts": {
+					"type": "array",
+					"description": "Account array",
+					"items": {
+						"title": "Account",
+						"description": "Account reference",
+						"type": "object",
+						"properties": {
+							"sbu": {
+								"description": "Service Business Unit",
+								"type": "integer",
+								"enum": [
+									0,
+									1,
+									2,
+									3,
+									4
+								]
+							},
+							"accountType": {
+								"description": "account type.",
+								"type": "integer",
+								"enum": [
+									1,
+									2
+								]
+							},
+							"productType": {
+								"description": "product type.",
+								"type": "integer",
+								"enum": [
+									0,
+									1,
+									2,
+									5
+								]
+							}
+						},
+						"required": [
+							"sbu",
+							"accountType",
+							"productType"
+						]
+					}
+				}
+			}
+		},
+		"rbmprofile": {
+			"type": "object",
+			"id": "#rbmprofile",
+			"description": "RBM pofile json query request",
+			"properties": {
+				"productCategory": {
+					"description": "CRM query end system",
+					"type": "integer",
+					"enum": [
+						1,
+						2,
+						3
+					]
+				},
+				"accounts": {
+					"type": "array",
+					"description": "Account array",
+					"items": {
+						"title": "Account",
+						"description": "Account reference",
+						"type": "object",
+						"properties": {
+							"sbu": {
+								"description": "Service Business Unit",
+								"type": "integer",
+								"enum": [
+									0,
+									1,
+									2,
+									3,
+									4
+								]
+							},
+							"productType": {
+								"description": "product type.",
+								"type": "integer",
+								"enum": [
+									0,
+									1,
+									2,
+									5
+								]
+							}
+						},
+						"required": [
+							"sbu",
+							"productType"
+						]
+					}
+				}
+			}
+		},
+		"remark": {
+			"type": "object",
+			"id": "#remark",
+			"description": "Hotline remark query request",
+			"properties": {
+				"productCategory": {
+					"description": "CRM query end system",
+					"type": "integer",
+					"enum": [
+						1,
+						2,
+						3
+					]
+				},
+				"accounts": {
+					"type": "array",
+					"description": "Account array",
+					"items": {
+						"title": "Account",
+						"description": "Account reference",
+						"type": "object",
+						"properties": {
+							"sbu": {
+								"description": "Service Business Unit",
+								"type": "integer",
+								"enum": [
+									0,
+									1,
+									2,
+									3,
+									4
+								]
+							},
+							"productType": {
+								"description": "product type.",
+								"type": "integer",
+								"enum": [
+									0,
+									1,
+									2,
+									5
+								]
+							},
+							"contractNo": {
+								"description": "contract no",
+								"type": "string"
+							}
+						},
+						"required": [
+							"sbu",
+							"productType",
+							"contractNo"
+						]
+					}
+				}
+			}
+		},
+		"paymentquery": {
+			"$schema": "http://json-schema.org/draft-04/schema#",
+			"type": "object",
+			"id": "#paymentquery",
+			"description": "payment query request",
+			"oneOf": [
+				{
+					"properties": {
+						"productCategory": {
+							"description": "CRM query end system",
+							"type": "integer",
+							"enum": [
+								1,
+								2,
+								3,
+								4
+							]
+						},
+						"receiptBranch": {
+							"type": [
+								"string",
+								"null"
+							]
+						},
+						"branchCounter": {
+							"type": [
+								"string",
+								"null"
+							]
+						}
+					},
+					"additionalProperties": false,
+					"required": [
+						"productCategory",
+						"receiptBranch",
+						"branchCounter"
+					]
+				},
+				{
+					"properties": {
+						"productCategory": {
+							"description": "CRM query end system",
+							"type": "integer",
+							"enum": [
+								1,
+								2,
+								3,
+								4
+							]
+						},
+						"receiptBranch": {
+							"type": [
+								"string",
+								"null"
+							]
+						},
+						"receipts": {
+							"type": [
+								"array",
+								"null"
+							],
+							"description": "receipts array",
+							"items": {
+								"title": "Receipt",
+								"description": "Receipt reference",
+								"type": "object",
+								"properties": {
+									"receiptNo": {
+										"type": [
+											"string",
+											"null"
+										]
+									}
+								}
+							}
+						}
+					},
+					"additionalProperties": false,
+					"required": [
+						"productCategory",
+						"receiptBranch",
+						"receipts"
+					]
+				},
+				{
+					"properties": {
+						"productCategory": {
+							"description": "CRM query end system",
+							"type": "integer",
+							"enum": [
+								1,
+								2,
+								3,
+								4
+							]
+						},
+						"receiptBranch": {
+							"type": [
+								"string",
+								"null"
+							]
+						},
+						"receiptFromDate": {
+							"type": [
+								"string",
+								"null"
+							]
+						},
+						"receiptToDate": {
+							"type": [
+								"string",
+								"null"
+							]
+						}
+					},
+					"additionalProperties": false,
+					"required": [
+						"productCategory",
+						"receiptBranch",
+						"receiptFromDate",
+						"receiptToDate"
+					]
+				},
+				{
+					"properties": {
+						"productCategory": {
+							"description": "CRM query end system",
+							"type": "integer",
+							"enum": [
+								1,
+								2,
+								3,
+								4
+							]
+						},
+						"chequeNo": {
+							"type": [
+								"string",
+								"null"
+							]
+						}
+					},
+					"additionalProperties": false,
+					"required": [
+						"productCategory",
+						"chequeNo"
+					]
+				},
+				{
+					"properties": {
+						"productCategory": {
+							"description": "CRM query end system",
+							"type": "integer",
+							"enum": [
+								1,
+								2,
+								3,
+								4
+							]
+						},
+						"chequeNo": {
+							"type": [
+								"string",
+								"null"
+							]
+						},
+						"chequebankCode": {
+							"type": [
+								"string",
+								"null"
+							]
+						},
+						"chequebankBranchCode": {
+							"type": [
+								"string",
+								"null"
+							]
+						}
+					},
+					"additionalProperties": false,
+					"required": [
+						"productCategory",
+						"chequeNo",
+						"chequebankCode",
+						"chequebankBranchCode"
+					]
+				},
+				{
+					"properties": {
+						"productCategory": {
+							"description": "CRM query end system",
+							"type": "integer",
+							"enum": [
+								1,
+								2,
+								3,
+								4
+							]
+						},
+						"contractNo": {
+							"type": [
+								"string",
+								"null"
+							]
+						},
+						"receiptFromDate": {
+							"type": [
+								"string",
+								"null"
+							]
+						},
+						"receiptToDate": {
+							"type": [
+								"string",
+								"null"
+							]
+						}
+					},
+					"additionalProperties": false,
+					"required": [
+						"productCategory",
+						"contractNo",
+						"receiptFromDate",
+						"receiptToDate"
+					]
+				}
+			]
+		}
+	}
+}

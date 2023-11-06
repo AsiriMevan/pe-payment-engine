@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service RealtimeBill. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-RealtimeBill"
+  xmlns="urn:Convergys-Interface-ECA-RealtimeBill"
+  xmlns:ecaRealtimeBill="urn:Convergys-Interface-ECA-RealtimeBill"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaAccount="urn:Convergys-Interface-ECA-Account"
+  xmlns:ecaBill="urn:Convergys-Interface-ECA-Bill"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Account"
+    schemaLocation="../../schema/ECA/ECA_Account.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Bill"
+    schemaLocation="../../schema/ECA/ECA_Bill.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="BillingProcessName">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       0 = BG
+       1 = BDW
+       2 = MFM
+       3 = MFE
+       4 = BF
+       5 = BC
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="RealtimeBillType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = Periodic
+       2 = Interim
+       3 = Initiation
+       4 = Final
+       5 = CreditNote
+       7 = PostFinal
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="BillDataFile_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="fileName" type="xsd:string"/>
+          <xsd:element name="fileData" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="fileSize" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="fileSizeExceeded" type="xsd:boolean" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryBillFileInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="fileName" type="xsd:string"/>
+          <xsd:element name="maxFileSizeToRead" type="xsd:long"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryBillFileOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRealtimeBill:BillDataFile_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RealtimeBillCancelInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="cancellationReasonTxt" type="xsd:string"/>
+          <xsd:element name="accountLockVersion" type="xsd:long"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RealtimeBillCancelOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRealtimeBill:RealtimeBillCancelResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RealtimeBillCancelResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="billCancelSuccessBoo" type="xsd:boolean"/>
+          <xsd:element name="billCancelTimedOutBoo" type="xsd:boolean"/>
+          <xsd:element name="cancelBillRequestPK" type="ecaBill:CancelBillRequestPK"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RealtimeBillCreateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="billTypeId" type="ecaRealtimeBill:RealtimeBillType"/>
+          <xsd:element name="testBillBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressPaymentRequestsBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressFormatRequestsBoo" type="xsd:boolean"/>
+          <xsd:element name="realtimeFormatRequestsBoo" type="xsd:boolean"/>
+          <xsd:element name="retrieveFilesBoo" type="xsd:boolean"/>
+          <xsd:element name="maxFileSizeToRead" type="xsd:long" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RealtimeBillCreateInput_2">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="billTypeId" type="ecaRealtimeBill:RealtimeBillType"/>
+          <xsd:element name="testBillBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressPaymentRequestsBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressFormatRequestsBoo" type="xsd:boolean"/>
+          <xsd:element name="realtimeFormatRequestsBoo" type="xsd:boolean"/>
+          <xsd:element name="retrieveFilesBoo" type="xsd:boolean"/>
+          <xsd:element name="maxFileSizeToRead" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="overridePaymentDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RealtimeBillCreateOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRealtimeBill:RealtimeBillCreateResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RealtimeBillCreateOutput_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRealtimeBill:RealtimeBillCreateResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RealtimeBillCreateResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="realtimeBillSuccessBoo" type="xsd:boolean"/>
+          <xsd:element name="billRequestPK" type="ecaBill:BillRequestPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="realtimeBillTimedOutBoo" type="xsd:boolean"/>
+          <xsd:element name="billSummaryPKs" type="ecaBill:ArrayOfBillSummaryPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="billImageFile" type="ecaRealtimeBill:ArrayOfBillDataFile_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="billSuppressedBoo" type="xsd:boolean"/>
+          <xsd:element name="formatRequestsTimedOut" type="xsd:int"/>
+          <xsd:element
+            name="failedFormattingRequestData"
+            type="ecaRealtimeBill:RealtimeFormatRequestData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RealtimeBillFormattingResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="billImageFile" type="ecaRealtimeBill:ArrayOfBillDataFile_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="formatRequestsTimedOut" type="xsd:int"/>
+          <xsd:element
+            name="failedFormattingRequestData"
+            type="ecaRealtimeBill:RealtimeFormatRequestData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RealtimeFormatRequestData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="formattingRequestPK" type="ecaBill:FormattingRequestPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="formattingRequestJob" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="formattingRequestProc" type="ecaRealtimeBill:BillingProcessName"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RetryRealtimeBillCancelInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="failedCancelBillRequestPK" type="ecaBill:CancelBillRequestPK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RetryRealtimeBillCancelOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRealtimeBill:RealtimeBillCancelResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RetryRealtimeBillCreateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="failedBillRequestPK" type="ecaBill:BillRequestPK"/>
+          <xsd:element name="testBillBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressPaymentRequestsBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressFormatRequestsBoo" type="xsd:boolean"/>
+          <xsd:element name="realtimeFormatRequestsBoo" type="xsd:boolean"/>
+          <xsd:element name="retrieveFilesBoo" type="xsd:boolean"/>
+          <xsd:element name="maxFileSizeToRead" type="xsd:long" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RetryRealtimeBillCreateOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRealtimeBill:RealtimeBillCreateResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RetryRealtimeBillFormatInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element
+            name="realtimeFormatRequestData"
+            type="ecaRealtimeBill:RealtimeFormatRequestData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="retrieveFilesBoo" type="xsd:boolean"/>
+          <xsd:element name="maxFileSizeToRead" type="xsd:long" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RetryRealtimeBillFormatOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRealtimeBill:RealtimeBillFormattingResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfBillDataFile_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRealtimeBill:BillDataFile_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_RealtimeBill.xsd -->

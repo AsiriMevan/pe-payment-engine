@@ -1,0 +1,1828 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service Subscription. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-Subscription"
+  xmlns="urn:Convergys-Interface-ECA-Subscription"
+  xmlns:ecaSubscription="urn:Convergys-Interface-ECA-Subscription"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaAccount="urn:Convergys-Interface-ECA-Account"
+  xmlns:ecaAddress="urn:Convergys-Interface-ECA-Address"
+  xmlns:ecaBill="urn:Convergys-Interface-ECA-Bill"
+  xmlns:ecaBillingTariff="urn:Convergys-Interface-ECA-BillingTariff"
+  xmlns:ecaBudgetCentre="urn:Convergys-Interface-ECA-BudgetCentre"
+  xmlns:ecaConfig="urn:Convergys-Interface-ECA-Config"
+  xmlns:ecaContact="urn:Convergys-Interface-ECA-Contact"
+  xmlns:ecaContract="urn:Convergys-Interface-ECA-Contract"
+  xmlns:ecaCustomer="urn:Convergys-Interface-ECA-Customer"
+  xmlns:ecaOneTimeCharge="urn:Convergys-Interface-ECA-OneTimeCharge"
+  xmlns:ecaPayment="urn:Convergys-Interface-ECA-Payment"
+  xmlns:ecaProductInstance="urn:Convergys-Interface-ECA-ProductInstance"
+  xmlns:ecaSubscriptionType="urn:Convergys-Interface-ECA-SubscriptionType"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Account"
+    schemaLocation="../../schema/ECA/ECA_Account.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Address"
+    schemaLocation="../../schema/ECA/ECA_Address.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Bill"
+    schemaLocation="../../schema/ECA/ECA_Bill.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-BillingTariff"
+    schemaLocation="../../schema/ECA/ECA_BillingTariff.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-BudgetCentre"
+    schemaLocation="../../schema/ECA/ECA_BudgetCentre.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Config"
+    schemaLocation="../../schema/ECA/ECA_Config.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Contact"
+    schemaLocation="../../schema/ECA/ECA_Contact.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Contract"
+    schemaLocation="../../schema/ECA/ECA_Contract.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Customer"
+    schemaLocation="../../schema/ECA/ECA_Customer.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-OneTimeCharge"
+    schemaLocation="../../schema/ECA/ECA_OneTimeCharge.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Payment"
+    schemaLocation="../../schema/ECA/ECA_Payment.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-ProductInstance"
+    schemaLocation="../../schema/ECA/ECA_ProductInstance.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-SubscriptionType"
+    schemaLocation="../../schema/ECA/ECA_SubscriptionType.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="CanDeleteSubscriptionReason">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       0 = CDSCanDeleteSubscription
+       1 = CDSProductBilled
+       2 = CDSRatedEvent
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="CanModifySubscriptionBillingTariffReason">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       0 = CMSBTCanModifyBillingTariff
+       1 = CMSBTSubscriptionTerminated
+       2 = CMSBTSubscriptionHasOverridePrice
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="SubscriptionStatus">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       0 = SSActive
+       1 = SSPending
+       2 = SSSuspended
+       3 = SSTerminated
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="CanDeleteSubscriptionInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CanDeleteSubscriptionOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:CanDeleteSubscriptionReason"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CanSubscriptionBillingTariffBeModifiedInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CanSubscriptionBillingTariffBeModifiedOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:CanModifySubscriptionBillingTariffReason"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateSubscriptionInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="newSubscriptionData" type="ecaSubscription:NewSubscriptionData_5_3"/>
+          <xsd:element name="newAddressData" type="ecaAddress:NewAddressData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionAttrs" type="ecaSubscription:ArrayOfNewSubscriptionAttributeData_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="newContractData" type="ecaContract:NewContractData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateSubscriptionInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="newSubscriptionData" type="ecaSubscription:NewSubscriptionData_6"/>
+          <xsd:element name="newAddressData" type="ecaAddress:NewAddressData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionAttrs" type="ecaSubscription:ArrayOfNewSubscriptionAttributeData_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="newContractData" type="ecaContract:NewContractData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateSubscriptionOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:SubscriptionPK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateSubscriptionOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:SubscriptionPK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="DeleteSubscriptionInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="subscriptionLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="DeleteSubscriptionInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="subscriptionLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="autoOTCHandling" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="FindSubscriptionsBySubscriptionAttributeInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeAttrPK" type="ecaSubscriptionType:SubscriptionTypeAttrPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="onWhenDtmOnlyBoo" type="xsd:boolean"/>
+          <xsd:element name="subscriptionAttributeSearch" type="xsd:string"/>
+          <xsd:element name="isExactMatch" type="xsd:boolean"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="FindSubscriptionsBySubscriptionAttributeOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:FindSubscriptionsResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="FindSubscriptionsBySubscriptionLabelInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="onWhenDtmOnlyBoo" type="xsd:boolean"/>
+          <xsd:element name="subscriptionLabelSearch" type="xsd:string"/>
+          <xsd:element name="isExactMatch" type="xsd:boolean"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="FindSubscriptionsBySubscriptionLabelOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:FindSubscriptionsResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="FindSubscriptionsBySubscriptionReferenceInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastSubscriptionReference" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="subscriptionReferenceSearch" type="xsd:string"/>
+          <xsd:element name="isExactMatch" type="xsd:boolean"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="FindSubscriptionsBySubscriptionReferenceOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:FindSubscriptionsResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="FindSubscriptionsResult_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionDataArray" type="ecaSubscription:ArrayOfSubscriptionData_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionSummaryArray" type="ecaSubscription:ArrayOfSubscriptionSummary_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="FindSubscriptionsResult_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionDataArray" type="ecaSubscription:ArrayOfSubscriptionData_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionSummaryArray" type="ecaSubscription:ArrayOfSubscriptionSummary_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="FindSubscriptionsResult_7">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionDataArray" type="ecaSubscription:ArrayOfSubscriptionData_7" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionSummaryArray" type="ecaSubscription:ArrayOfSubscriptionSummary_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionAttributeData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeAttrPK" type="ecaSubscriptionType:SubscriptionTypeAttrPK"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="upToDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="attributeValue" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeAttributeData" type="ecaSubscriptionType:SubscriptionTypeAttributeData_5_3" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionAttributeDataJoin_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypeAttributeDataJoin" type="ecaSubscriptionType:SubscriptionTypeAttributeDataJoin_5_3" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionData_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="budgetCentrePK" type="ecaBudgetCentre:BudgetCentrePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactPK" type="ecaContact:ContactPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractPK" type="ecaContract:ContractPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsId" type="xsd:int"/>
+          <xsd:element name="taxExemptRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxExemptTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultEventSource" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountData" type="ecaAccount:AccountData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactData" type="ecaContact:ContactData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractData" type="ecaContract:ContractData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsData" type="ecaConfig:CPSData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="accountSummary" type="ecaAccount:AccountSummary_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="budgetCentrePK" type="ecaBudgetCentre:BudgetCentrePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactPK" type="ecaContact:ContactPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractPK" type="ecaContract:ContractPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsId" type="xsd:int"/>
+          <xsd:element name="taxExemptRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxExemptTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultEventSource" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountData" type="ecaAccount:AccountData_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactData" type="ecaContact:ContactData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractData" type="ecaContract:ContractData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsData" type="ecaConfig:CPSData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="upToDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="accountSummary" type="ecaAccount:AccountSummary_5_3" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionData_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="budgetCentrePK" type="ecaBudgetCentre:BudgetCentrePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactPK" type="ecaContact:ContactPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractPK" type="ecaContract:ContractPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsId" type="xsd:int"/>
+          <xsd:element name="taxExemptRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxExemptTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultEventSource" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountData" type="ecaAccount:AccountData_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetCentreData" type="ecaBudgetCentre:BudgetCentreData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactData" type="ecaContact:ContactData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractData" type="ecaContract:ContractData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsData" type="ecaConfig:CPSData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="upToDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="accountSummary" type="ecaAccount:AccountSummary_5_3" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionData_7">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="budgetCentrePK" type="ecaBudgetCentre:BudgetCentrePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactPK" type="ecaContact:ContactPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractPK" type="ecaContract:ContractPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsId" type="xsd:int"/>
+          <xsd:element name="taxExemptRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxExemptTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultEventSource" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetPlanId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountData" type="ecaAccount:AccountData_14" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetCentreData" type="ecaBudgetCentre:BudgetCentreData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactData" type="ecaContact:ContactData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractData" type="ecaContract:ContractData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsData" type="ecaConfig:CPSData_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetPlanData" type="ecaPayment:BudgetPaymentPlanData_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="upToDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="accountSummary" type="ecaAccount:AccountSummary_6" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionDataJoin_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="historiedSubscriptionSummaryJoin" type="ecaSubscription:HistoriedSubscriptionSummaryJoin_5_2"/>
+          <xsd:element name="accountDataJoin" type="ecaAccount:AccountDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactDataJoin" type="ecaContact:ContactDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractDataJoin" type="ecaContract:ContractDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsDataJoin" type="ecaConfig:CPSDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionDataJoin_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="historiedSubscriptionSummaryJoin" type="ecaSubscription:HistoriedSubscriptionSummaryJoin_5_3"/>
+          <xsd:element name="accountDataJoin" type="ecaAccount:AccountDataJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactDataJoin" type="ecaContact:ContactDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractDataJoin" type="ecaContract:ContractDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsDataJoin" type="ecaConfig:CPSDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionDataJoin_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="historiedSubscriptionSummaryJoin" type="ecaSubscription:HistoriedSubscriptionSummaryJoin_5_3"/>
+          <xsd:element name="accountDataJoin" type="ecaAccount:AccountDataJoin_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetCentreDataJoin" type="ecaBudgetCentre:BudgetCentreDataJoin_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactDataJoin" type="ecaContact:ContactDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractDataJoin" type="ecaContract:ContractDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsDataJoin" type="ecaConfig:CPSDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionDataJoin_7">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="historiedSubscriptionSummaryJoin" type="ecaSubscription:HistoriedSubscriptionSummaryJoin_6"/>
+          <xsd:element name="accountDataJoin" type="ecaAccount:AccountDataJoin_14" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetCentreDataJoin" type="ecaBudgetCentre:BudgetCentreDataJoin_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactDataJoin" type="ecaContact:ContactDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractDataJoin" type="ecaContract:ContractDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsDataJoin" type="ecaConfig:CPSDataJoin_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetPlanDataJoin" type="ecaPayment:BudgetPaymentPlanDataJoin_2" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionServiceAddressData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="addressPK" type="ecaAddress:AddressPK"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="upToDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustUsedForTaxPurposesBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="addressData" type="ecaAddress:AddressData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionServiceAddressDataJoin_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="addressDataJoin" type="ecaAddress:AddressDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionStatus_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionStatus" type="ecaSubscription:SubscriptionStatus"/>
+          <xsd:element name="statusReasonTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionStatus_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="upToDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionStatus" type="ecaSubscription:SubscriptionStatus"/>
+          <xsd:element name="statusReasonTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionStatusJoin_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionStatusJoin_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionSummary_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="accountSummary" type="ecaAccount:AccountSummary_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionSummary_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="upToDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="accountSummary" type="ecaAccount:AccountSummary_5_3" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionSummary_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="upToDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="accountSummary" type="ecaAccount:AccountSummary_6" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionSummaryJoin_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="accountSummaryJoin" type="ecaAccount:AccountSummaryJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionSummaryJoin_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="accountSummaryJoin" type="ecaAccount:AccountSummaryJoin_5_3" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionSummaryJoin_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="accountSummaryJoin" type="ecaAccount:AccountSummaryJoin_6" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionTariffData_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="competitorBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffData" type="ecaBillingTariff:BillingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorBillingTariffData" type="ecaBillingTariff:BillingTariffData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionTariffData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="upToDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="competitorBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffData" type="ecaBillingTariff:BillingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorBillingTariffData" type="ecaBillingTariff:BillingTariffData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionTariffDataJoin_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="billingTariffDataJoin" type="ecaBillingTariff:BillingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorBillingTariffDataJoin" type="ecaBillingTariff:BillingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedSubscriptionTariffDataJoin_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="billingTariffDataJoin" type="ecaBillingTariff:BillingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorBillingTariffDataJoin" type="ecaBillingTariff:BillingTariffDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyChargesForSubscriptionSuperInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element
+            name="modifySubscriptionChargeDataArray"
+            type="ecaProductInstance:ModifyProductInstanceChargeDataPair_2"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionAttributeData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="upToDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeAttrPK" type="ecaSubscriptionType:SubscriptionTypeAttrPK"/>
+          <xsd:element name="attributeValue" type="xsd:string"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionAttributesInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element
+            name="oldValues"
+            type="xsd:string"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+          <xsd:element
+            name="changes"
+            type="ecaSubscription:ModifyHistoriedSubscriptionAttributeData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="budgetCentrePK" type="ecaBudgetCentre:BudgetCentrePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactPK" type="ecaContact:ContactPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsId" type="xsd:int"/>
+          <xsd:element name="taxExemptRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxExemptTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultEventSource" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionData_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="budgetCentrePK" type="ecaBudgetCentre:BudgetCentrePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="label" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactPK" type="ecaContact:ContactPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsId" type="xsd:int"/>
+          <xsd:element name="taxExemptRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxExemptTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultEventSrc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetPlanId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionDataPair_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="oldModifyHistoriedSubscriptionData" type="ecaSubscription:ModifyHistoriedSubscriptionData_5_3"/>
+          <xsd:element name="newModifyHistoriedSubscriptionData" type="ecaSubscription:ModifyHistoriedSubscriptionData_5_3"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element
+            name="modifyHistoriedSubscriptionDataPairs"
+            type="ecaSubscription:ModifyHistoriedSubscriptionDataPair_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="effectiveDat" type="xsd:dateTime"/>
+          <xsd:element name="oldModifyHistoriedSubscriptionData" type="ecaSubscription:ModifyHistoriedSubscriptionData_6"/>
+          <xsd:element name="newModifyHistoriedSubscriptionData" type="ecaSubscription:ModifyHistoriedSubscriptionData_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionOutput_6">
+        <xsd:sequence>
+          <xsd:element name="impactedBudgetPlanArray" type="ecaProductInstance:ArrayOfImpactedBudgetPlanData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionServiceAddressData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="addressPK" type="ecaAddress:AddressPK"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="upToDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustUsedForTaxPurposesBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionServiceAddressDataPair_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="oldModifyHistoriedSubscriptionServiceAddressData" type="ecaSubscription:ModifyHistoriedSubscriptionServiceAddressData_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="newModifyHistoriedSubscriptionServiceAddressData" type="ecaSubscription:ModifyHistoriedSubscriptionServiceAddressData_5_3" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionServiceAddressInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element
+            name="modifyHistoriedSubscriptionServiceAddressDataPairs"
+            type="ecaSubscription:ModifyHistoriedSubscriptionServiceAddressDataPair_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionStatus_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="upToDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionStatus" type="ecaSubscription:SubscriptionStatus"/>
+          <xsd:element name="statusReasonTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionStatusInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element
+            name="modifyHistoriedSubscriptionStatusPairArray"
+            type="ecaSubscription:ModifyHistoriedSubscriptionStatusPair_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionStatusPair_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="oldModifyHistoriedSubscriptionStatus" type="ecaSubscription:ModifyHistoriedSubscriptionStatus_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="newModifyHistoriedSubscriptionStatus" type="ecaSubscription:ModifyHistoriedSubscriptionStatus_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTermSurchargeBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="applyToSubscriptionHierarchyBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionTariffData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="upToDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="competitorBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionTariffDataPair_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="oldModifyHistoriedSubscriptionTariffData" type="ecaSubscription:ModifyHistoriedSubscriptionTariffData_5_3"/>
+          <xsd:element name="newModifyHistoriedSubscriptionTariffData" type="ecaSubscription:ModifyHistoriedSubscriptionTariffData_5_3"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedSubscriptionTariffInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element
+            name="tariffChanges"
+            type="ecaSubscription:ModifyHistoriedSubscriptionTariffDataPair_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifySubscriptionData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="custOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplierOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifySubscriptionInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="oldModifySubscriptionData" type="ecaSubscription:ModifySubscriptionData_5_3"/>
+          <xsd:element name="newModifySubscriptionData" type="ecaSubscription:ModifySubscriptionData_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewSubscriptionAttributeData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="subscriptionTypeAttrPK" type="ecaSubscriptionType:SubscriptionTypeAttrPK"/>
+          <xsd:element name="attributeValue" type="xsd:string"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewSubscriptionData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetCentrePK" type="ecaBudgetCentre:BudgetCentrePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="competitorBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="custOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplierOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactPK" type="ecaContact:ContactPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsId" type="xsd:int"/>
+          <xsd:element name="taxExemptRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxExemptTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractPK" type="ecaContract:ContractPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionStatus" type="ecaSubscription:SubscriptionStatus"/>
+          <xsd:element name="statusReasonTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultEventSource" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="serviceAddressPK" type="ecaAddress:AddressPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="serviceAddressUsedForUSTBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewSubscriptionData_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetCentrePK" type="ecaBudgetCentre:BudgetCentrePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK"/>
+          <xsd:element name="competitorBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="custOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplierOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionContactPK" type="ecaContact:ContactPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsId" type="xsd:int"/>
+          <xsd:element name="taxExemptRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxExemptTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractPK" type="ecaContract:ContractPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionStatus" type="ecaSubscription:SubscriptionStatus"/>
+          <xsd:element name="statusReasonTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultEventSource" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="serviceAddressPK" type="ecaAddress:AddressPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="serviceAddressUsedForUSTBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetPlanId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAccountSubscriptionsInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="onWhenDtmOnlyBoo" type="xsd:boolean"/>
+          <xsd:element name="subscriptionStatusSet" type="ecaSubscription:ArrayOfSubscriptionStatus" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAccountSubscriptionsInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_7" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="onWhenDtmOnlyBoo" type="xsd:boolean"/>
+          <xsd:element name="subscriptionStatusSet" type="ecaSubscription:ArrayOfSubscriptionStatus" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAccountSubscriptionsInput_7">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_7" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="onWhenDtmOnlyBoo" type="xsd:boolean"/>
+          <xsd:element name="subscriptionStatusSet" type="ecaSubscription:ArrayOfSubscriptionStatus" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAccountSubscriptionsOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:FindSubscriptionsResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAccountSubscriptionsOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:FindSubscriptionsResult_7"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAccountSubscriptionsOutput_7">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:FindSubscriptionsResult_7"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryBillSubscriptionsInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="billPK" type="ecaBill:BillPK"/>
+          <xsd:element name="subscriptionStatusSet" type="ecaSubscription:ArrayOfSubscriptionStatus" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryBillSubscriptionsOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:FindSubscriptionsResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryCustomerSubscriptionsInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastSubscriptionPK" type="ecaSubscription:SubscriptionPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="subscriptionStatusSet" type="ecaSubscription:ArrayOfSubscriptionStatus" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryCustomerSubscriptionsOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:FindSubscriptionsResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedSubscriptionAttributesInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="historiedSubscriptionAttributeDataJoin" type="ecaSubscription:HistoriedSubscriptionAttributeDataJoin_5_3"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="subscriptionTypeAttrPK" type="ecaSubscriptionType:SubscriptionTypeAttrPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="beginDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="langaugeId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedSubscriptionAttributesOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:ArrayOfArrayOfHistoriedSubscriptionAttributeData_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedSubscriptionBillingTariffInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="historiedSubscriptionTariffDataJoin" type="ecaSubscription:HistoriedSubscriptionTariffDataJoin_5_3"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="beginDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedSubscriptionBillingTariffOutput_5_3">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaSubscription:HistoriedSubscriptionTariffData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedSubscriptionDataInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="historiedSubscriptionDataJoin" type="ecaSubscription:HistoriedSubscriptionDataJoin_5_3"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="beginDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedSubscriptionDataInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="beginDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionDataJoin" type="ecaSubscription:HistoriedSubscriptionDataJoin_7"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedSubscriptionDataOutput_5_3">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaSubscription:HistoriedSubscriptionData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedSubscriptionDataOutput_6">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaSubscription:HistoriedSubscriptionData_7"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedSubscriptionServiceAddressesInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="historiedSubscriptionServiceAddressDataJoin" type="ecaSubscription:HistoriedSubscriptionServiceAddressDataJoin_5_3"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryHistoriedSubscriptionServiceAddressesOutput_5_3">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaSubscription:HistoriedSubscriptionServiceAddressData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionAttributeInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="historiedSubscriptionAttributeDataJoin" type="ecaSubscription:HistoriedSubscriptionAttributeDataJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionAttributeOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:QuerySubscriptionAttributeResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionAttributeResult_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element
+            name="historiedSubscriptionAttributeDataArray"
+            type="ecaSubscription:HistoriedSubscriptionAttributeData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_5_3"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionInput_6">
+        <xsd:sequence>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_6"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionInput_7">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_6"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionInput_8">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_7"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:QuerySubscriptionResult_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:QuerySubscriptionResult_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionOutput_7">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:QuerySubscriptionResult_7"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionOutput_8">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:QuerySubscriptionResult_8"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionResult_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionData" type="ecaSubscription:SubscriptionData_5_3"/>
+          <xsd:element name="hasServiceAddress" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionResult_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionData" type="ecaSubscription:SubscriptionData_6"/>
+          <xsd:element name="hasServiceAddress" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionResult_7">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionData" type="ecaSubscription:SubscriptionData_6"/>
+          <xsd:element name="otcInstancePK" type="ecaOneTimeCharge:OTCInstancePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="hasServiceAddress" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionResult_8">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionData" type="ecaSubscription:SubscriptionData_7"/>
+          <xsd:element name="otcInstancePK" type="ecaOneTimeCharge:OTCInstancePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="hasServiceAddress" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionStatusInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="beginDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionStatusOutput_5_3">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaSubscription:HistoriedSubscriptionStatus_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionsAllocatedToBudgetCentreInput_1">
+        <xsd:sequence>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastSubscriptionPK" type="ecaSubscription:SubscriptionPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetCentrePK" type="ecaBudgetCentre:BudgetCentrePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="onWhenDtmOnlyBoo" type="xsd:boolean"/>
+          <xsd:element name="subscriptionStatusSet" type="ecaSubscription:ArrayOfSubscriptionStatus" minOccurs="0" nillable="true"/>
+          <xsd:element name="terminationBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QuerySubscriptionsAllocatedToBudgetCentreOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaSubscription:FindSubscriptionsResult_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionData_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="custOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplierOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="suppressInitChargeBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressTermChargeBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressEarlyTermChargeBoo" type="xsd:boolean"/>
+          <xsd:element name="historiedSubscriptionData" type="ecaSubscription:HistoriedSubscriptionData_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeData" type="ecaSubscriptionType:SubscriptionTypeData_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="subscriptionRef" type="xsd:string"/>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="historiedSubscriptionSummary" type="ecaSubscription:HistoriedSubscriptionSummary_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionStatus" type="ecaSubscription:HistoriedSubscriptionStatus_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionTariffData" type="ecaSubscription:HistoriedSubscriptionTariffData_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeSummary" type="ecaSubscriptionType:SubscriptionTypeSummary_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="subscriptionSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="custOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplierOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="suppressInitChargeBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressTermChargeBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressEarlyTermChargeBoo" type="xsd:boolean"/>
+          <xsd:element name="historiedSubscriptionData" type="ecaSubscription:HistoriedSubscriptionData_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeData" type="ecaSubscriptionType:SubscriptionTypeData_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="subscriptionRef" type="xsd:string"/>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="historiedSubscriptionSummary" type="ecaSubscription:HistoriedSubscriptionSummary_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionStatus" type="ecaSubscription:HistoriedSubscriptionStatus_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionTariffData" type="ecaSubscription:HistoriedSubscriptionTariffData_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeSummary" type="ecaSubscriptionType:SubscriptionTypeSummary_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="subscriptionSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionData_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="custOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplierOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="suppressInitChargeBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressTermChargeBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressEarlyTermChargeBoo" type="xsd:boolean"/>
+          <xsd:element name="historiedSubscriptionData" type="ecaSubscription:HistoriedSubscriptionData_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeData" type="ecaSubscriptionType:SubscriptionTypeData_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="subscriptionRef" type="xsd:string"/>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="historiedSubscriptionSummary" type="ecaSubscription:HistoriedSubscriptionSummary_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionStatus" type="ecaSubscription:HistoriedSubscriptionStatus_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionTariffData" type="ecaSubscription:HistoriedSubscriptionTariffData_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeSummary" type="ecaSubscriptionType:SubscriptionTypeSummary_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="subscriptionSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionData_7">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="custOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplierOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="suppressInitChargeBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressTermChargeBoo" type="xsd:boolean"/>
+          <xsd:element name="suppressEarlyTermChargeBoo" type="xsd:boolean"/>
+          <xsd:element name="historiedSubscriptionData" type="ecaSubscription:HistoriedSubscriptionData_7" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeData" type="ecaSubscriptionType:SubscriptionTypeData_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK"/>
+          <xsd:element name="subscriptionRef" type="xsd:string"/>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="historiedSubscriptionSummary" type="ecaSubscription:HistoriedSubscriptionSummary_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionStatus" type="ecaSubscription:HistoriedSubscriptionStatus_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionTariffData" type="ecaSubscription:HistoriedSubscriptionTariffData_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeSummary" type="ecaSubscriptionType:SubscriptionTypeSummary_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="subscriptionSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionDataJoin_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_5_2"/>
+          <xsd:element name="historiedSubscriptionDataJoin" type="ecaSubscription:HistoriedSubscriptionDataJoin_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeDataJoin" type="ecaSubscriptionType:SubscriptionTypeDataJoin_5_2" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionDataJoin_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_5_3"/>
+          <xsd:element name="historiedSubscriptionDataJoin" type="ecaSubscription:HistoriedSubscriptionDataJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeDataJoin" type="ecaSubscriptionType:SubscriptionTypeDataJoin_5_2" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionDataJoin_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_5_3"/>
+          <xsd:element name="historiedSubscriptionDataJoin" type="ecaSubscription:HistoriedSubscriptionDataJoin_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeDataJoin" type="ecaSubscriptionType:SubscriptionTypeDataJoin_5_2" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionDataJoin_7">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionSummaryJoin" type="ecaSubscription:SubscriptionSummaryJoin_6"/>
+          <xsd:element name="historiedSubscriptionDataJoin" type="ecaSubscription:HistoriedSubscriptionDataJoin_7" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeDataJoin" type="ecaSubscriptionType:SubscriptionTypeDataJoin_5_2" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="subscriptionSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionSummary_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionRef" type="xsd:string"/>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="historiedSubscriptionSummary" type="ecaSubscription:HistoriedSubscriptionSummary_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionStatus" type="ecaSubscription:HistoriedSubscriptionStatus_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionTariffData" type="ecaSubscription:HistoriedSubscriptionTariffData_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeSummary" type="ecaSubscriptionType:SubscriptionTypeSummary_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="subscriptionSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionSummary_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionRef" type="xsd:string"/>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="historiedSubscriptionSummary" type="ecaSubscription:HistoriedSubscriptionSummary_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionStatus" type="ecaSubscription:HistoriedSubscriptionStatus_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionTariffData" type="ecaSubscription:HistoriedSubscriptionTariffData_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeSummary" type="ecaSubscriptionType:SubscriptionTypeSummary_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="subscriptionSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionSummary_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="subscriptionRef" type="xsd:string"/>
+          <xsd:element name="subscriptionTypePK" type="ecaSubscriptionType:SubscriptionTypePK"/>
+          <xsd:element name="historiedSubscriptionSummary" type="ecaSubscription:HistoriedSubscriptionSummary_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionStatus" type="ecaSubscription:HistoriedSubscriptionStatus_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionTariffData" type="ecaSubscription:HistoriedSubscriptionTariffData_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeSummary" type="ecaSubscriptionType:SubscriptionTypeSummary_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="subscriptionSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionSummaryJoin_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="historiedSubscriptionSummaryJoin" type="ecaSubscription:HistoriedSubscriptionSummaryJoin_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionStatusJoin" type="ecaSubscription:HistoriedSubscriptionStatusJoin_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionTariffDataJoin" type="ecaSubscription:HistoriedSubscriptionTariffDataJoin_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeSummaryJoin" type="ecaSubscriptionType:SubscriptionTypeSummaryJoin_5_2" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionSummaryJoin_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="historiedSubscriptionSummaryJoin" type="ecaSubscription:HistoriedSubscriptionSummaryJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionStatusJoin" type="ecaSubscription:HistoriedSubscriptionStatusJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionTariffDataJoin" type="ecaSubscription:HistoriedSubscriptionTariffDataJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeSummaryJoin" type="ecaSubscriptionType:SubscriptionTypeSummaryJoin_5_2" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SubscriptionSummaryJoin_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="historiedSubscriptionSummaryJoin" type="ecaSubscription:HistoriedSubscriptionSummaryJoin_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionStatusJoin" type="ecaSubscription:HistoriedSubscriptionStatusJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedSubscriptionTariffDataJoin" type="ecaSubscription:HistoriedSubscriptionTariffDataJoin_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionTypeSummaryJoin" type="ecaSubscriptionType:SubscriptionTypeSummaryJoin_5_2" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfSubscriptionStatus">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaSubscription:SubscriptionStatus"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfNewSubscriptionAttributeData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaSubscription:NewSubscriptionAttributeData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfNullableNewSubscriptionAttributeData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaSubscription:NewSubscriptionAttributeData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfSubscriptionData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaSubscription:SubscriptionData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfSubscriptionData_6">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaSubscription:SubscriptionData_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfSubscriptionData_7">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaSubscription:SubscriptionData_7"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfSubscriptionPK">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaSubscription:SubscriptionPK"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfSubscriptionSummary_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaSubscription:SubscriptionSummary_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfArrayOfHistoriedSubscriptionAttributeData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaSubscription:ArrayOfHistoriedSubscriptionAttributeData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfHistoriedSubscriptionAttributeData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaSubscription:HistoriedSubscriptionAttributeData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_Subscription.xsd -->

@@ -1,0 +1,137 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"id": "#payment",
+	"description": "Bill payment facility request.",
+	"properties": {
+		"productCategory": {
+			"description": "CRM query end system",
+			"type": "integer",
+			"enum": [
+				1,
+				2,
+				3
+			],
+			"minimum": 1
+		},
+		"chqBank": {
+			"description": "Bank details.",
+			"type": "string",
+			"minLength": 1
+		},
+		"chqBranch": {
+			"description": "Branch details.",
+			"type": "string",
+			"minLength": 1
+		},
+		"chqNo": {
+			"description": "cheque number.",
+			"type": "string",
+			"minLength": 1
+		},
+		"physicalPaymentDate": {
+			"description": "Date of the payment.",
+			"type": "integer",
+			"format": "date-time",
+			"minimum": 0
+		},
+		"receiptsInfo": {
+			"type": "array",
+			"description": "receipt infor array",
+			"items": {
+				"title": "Receipt",
+				"description": "Receipt",
+				"type": "object",
+				"properties": {
+					"sbu": {
+						"description": "Service Business Unit",
+						"type": "integer",
+						"enum": [
+							2,
+							3,
+							4
+						],
+						"minimum": 2
+					},
+					"connRef": {
+						"description": "Connection reference.",
+						"type": "string",
+						"minLength": 1
+					},
+					"receiptNo": {
+						"description": "",
+						"type": "string"
+					},
+					"contractNo": {
+						"description": "Contract number.",
+						"type": "string",
+						"minLength": 1
+					},
+					"accountNo": {
+						"description": "Account number.",
+						"type": "string",
+						"minLength": 1
+					},
+					"paymentAmount": {
+						"description": "",
+						"type": "number",
+						"minimum": 0
+					},
+					"productType": {
+						"description": "",
+						"type": "integer",
+						"enum": [
+							0,
+							1,
+							2,
+							5,
+							6
+						],
+						"minimum": 0
+					},
+					"receiptBranch": {
+						"description": "",
+						"type": "string",
+						"minLength": 1
+					},
+					"receiptUser": {
+						"description": "",
+						"type": "string",
+						"minLength": 1
+					},
+					"branchCounter": {
+						"description": "",
+						"type": "string",
+						"minLength": 1
+					},
+					"receiptDate": {
+						"description": "",
+						"type": "integer",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"sbu",
+					"receiptNo",
+					"contractNo",
+					"accountNo",
+					"paymentAmount",
+					"productType",
+					"receiptBranch",
+					"receiptUser",
+					"branchCounter",
+					"receiptDate",
+					"connRef"
+				]
+			}
+		}
+	},
+	"required": [
+		"productCategory",
+		"chqBank",
+		"chqBranch",
+		"chqNo",
+		"physicalPaymentDate",
+		"receiptsInfo"
+	]
+}

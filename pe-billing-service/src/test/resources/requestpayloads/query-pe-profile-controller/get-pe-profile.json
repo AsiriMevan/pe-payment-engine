@@ -1,0 +1,12 @@
+{
+  "productCategory": 1,
+  "accounts": [
+    {
+      "connRef": "117824183",
+      "contractNo": "90000010",
+      "sbu": 3,
+      "productType": 0,
+      "accountType": 1
+    }
+  ]
+}

@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service Address. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-Address"
+  xmlns="urn:Convergys-Interface-ECA-Address"
+  xmlns:ecaAddress="urn:Convergys-Interface-ECA-Address"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaConfig="urn:Convergys-Interface-ECA-Config"
+  xmlns:ecaCustomer="urn:Convergys-Interface-ECA-Customer"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Config"
+    schemaLocation="../../schema/ECA/ECA_Config.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Customer"
+    schemaLocation="../../schema/ECA/ECA_Customer.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="OutputLocation">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = OLUaOnly
+       2 = OLBillsOnly
+       3 = OLUaAndBills
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="OutputTerminator">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = OTSpace
+       2 = OTSpaceCommaSpace
+       3 = OTLineBreak
+       4 = OTNewParagraph
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="AddressData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="addressLines"
+            type="xsd:string"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+          <xsd:element name="zipcode" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustJcode" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustIncityBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="countryId" type="xsd:int"/>
+          <xsd:element name="addressFormatId" type="xsd:int"/>
+          <xsd:element name="countryData" type="ecaConfig:CountryData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="addressFormatData" type="ecaAddress:AddressFormatData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="addressSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddressDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="countryDataJoin" type="ecaConfig:CountryDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="addressFormatDataJoin" type="ecaAddress:AddressFormatDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddressFormatData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="addressFormatId" type="xsd:int"/>
+          <xsd:element name="addressFormatName" type="xsd:string"/>
+          <xsd:element name="addressFormatDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddressFormatDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddressFormatItemData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="addressFormatId" type="xsd:int"/>
+          <xsd:element name="positionNumber" type="xsd:int"/>
+          <xsd:element name="storageTableOra" type="xsd:string"/>
+          <xsd:element name="storageFieldOra" type="xsd:string"/>
+          <xsd:element name="outputTerminator" type="ecaAddress:OutputTerminator"/>
+          <xsd:element name="mandatoryBoo" type="xsd:boolean"/>
+          <xsd:element name="outputLocation" type="ecaAddress:OutputLocation"/>
+          <xsd:element name="uaLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddressPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="addressSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateAddressInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="newAddressData" type="ecaAddress:NewAddressData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateAddressOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaAddress:AddressPK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyAddressData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="addressLines"
+            type="xsd:string"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+          <xsd:element name="zipcode" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustJcode" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustIncityBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="countryId" type="xsd:int"/>
+          <xsd:element name="addressFormatId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyAddressInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="addressPK" type="ecaAddress:AddressPK"/>
+          <xsd:element name="oldModifyAddressData" type="ecaAddress:ModifyAddressData_5_1"/>
+          <xsd:element name="newModifyAddressData" type="ecaAddress:ModifyAddressData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyAddressParams_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="addressPK" type="ecaAddress:AddressPK"/>
+          <xsd:element name="oldModifyAddressData" type="ecaAddress:ModifyAddressData_5_1"/>
+          <xsd:element name="newModifyAddressData" type="ecaAddress:ModifyAddressData_5_1"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewAddressData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="countryId" type="xsd:int"/>
+          <xsd:element name="addressFormatId" type="xsd:int"/>
+          <xsd:element name="zipcode" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element
+            name="addressLines"
+            type="xsd:string"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+          <xsd:element name="ustJcode" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustIncityBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAddressInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="addressDataJoin" type="ecaAddress:AddressDataJoin_5_1"/>
+          <xsd:element name="addressPK" type="ecaAddress:AddressPK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAddressOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaAddress:AddressData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllAddressesForCustomerInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="addressDataJoin" type="ecaAddress:AddressDataJoin_5_1"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastAddressPK" type="ecaAddress:AddressPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllAddressesForCustomerInput_5_2">
+        <xsd:sequence>
+          <xsd:element name="addressDataJoin" type="ecaAddress:AddressDataJoin_5_1"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastAddressPK" type="ecaAddress:AddressPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllAddressesForCustomerInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="addressDataJoin" type="ecaAddress:AddressDataJoin_5_1"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastAddressPK" type="ecaAddress:AddressPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllAddressesForCustomerOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaAddress:AddressData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllAddressesForCustomerOutput_5_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaAddress:QueryAllAddressesForCustomerResult_5_2"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllAddressesForCustomerOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaAddress:QueryAllAddressesForCustomerResult_5_2"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllAddressesForCustomerResult_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="dataSet"
+            type="ecaAddress:AddressData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAddressFormatDataInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="addressFormatId" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAddressFormatDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaAddress:AddressFormatData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAddressFormatItemDataInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="addressFormatId" type="xsd:int"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAddressFormatItemDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaAddress:AddressFormatItemData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllAddressFormatDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaAddress:AddressFormatData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllAddressFormatItemsDataInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllAddressFormatItemsDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaAddress:ArrayOfArrayOfAddressFormatItemData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="InvalidAddressException">
+    <xsd:complexContent>
+      <xsd:extension base="eca:BusinessLogicException">
+        <xsd:sequence>
+          <xsd:element
+            name="addressLines"
+            type="xsd:string"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfArrayOfAddressFormatItemData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaAddress:ArrayOfAddressFormatItemData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfAddressFormatItemData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaAddress:AddressFormatItemData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_Address.xsd -->

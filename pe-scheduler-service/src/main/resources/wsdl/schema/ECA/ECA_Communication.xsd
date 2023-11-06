@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service Communication. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-Communication"
+  xmlns="urn:Convergys-Interface-ECA-Communication"
+  xmlns:ecaCommunication="urn:Convergys-Interface-ECA-Communication"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaContact="urn:Convergys-Interface-ECA-Contact"
+  xmlns:ecaCustomer="urn:Convergys-Interface-ECA-Customer"
+  xmlns:ecaGenevaUser="urn:Convergys-Interface-ECA-GenevaUser"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Contact"
+    schemaLocation="../../schema/ECA/ECA_Contact.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Customer"
+    schemaLocation="../../schema/ECA/ECA_Customer.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-GenevaUser"
+    schemaLocation="../../schema/ECA/ECA_GenevaUser.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="NotePriority">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       0 = NPNormal
+       1 = NPHigh
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="NoteStatus">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       0 = NSNormal
+       1 = NSCustomerMemoNote
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="AddCommunicationInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="newCommunicationData" type="ecaCommunication:NewCommunicationData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunicationActionTypeData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communicationActionTypeId" type="xsd:int"/>
+          <xsd:element name="commActionTypeName" type="xsd:string"/>
+          <xsd:element name="defaultCompletedBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunicationActionTypeDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunicationData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="communicationDtm" type="xsd:dateTime"/>
+          <xsd:element name="communicationTypeId" type="xsd:int"/>
+          <xsd:element name="communicationNotes" type="xsd:string"/>
+          <xsd:element name="contactPK" type="ecaContact:ContactPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="genevaUserPK" type="ecaGenevaUser:GenevaUserPK"/>
+          <xsd:element name="noteStatus" type="ecaCommunication:NoteStatus"/>
+          <xsd:element name="priority" type="ecaCommunication:NotePriority"/>
+          <xsd:element name="actionCompleteBoo" type="xsd:boolean"/>
+          <xsd:element name="communicationActionTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="communicationTypeData" type="ecaCommunication:CommunicationTypeData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contactData" type="ecaContact:ContactData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="genevaUserData" type="ecaGenevaUser:GenevaUserData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="communicationActionTypeData" type="ecaCommunication:CommunicationActionTypeData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunicationDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communicationTypeDataJoin" type="ecaCommunication:CommunicationTypeDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contactDataJoin" type="ecaContact:ContactDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="genevaUserDataJoin" type="ecaGenevaUser:GenevaUserDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="communicationActionTypeDataJoin" type="ecaCommunication:CommunicationActionTypeDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunicationElement_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communicationData" type="ecaCommunication:CommunicationData_5_1"/>
+          <xsd:element name="communicationTypeData" type="ecaCommunication:CommunicationTypeData_5_1"/>
+          <xsd:element name="communicationActionTypeData" type="ecaCommunication:CommunicationActionTypeData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunicationTypeData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communicationTypeId" type="xsd:int"/>
+          <xsd:element name="communicationTypeName" type="xsd:string"/>
+          <xsd:element name="communicationTypeDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultNote" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunicationTypeDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyCommunicationData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communicationDtm" type="xsd:dateTime"/>
+          <xsd:element name="contactPK" type="ecaContact:ContactPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="communicationTypeId" type="xsd:int"/>
+          <xsd:element name="communicationActionTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="actionCompleteBoo" type="xsd:boolean"/>
+          <xsd:element name="noteStatus" type="ecaCommunication:NoteStatus"/>
+          <xsd:element name="priority" type="ecaCommunication:NotePriority"/>
+          <xsd:element name="communicationNotes" type="xsd:string"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewCommunicationData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communicationDtm" type="xsd:dateTime"/>
+          <xsd:element name="contactPK" type="ecaContact:ContactPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="communicationTypeId" type="xsd:int"/>
+          <xsd:element name="communicationActionTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="actionCompleteBoo" type="xsd:boolean"/>
+          <xsd:element name="noteStatus" type="ecaCommunication:NoteStatus"/>
+          <xsd:element name="priority" type="ecaCommunication:NotePriority"/>
+          <xsd:element name="communicationNotes" type="xsd:string"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllCommunicationActionTypesInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllCommunicationActionTypesOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaCommunication:CommunicationActionTypeData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllCommunicationTypesInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllCommunicationTypesOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaCommunication:CommunicationTypeData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllCommunicationsInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="beginDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllCommunicationsOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaCommunication:ReadAllCommunicationsResult_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllCommunicationsResult_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="dataSet"
+            type="ecaCommunication:CommunicationElement_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadCommunicationActionTypeInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="communicationTypeActionId" type="xsd:int"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadCommunicationActionTypeOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaCommunication:CommunicationActionTypeData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadCommunicationInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="communicationDtm" type="xsd:dateTime"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadCommunicationOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaCommunication:ReadCommunicationResult_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadCommunicationResult_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communicationElement" type="ecaCommunication:CommunicationElement_5_1"/>
+          <xsd:element name="contactSummary" type="ecaContact:ContactSummary_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadCommunicationTypeInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="communicationTypeId" type="xsd:int"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadCommunicationTypeOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaCommunication:CommunicationTypeData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadCustomerMemoNoteInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadCustomerMemoNoteOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaCommunication:CommunicationData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReplaceCommunicationInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="oldModifyCommunicationData" type="ecaCommunication:ModifyCommunicationData_5_1"/>
+          <xsd:element name="newModifyCommunicationData" type="ecaCommunication:ModifyCommunicationData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+
+</xsd:schema>
+
+<!-- eof ECA_Communication.xsd -->

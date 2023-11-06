@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service Template. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-Template"
+  xmlns="urn:Convergys-Interface-ECA-Template"
+  xmlns:ecaTemplate="urn:Convergys-Interface-ECA-Template"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaTemplateInstance="urn:Convergys-Interface-ECA-TemplateInstance"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-TemplateInstance"
+    schemaLocation="../../schema/ECA/ECA_TemplateInstance.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="QueryAllTemplatesInput_1">
+        <xsd:sequence>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastTemplatePK" type="ecaTemplate:TemplatePK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTemplatesInput_2">
+        <xsd:sequence>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastTemplatePK" type="ecaTemplate:TemplatePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="schemaVersion" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTemplatesOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaTemplate:QueryAllTemplatesResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTemplatesOutput_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaTemplate:QueryAllTemplatesResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTemplatesResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="dataSet"
+            type="ecaTemplate:TemplateSummary_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplateDataInput_1">
+        <xsd:sequence>
+          <xsd:element name="templatePK" type="ecaTemplate:TemplatePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplateDataOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaTemplate:TemplateData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplateJoinInput_1">
+        <xsd:sequence>
+          <xsd:element name="oldTemplatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="newTemplatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplateJoinOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaTemplate:TemplateAddCompatibilityData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplateMigrationInput_1">
+        <xsd:sequence>
+          <xsd:element name="fromTemplatePK" type="ecaTemplate:TemplatePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplateMigrationInput_2">
+        <xsd:sequence>
+          <xsd:element name="fromTemplatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="toTemplatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplateMigrationOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaTemplate:TemplateMigrationData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplateMigrationOutput_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaTemplate:TemplateMigCompatibilityData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadSemanticNameForMachineNameInput_1">
+        <xsd:sequence>
+          <xsd:element name="templatePK" type="ecaTemplate:TemplatePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadSemanticNameForMachineNameOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaTemplateInstance:TemplateParameterValue_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadSemanticNameForMachineNameResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="semanticName" type="xsd:string"/>
+          <xsd:element name="id" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TemplateAddCompatibilityData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="oldTemplatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="newTemplatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="addCompatibility" type="xsd:int"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TemplateData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="templateData" type="xsd:string"/>
+          <xsd:element name="templatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="referenceCustomerRef" type="xsd:string"/>
+          <xsd:element name="generatedDtm" type="xsd:dateTime"/>
+          <xsd:element name="generatedUserOra" type="xsd:string"/>
+          <xsd:element name="createdRaterDataVersion" type="xsd:int"/>
+          <xsd:element name="validRaterDataVersion" type="xsd:int"/>
+          <xsd:element name="publishedDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="publishedUserOra" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="marketSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="providerId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="invoicingCoId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="templateName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="templateSchemaVersion" type="xsd:int"/>
+          <xsd:element name="templateAPIVersion" type="xsd:int"/>
+          <xsd:element name="templateRef" type="xsd:string"/>
+          <xsd:element name="templateVersion" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TemplateMigCompatibilityData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="fromTemplatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="toTemplatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="migrateCompatibility" type="xsd:int"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TemplateMigrationData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="fromTemplatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="toTemplatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="validationResult" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TemplatePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="templateRef" type="xsd:string"/>
+          <xsd:element name="templateVersion" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TemplateSummary_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="referenceCustomerRef" type="xsd:string"/>
+          <xsd:element name="generatedDtm" type="xsd:dateTime"/>
+          <xsd:element name="generatedUserOra" type="xsd:string"/>
+          <xsd:element name="createdRaterDataVersion" type="xsd:int"/>
+          <xsd:element name="validRaterDataVersion" type="xsd:int"/>
+          <xsd:element name="publishedDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="publishedUserOra" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="marketSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="providerId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="invoicingCoId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="templateName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="templateSchemaVersion" type="xsd:int"/>
+          <xsd:element name="templateAPIVersion" type="xsd:int"/>
+          <xsd:element name="templateRef" type="xsd:string"/>
+          <xsd:element name="templateVersion" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+
+</xsd:schema>
+
+<!-- eof ECA_Template.xsd -->

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service MercConfig. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-MercConfig"
+  xmlns="urn:Convergys-Interface-ECA-MercConfig"
+  xmlns:ecaMercConfig="urn:Convergys-Interface-ECA-MercConfig"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="AllocateIncidentGroupNumberOutput">
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="SetGParamAt_StringInput">
+        <xsd:sequence>
+          <xsd:element name="gparamName" type="xsd:string"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="value" type="xsd:string"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="SetGParamAt_booleanInput">
+        <xsd:sequence>
+          <xsd:element name="gparamName" type="xsd:string"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="value" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="SetGParamAt_intInput">
+        <xsd:sequence>
+          <xsd:element name="gparamName" type="xsd:string"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="value" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+
+</xsd:schema>
+
+<!-- eof ECA_MercConfig.xsd -->

@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service ProductPackageInstance. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-ProductPackageInstance"
+  xmlns="urn:Convergys-Interface-ECA-ProductPackageInstance"
+  xmlns:ecaProductPackageInstance="urn:Convergys-Interface-ECA-ProductPackageInstance"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaAccount="urn:Convergys-Interface-ECA-Account"
+  xmlns:ecaAddress="urn:Convergys-Interface-ECA-Address"
+  xmlns:ecaBillingTariff="urn:Convergys-Interface-ECA-BillingTariff"
+  xmlns:ecaBudgetCentre="urn:Convergys-Interface-ECA-BudgetCentre"
+  xmlns:ecaContract="urn:Convergys-Interface-ECA-Contract"
+  xmlns:ecaEvent="urn:Convergys-Interface-ECA-Event"
+  xmlns:ecaProduct="urn:Convergys-Interface-ECA-Product"
+  xmlns:ecaProductInstance="urn:Convergys-Interface-ECA-ProductInstance"
+  xmlns:ecaProductPackage="urn:Convergys-Interface-ECA-ProductPackage"
+  xmlns:ecaRatingTariff="urn:Convergys-Interface-ECA-RatingTariff"
+  xmlns:ecaSubscription="urn:Convergys-Interface-ECA-Subscription"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Account"
+    schemaLocation="../../schema/ECA/ECA_Account.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Address"
+    schemaLocation="../../schema/ECA/ECA_Address.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-BillingTariff"
+    schemaLocation="../../schema/ECA/ECA_BillingTariff.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-BudgetCentre"
+    schemaLocation="../../schema/ECA/ECA_BudgetCentre.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Contract"
+    schemaLocation="../../schema/ECA/ECA_Contract.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Event"
+    schemaLocation="../../schema/ECA/ECA_Event.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Product"
+    schemaLocation="../../schema/ECA/ECA_Product.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-ProductInstance"
+    schemaLocation="../../schema/ECA/ECA_ProductInstance.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-ProductPackage"
+    schemaLocation="../../schema/ECA/ECA_ProductPackage.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-RatingTariff"
+    schemaLocation="../../schema/ECA/ECA_RatingTariff.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Subscription"
+    schemaLocation="../../schema/ECA/ECA_Subscription.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="ActivateAllPackageProdsInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPackageInstancePK" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="statusReasonTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateOptionalProductInstanceInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="newOptionalPackagedProductInstanceData" type="ecaProductPackageInstance:NewOptionalPackagedProductInstanceData_5_3"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateOptionalProductInstanceInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="newOptionalPackagedProductInstanceData" type="ecaProductPackageInstance:NewOptionalPackagedProductInstanceData_6"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateOptionalProductInstanceInput_7">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="newOptionalPackagedProductInstanceData" type="ecaProductPackageInstance:NewOptionalPackagedProductInstanceData_6"/>
+          <xsd:element name="budgetPlanId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateOptionalProductInstanceOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProductInstance:ProductInstancePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateOptionalProductInstanceOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProductInstance:ProductInstancePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateOptionalProductInstanceOutput_7">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProductInstance:ProductInstancePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateProductPackageInstanceInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="newProductPackageInstanceData" type="ecaProductPackageInstance:NewProductPackageInstanceData_5_1"/>
+          <xsd:element name="newContractData" type="ecaContract:NewContractData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productChanges" type="ecaProductPackageInstance:ArrayOfNewProductPackageInstanceSuperData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateProductPackageInstanceInput_5_3">
+        <xsd:sequence>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="newProductPackageInstanceData" type="ecaProductPackageInstance:NewProductPackageInstanceData_5_3"/>
+          <xsd:element name="newProductInstanceDataArray" type="ecaProductPackageInstance:ArrayOfNewPackagedProductInstanceData_5_3" minOccurs="0" nillable="true"/>
+          <xsd:element name="newContractData" type="ecaContract:NewContractData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateProductPackageInstanceInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="newProductPackageInstanceData" type="ecaProductPackageInstance:NewProductPackageInstanceData_5_3"/>
+          <xsd:element name="newProductInstanceDataArray" type="ecaProductPackageInstance:ArrayOfNewPackagedProductInstanceData_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="newContractData" type="ecaContract:NewContractData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateProductPackageInstanceInput_7">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="newProductPackageInstanceData" type="ecaProductPackageInstance:NewProductPackageInstanceData_5_3"/>
+          <xsd:element name="newProductInstanceDataArray" type="ecaProductPackageInstance:ArrayOfNewPackagedProductInstanceData_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="newContractData" type="ecaContract:NewContractData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetPlanId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateProductPackageInstanceInput_8">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="newProductPackageInstanceData" type="ecaProductPackageInstance:NewProductPackageInstanceData_6"/>
+          <xsd:element name="newProductInstanceDataArray" type="ecaProductPackageInstance:ArrayOfNewPackagedProductInstanceData_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="newContractData" type="ecaContract:NewContractData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetPlanId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateProductPackageInstanceOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateProductPackageInstanceOutput_5_3">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateProductPackageInstanceOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateProductPackageInstanceOutput_7">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateProductPackageInstanceOutput_8">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="DeleteProductPackageInstanceInput_1">
+        <xsd:sequence>
+          <xsd:element name="externalContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPackageInstance" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+          <xsd:element name="productLabel" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyEventSourceData_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventSource" type="xsd:string"/>
+          <xsd:element name="eventTypeId" type="xsd:int"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventSourceLabel" type="xsd:string"/>
+          <xsd:element name="eventSourceText" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="creditLimitMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorRatingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="copyGuidingRules" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventDeletionMode" type="ecaEvent:EventDeletionMode" minOccurs="0" nillable="true"/>
+          <xsd:element name="maskBillRuleId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="maskStoreRuleId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyMandatoryPkgProdsActivationDtmInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPackageInstancePK" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+          <xsd:element name="newStartDtm" type="xsd:dateTime"/>
+          <xsd:element name="statusReasonTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyProductPackageInstanceInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="productPackageInstancePK" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+          <xsd:element name="oldStartDtm" type="xsd:dateTime"/>
+          <xsd:element name="newStartDtm" type="xsd:dateTime"/>
+          <xsd:element name="oldTermDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="newTermDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="earlyTermSurchargeBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyProductPackageInstanceInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPackageInstancePK" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+          <xsd:element name="earlyTermSurchargeBoo" type="xsd:boolean"/>
+          <xsd:element name="oldStartDtm" type="xsd:dateTime"/>
+          <xsd:element name="oldTermDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="newStartDtm" type="xsd:dateTime"/>
+          <xsd:element name="newTermDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyProductPackageInstanceOutput_6">
+        <xsd:sequence>
+          <xsd:element name="impactedBudgetPlanArray" type="ecaProductInstance:ArrayOfImpactedBudgetPlanData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewOptionalPackagedProductInstanceData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="ecaProductPackageInstance:NewPackagedProductInstanceData_5_3">
+        <xsd:sequence>
+          <xsd:element name="newContractData" type="ecaContract:NewContractData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPackageInstancePK" type="ecaProductPackageInstance:ProductPackageInstancePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractPK" type="ecaContract:ContractPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="productStatus" type="ecaProductInstance:ProductStatus"/>
+          <xsd:element name="statusReasonTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="custOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplierOrderNumber" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewOptionalPackagedProductInstanceData_6">
+    <xsd:complexContent>
+      <xsd:extension base="ecaProductPackageInstance:NewPackagedProductInstanceData_6">
+        <xsd:sequence>
+          <xsd:element name="newContractData" type="ecaContract:NewContractData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPackageInstancePK" type="ecaProductPackageInstance:ProductPackageInstancePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractPK" type="ecaContract:ContractPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="productStatus" type="ecaProductInstance:ProductStatus"/>
+          <xsd:element name="statusReasonTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="billingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="competitorBillingTariffPK" type="ecaBillingTariff:BillingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="custOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplierOrderNumber" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewPackagedProductInstanceData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="ecaProductInstance:NewProductInstanceBase_5_3">
+        <xsd:sequence>
+          <xsd:element name="eventTypes" type="ecaProductInstance:ArrayOfModifyProductInstanceEventTypeData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productIndexInPackage" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractedPointOfSupplyId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewPackagedProductInstanceData_6">
+    <xsd:complexContent>
+      <xsd:extension base="ecaProductInstance:NewProductInstanceBase_6">
+        <xsd:sequence>
+          <xsd:element name="eventTypes" type="ecaProductInstance:ArrayOfModifyProductInstanceEventTypeData_6" minOccurs="0" nillable="true"/>
+          <xsd:element name="productIndexInPackage" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractedPointOfSupplyId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewProductPackageInstanceData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="productPackagePK" type="ecaProductPackage:ProductPackagePK"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="termDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetCentrePK" type="ecaBudgetCentre:BudgetCentrePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractPK" type="ecaContract:ContractPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsId" type="xsd:int"/>
+          <xsd:element name="taxExemptRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxExemptTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="optionalProductIndexesInPackage" type="eca:ArrayOfInt32" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewProductPackageInstanceData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="productPackagePK" type="ecaProductPackage:ProductPackagePK"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="termDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetCentrePK" type="ecaBudgetCentre:BudgetCentrePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractPK" type="ecaContract:ContractPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsId" type="xsd:int"/>
+          <xsd:element name="taxExemptRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxExemptTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="custOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplierOrderNumber" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="optionalProductIndexesInPackage" type="eca:ArrayOfInt32" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionRef" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewProductPackageInstanceData_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="billingCataloguePK" type="ecaBillingTariff:BillingCataloguePK"/>
+          <xsd:element name="productPackagePK" type="ecaProductPackage:ProductPackagePK"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="termDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="budgetCentrePK" type="ecaBudgetCentre:BudgetCentrePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="contractPK" type="ecaContract:ContractPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsId" type="xsd:int"/>
+          <xsd:element name="taxExemptRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxExemptTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="custOrderNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplierOrderNumber" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="productStatus" type="ecaProductInstance:ProductStatus" minOccurs="0" nillable="true"/>
+          <xsd:element name="optionalProductIndexesInPackage" type="eca:ArrayOfInt32" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionRef" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewProductPackageInstanceSuperData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productIndexInPackage" type="xsd:int"/>
+          <xsd:element name="productQuantity" type="xsd:int"/>
+          <xsd:element name="newEventSources" type="ecaProductInstance:ArrayOfModifyEventSourceData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventTypes" type="ecaProductInstance:ArrayOfModifyProductInstanceEventTypeData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="serviceAddressData" type="ecaProductInstance:NewProductInstanceAddressData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newAddressData" type="ecaAddress:NewAddressData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstanceAttrs" type="ecaProductInstance:ArrayOfNewProductInstanceAttrData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductPackageInstanceData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productPackagePK" type="ecaProductPackage:ProductPackagePK"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="packageSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductPackageInstanceData_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productPackagePK" type="ecaProductPackage:ProductPackagePK"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionPK" type="ecaSubscription:SubscriptionPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPackageData" type="ecaProductPackage:ProductPackageData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionData" type="ecaSubscription:SubscriptionData_5_2" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="packageSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductPackageInstanceData_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productPackagePK" type="ecaProductPackage:ProductPackagePK"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="packageSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductPackageInstanceDataJoin_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productPackageDataJoin" type="ecaProductPackage:ProductPackageDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="subscriptionDataJoin" type="ecaSubscription:SubscriptionDataJoin_5_2" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ProductPackageInstancePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="packageSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryProductPackageInstanceInput_5_2">
+        <xsd:sequence>
+          <xsd:element name="productPackageInstanceDataJoin" type="ecaProductPackageInstance:ProductPackageInstanceDataJoin_5_2"/>
+          <xsd:element name="productPackageInstancePK" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryProductPackageInstanceOutput_5_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProductPackageInstance:QueryProductPackageInstanceResult_5_2"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryProductPackageInstanceResult_5_2">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productPackageInstanceData" type="ecaProductPackageInstance:ProductPackageInstanceData_5_2"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="termDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryProductsAndPricesInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPackageInstancePK" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="onWhenDtmOnlyBoo" type="xsd:boolean"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryProductsAndPricesInput_7">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productPackageInstancePK" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="onWhenDtmOnlyBoo" type="xsd:boolean"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="productStatus" type="ecaProductInstance:ArrayOfProductStatus" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryProductsAndPricesOutput_6">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaProductPackageInstance:QueryProductsAndPricesResult_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryProductsAndPricesOutput_7">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaProductPackageInstance:QueryProductsAndPricesResult_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryProductsAndPricesResult_6">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productInstanceData" type="ecaProductInstance:ProductInstanceData_8"/>
+          <xsd:element name="packagedProductBillingTariffData" type="ecaProductPackage:PackagedProductBillingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productSummary" type="ecaProduct:ProductSummary_5_1"/>
+          <xsd:element name="productQuantity" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadProductPackageInstanceInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="productPackageInstancePK" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadProductPackageInstanceOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaProductPackageInstance:ReadProductPackageInstanceResult_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadProductPackageInstanceResult_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productPackageInstanceData" type="ecaProductPackageInstance:ProductPackageInstanceData_5_1"/>
+          <xsd:element name="productPackageData" type="ecaProductPackage:ProductPackageData_5_1"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="termDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadProductsAndPricesInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="productPackageInstancePK" type="ecaProductPackageInstance:ProductPackageInstancePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="onWhenDtmOnlyBoo" type="xsd:boolean"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadProductsAndPricesOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaProductPackageInstance:ReadProductsAndPricesResult_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadProductsAndPricesResult_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="productInstanceData" type="ecaProductInstance:ProductInstanceData_5_1"/>
+          <xsd:element name="packagedProductBillingTariffData" type="ecaProductPackage:PackagedProductBillingTariffData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productSummary" type="ecaProduct:ProductSummary_5_1"/>
+          <xsd:element name="productQuantity" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfNewPackagedProductInstanceData_5_3">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaProductPackageInstance:NewPackagedProductInstanceData_5_3"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfNewPackagedProductInstanceData_6">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaProductPackageInstance:NewPackagedProductInstanceData_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfNullableNewPackagedProductInstanceData_6">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaProductPackageInstance:NewPackagedProductInstanceData_6"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfNewProductPackageInstanceSuperData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaProductPackageInstance:NewProductPackageInstanceSuperData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfProductPackageInstancePK">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaProductPackageInstance:ProductPackageInstancePK"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_ProductPackageInstance.xsd -->

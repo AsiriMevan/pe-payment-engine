@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service TemplateInstance. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-TemplateInstance"
+  xmlns="urn:Convergys-Interface-ECA-TemplateInstance"
+  xmlns:ecaTemplateInstance="urn:Convergys-Interface-ECA-TemplateInstance"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaAccount="urn:Convergys-Interface-ECA-Account"
+  xmlns:ecaCustomer="urn:Convergys-Interface-ECA-Customer"
+  xmlns:ecaTemplate="urn:Convergys-Interface-ECA-Template"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Account"
+    schemaLocation="../../schema/ECA/ECA_Account.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Customer"
+    schemaLocation="../../schema/ECA/ECA_Customer.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Template"
+    schemaLocation="../../schema/ECA/ECA_Template.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="CallerType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       0 = CTPublicClient
+       1 = CTSynchronisationTool
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="TemplateParameterType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       0 = TPTString
+       1 = TPTDtm
+       2 = TPTDat
+       3 = TPTInteger
+       4 = TPTLong
+       5 = TPTStructure
+       6 = TPTArray
+       7 = TPTBoolean
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="AddAdditionalTemplateInstanceInput_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="templatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="anonymousBoo" type="xsd:boolean"/>
+          <xsd:element
+            name="templateParameterValues"
+            type="ecaTemplateInstance:TemplateParameterValue_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddAdditionalTemplateInstanceOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaTemplateInstance:TemplateParameterValue_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddAdditionalTemplateInstanceSharedAccInput_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="templatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="anonymousBoo" type="xsd:boolean"/>
+          <xsd:element
+            name="templateParameterValues"
+            type="ecaTemplateInstance:TemplateParameterValue_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="accountNum" type="xsd:string"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="AddAdditionalTemplateInstanceSharedAccOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaTemplateInstance:TemplateParameterValue_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ContactParameterFlagHolder_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="customerContact" type="xsd:boolean"/>
+          <xsd:element name="companyDetails" type="xsd:boolean"/>
+          <xsd:element name="accountContact" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateTemplateBasedCustomerInput_1">
+        <xsd:sequence>
+          <xsd:element name="templatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="anonymousBoo" type="xsd:boolean"/>
+          <xsd:element
+            name="templateParameterValues"
+            type="ecaTemplateInstance:TemplateParameterValue_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateTemplateBasedCustomerOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaTemplateInstance:TemplateParameterValue_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="MigrateSemanticIdPair_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="semanticIdFrom" type="xsd:int"/>
+          <xsd:element name="semanticIdTo" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="MigrateSemanticNamePair_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="semanticNameFrom" type="xsd:string"/>
+          <xsd:element name="semanticNameTo" type="xsd:string"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="MigrateTemplateInstanceInput_1">
+        <xsd:sequence>
+          <xsd:element name="templateInstancePK" type="ecaTemplateInstance:TemplateInstancePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="anonymousBoo" type="xsd:boolean"/>
+          <xsd:element name="templatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element
+            name="templateParameterValues"
+            type="ecaTemplateInstance:TemplateParameterValue_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="additionalMigrationRules" type="ecaTemplateInstance:ArrayOfMigrationRule_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="MigrateTemplateInstanceOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaTemplateInstance:TemplateParameterValue_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="MigrationRule_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="migrateSemanticNamePair" type="ecaTemplateInstance:MigrateSemanticNamePair_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="migrateSemanticIdPair" type="ecaTemplateInstance:MigrateSemanticIdPair_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyTemplateInstanceChangeableParametersInput_1">
+        <xsd:sequence>
+          <xsd:element name="templateInstancePK" type="ecaTemplateInstance:TemplateInstancePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="anonymousBoo" type="xsd:boolean"/>
+          <xsd:element
+            name="templateParameterValues"
+            type="ecaTemplateInstance:TemplateParameterValue_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyTemplateInstanceChangeableParametersOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaTemplateInstance:TemplateParameterValue_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="OverrideCustomerInHostVersionInput_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="oldInHostVersion" type="xsd:int"/>
+          <xsd:element name="newInHostVersion" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryParameterFlagHolder_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="customerParameters" type="xsd:boolean"/>
+          <xsd:element name="contactParameterFlagHolder" type="ecaTemplateInstance:ContactParameterFlagHolder_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="accountParameters" type="xsd:boolean"/>
+          <xsd:element name="productParameters" type="xsd:boolean"/>
+          <xsd:element name="custOverrideRateParameters" type="xsd:boolean"/>
+          <xsd:element name="custProductAttributeParameters" type="xsd:boolean"/>
+          <xsd:element name="custEventSourceParameters" type="xsd:boolean"/>
+          <xsd:element name="custProdRatingDiscountParameters" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplateInstanceForEventSourceInput_1">
+        <xsd:sequence>
+          <xsd:element name="eventSource" type="xsd:string"/>
+          <xsd:element name="eventTypeId" type="xsd:int"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplateInstanceForEventSourceOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaTemplateInstance:TemplateInstancePK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplateInstanceParametersInput_1">
+        <xsd:sequence>
+          <xsd:element name="templateInstancePK" type="ecaTemplateInstance:TemplateInstancePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="queryParameterFlagHolder" type="ecaTemplateInstance:QueryParameterFlagHolder_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplateInstanceParametersOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaTemplateInstance:TemplateParameterValue_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplatesForAccountInput_1">
+        <xsd:sequence>
+          <xsd:element name="accountPK" type="ecaAccount:AccountPK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplatesForAccountOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaTemplateInstance:QueryTemplatesResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplatesForCustomerInput_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplatesForCustomerOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaTemplateInstance:QueryTemplatesResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplatesResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="dataSet"
+            type="ecaTemplateInstance:QueryTemplatesResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTemplatesResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="accountNum" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="templateSeq" type="xsd:int"/>
+          <xsd:element name="templateRef" type="xsd:string"/>
+          <xsd:element name="templateVersion" type="xsd:int"/>
+          <xsd:element name="templateInstanceStatus" type="xsd:string"/>
+          <xsd:element name="accountExists" type="xsd:string"/>
+          <xsd:element name="accountStructuralInteger" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TemplateInstancePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="templateSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TemplateParameterValue_1">
+    <xsd:complexContent>
+      <xsd:extension base="ecaTemplateInstance:TypedValue_1">
+        <xsd:sequence>
+          <xsd:element name="name" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="id" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TerminateTemplateBasedCustomerInput_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="inHostVersion" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="TerminateTemplateInstanceInput_1">
+        <xsd:sequence>
+          <xsd:element name="templateInstancePK" type="ecaTemplateInstance:TemplateInstancePK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+          <xsd:element name="inHostVersion" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="TypedValue_1" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="type" type="ecaTemplateInstance:TemplateParameterType"/>
+          <xsd:element name="valueString" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="valueDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="valueDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="valueInt" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="valueLong" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="valueComposite" type="ecaTemplateInstance:ArrayOfTemplateParameterValue_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="valueBoolean" type="xsd:boolean" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="InvalidInhostVersionException">
+    <xsd:complexContent>
+      <xsd:extension base="eca:BusinessLogicException">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="InvalidMigrationException">
+    <xsd:complexContent>
+      <xsd:extension base="eca:BusinessLogicException">
+        <xsd:sequence>
+          <xsd:element name="fromTemplatePK" type="ecaTemplate:TemplatePK"/>
+          <xsd:element name="toTemplatePK" type="ecaTemplate:TemplatePK"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="InvalidTemplateParameterCombinationException">
+    <xsd:complexContent>
+      <xsd:extension base="ecaTemplateInstance:TemplateParameterException">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="InvalidTemplateParameterDataTypeException">
+    <xsd:complexContent>
+      <xsd:extension base="ecaTemplateInstance:TemplateParameterException">
+        <xsd:sequence>
+          <xsd:element name="suppliedDataType" type="ecaTemplateInstance:TemplateParameterType"/>
+          <xsd:element name="actualDataType" type="ecaTemplateInstance:TemplateParameterType"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="MixedIdentifierException">
+    <xsd:complexContent>
+      <xsd:extension base="eca:ParameterException">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="MixedTemplateParameterIdentifierException">
+    <xsd:complexContent>
+      <xsd:extension base="ecaTemplateInstance:TemplateParameterException">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NoSuchTemplateParameterException">
+    <xsd:complexContent>
+      <xsd:extension base="ecaTemplateInstance:TemplateParameterException">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TemplateParameterException" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="eca:ParameterException">
+        <xsd:sequence>
+          <xsd:element name="semanticName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="semanticId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TemplateParameterMandatoryException">
+    <xsd:complexContent>
+      <xsd:extension base="ecaTemplateInstance:TemplateParameterException">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfMigrationRule_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaTemplateInstance:MigrationRule_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfTemplateParameterValue_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaTemplateInstance:TemplateParameterValue_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_TemplateInstance.xsd -->

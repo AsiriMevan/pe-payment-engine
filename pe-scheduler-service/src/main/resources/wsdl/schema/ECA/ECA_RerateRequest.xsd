@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service RerateRequest. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-RerateRequest"
+  xmlns="urn:Convergys-Interface-ECA-RerateRequest"
+  xmlns:ecaRerateRequest="urn:Convergys-Interface-ECA-RerateRequest"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="RerateDriverType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       0 = A
+       1 = C
+       2 = E
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="RerateRequestDateType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       0 = CREATED
+       1 = EVENT
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="RerateRequestStatus">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = RRPending
+       2 = RRInProgressUnloading
+       3 = RRUnloadingFailed
+       4 = RRInProgressRerating
+       5 = RRReratingFailed
+       6 = RRCompleted
+       7 = RRCancelled
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="RerateRequestType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = Type1
+       2 = Type2
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="CreateRerateRequestInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newRerateRequestData" type="ecaRerateRequest:RerateRequestData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateRerateRequestOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRerateRequest:RerateRequestPK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="DeleteRerateRequestInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateRequestPK" type="ecaRerateRequest:RerateRequestPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateDriverType" type="ecaRerateRequest:RerateDriverType" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateDriver" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="DeleteRerateRequestOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyRerateRequestInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateRequestPK" type="ecaRerateRequest:RerateRequestPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateDriverType" type="ecaRerateRequest:RerateDriverType" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateDriver" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="newRerateRequestStatus" type="ecaRerateRequest:RerateRequestStatus" minOccurs="0" nillable="true"/>
+          <xsd:element name="newRerateRequestType" type="ecaRerateRequest:RerateRequestType" minOccurs="0" nillable="true"/>
+          <xsd:element name="newUnbilledEventsOnlyBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyRerateRequestOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRerateRequestsInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateDriverType" type="ecaRerateRequest:RerateDriverType" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateDriver" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateRequestStatus" type="ecaRerateRequest:RerateRequestStatus" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateRequestDateType" type="ecaRerateRequest:RerateRequestDateType" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastPK" type="ecaRerateRequest:RerateRequestPK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRerateRequestsOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRerateRequest:QueryAllRerateRequestsResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRerateRequestsResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="resultDataArray"
+            type="ecaRerateRequest:RerateRequestData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+          <xsd:element name="isTruncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRerateRequestInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateRequestPK" type="ecaRerateRequest:RerateRequestPK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRerateRequestOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRerateRequest:RerateRequestData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RerateRequestData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="rerateDriverType" type="ecaRerateRequest:RerateDriverType"/>
+          <xsd:element name="rerateDriver" type="xsd:string"/>
+          <xsd:element name="rerateRequestType" type="ecaRerateRequest:RerateRequestType" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateRequestStatus" type="ecaRerateRequest:RerateRequestStatus" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateRequestDateType" type="ecaRerateRequest:RerateRequestDateType" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="tariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="jobId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="consolidatedRequestId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateReasonTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateCreatedDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="additionalArgs" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="randomHash" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="unbilledEventsOnlyBoo" type="xsd:boolean"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="rerateRequestId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RerateRequestPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="rerateRequestId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+
+</xsd:schema>
+
+<!-- eof ECA_RerateRequest.xsd -->

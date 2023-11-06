@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+
+	<bean id="paymentH" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+
+				<!--Kafka related Queries-->
+				<entry key="SQL_SEL_KAFKA_PAYMENT"
+					   value="SELECT * FROM (SELECT * FROM {table} ORDER BY req_id ) ordered WHERE date_trunc('day',update_date) = date_trunc('day',current_timestamp) AND (ordered.command_read = 'S' OR ordered.command_read = 'F') AND paypub_read = 'N' limit {batchSize}" />
+
+				<entry key="SQL_UPDATE_KAFKA_PAYMENT"
+					   value="UPDATE {table} SET paypub_read=? WHERE req_id=?" />
+
+				<!-- RBM table related queries -->
+
+				<entry key="SQL_SEL_RBM_PAYMENT"
+					value="SELECT * FROM pe.rbm_payment  WHERE command_read ='X' AND(update_date IS NULL OR update_date  &lt; current_timestamp)  order by req_id ASC limit 100" />
+
+				<entry key="SQL_SEL_RBM_FAIL_PAYMENT"
+					   value="SELECT rp.* FROM pe.rbm_payment rp,pe.retry_error_desc red WHERE rp.command_read ='F' AND error_code = '2' AND (created_date + INTERVAL '2 days' &gt; current_timestamp) AND (update_date IS NULL OR update_date &lt; current_timestamp)  AND (rp.error_desc LIKE '%'||red.error_desc||'%' ) order by rp.req_id ASC limit 100" />
+
+				<entry key="SQL_UPDATE_RBM_FAIL_PAYMENT"
+					   value="UPDATE pe.rbm_payment  SET command_read ='F', update_date=(CURRENT_TIMESTAMP + INTERVAL '20 minutes') WHERE  req_id = ?" />
+
+				<entry key="SQL_UPDATE_RBM_PAYMENT"
+					   value="UPDATE pe.rbm_payment SET command_read = 'Y' WHERE  req_id = ?" />
+
+				<entry key="SQL_UPDATE_RBM_NO_CX_FOUND"
+					   value="UPDATE pe.rbm_payment SET command_read= ?, pay_seq_id= ? , error_code= ? , error_desc= ?  , update_date=(CURRENT_TIMESTAMP + INTERVAL '10 minutes') , updated_user=current_user WHERE  req_id = ?" />
+
+				<entry key="SQL_UPDATE_RBM_PAYMENT_RES"
+					   value="UPDATE pe.rbm_payment SET command_read= ?, pay_seq_id= ? , error_code= ? , error_desc= ?  , update_date=current_timestamp , updated_user=current_user WHERE  req_id = ?" />
+
+				<entry key="SQL_UPDATE_RBM_PAYMENT_FAIL_RES"
+					   value="UPDATE pe.rbm_payment  SET command_read= ?, pay_seq_id= ? , error_code= ? , error_desc= ?  , updated_user=current_user , update_date=(CURRENT_TIMESTAMP + INTERVAL '20 minutes') WHERE  req_id = ?" />
+
+				<entry key="SQL_DEL_RBM_PAYMENT" value="DELETE FROM pe.rbm_payment WHERE req_id = ?" />
+
+				<entry key="SQL_SEL_SUBSIDIARY"
+					   value="SELECT cc.contract_subsidiary_type FROM cam_contract cc WHERE contract_id= ?" />
+
+				<entry key="SQL_SEL_DCS_SUBSIDIARY"
+					   value="SELECT 'DCS' as contract_subsidiary_type FROM subscriber su WHERE account_num= ? and MAIN_NUMBER='Y' " />
+
+				<entry key="SQL_INS_RECONNECTION"
+					   value="INSERT INTO rbm_payment_auto_recon_cxs(seq_id, contract_id, subsidiary_code, payment_amount, status_description) values (RBM_PAYMENT_AUTO_SEQ.nextval,?,?,?,?)" />
+
+				<!-- Insert Reconnection data for migrated cooperate numbers -->
+				<entry key="SQL_INS_DCS_RECONNECTION"
+					   value="INSERT INTO PE.AUTO_RECON_CXS(seq_id, contract_id, subsidiary_code, payment_amount, status_description) values (nextval('auto_recon_seq'),?,?,?,?)" />
+
+				<!-- OCS table related queries -->
+
+				<entry key="SQL_SEL_OCS_PAYMENT"
+					   value="SELECT op.*,orc.reason_code as ocs_reason_code,orc.reason_id FROM pe.ocs_payment op,pe.ocs_reason_codes orc  WHERE op.tran_type_id = orc.tran_type_id AND command_read ='X' order by req_id ASC limit 100" />
+
+				<entry key="SQL_UPDATE_OCS_PAYMENT"
+					   value="UPDATE pe.ocs_payment SET command_read = 'Y' WHERE req_id = ?" />
+
+				<entry key="SQL_UPDATE_OCS_PAYMENT_RES"
+					   value="UPDATE pe.ocs_payment SET command_read= ?, pay_seq_id= ? , error_code= ? , error_desc= ?  , update_date=current_timestamp , updated_user=current_user WHERE  req_id = ?" />
+
+				<entry key="SQL_DEL_OCS_PAYMENT" value="DELETE FROM pe.ocs_payment rp WHERE rp.req_id = ?" />
+
+				<!-- Cheque forceful realization related queries -->
+
+				<entry key="SQL_SEL_FORCEFUL_PEND_SUS_CHQ"
+					   value="SELECT * FROM pe.forceful_realize_cheques WHERE command_read ='X' AND realtime ='Y' order by req_id ASC limit 200" />
+
+				<entry key="SQL_SEL_FAIL_FORCEFUL_PEND_SUS_CHQ"
+					   value=" SELECT *
+						    FROM pe.forceful_realize_cheques frc, pe.retry_error_desc red
+						   WHERE frc.command_read = 'F'
+						         AND frc.realtime = 'Y'
+						         AND frc.error_code = '2'
+						         AND (frc.created_date + INTERVAL '2 days' &gt;current_timestamp)
+						         AND (frc.update_date IS NULL OR frc.update_date &lt; current_timestamp)
+						         AND (frc.error_desc LIKE '%' || red.error_desc || '%')
+						         ORDER BY frc.req_id ASC limit 100" />
+
+
+				<entry key="SQL_UPDATE_FORCEFUL_CHQ_READ"
+					   value="UPDATE pe.forceful_realize_cheques fcr SET command_read = 'Y' WHERE  req_id = ?" />
+
+				<entry key="SQL_UPDATE_FORCEFUL_CHQ"
+					   value="UPDATE pe.forceful_realize_cheques fcr SET command_read= ?, error_code= ? , error_desc= ?  , update_date=current_timestamp , updated_user=current_user WHERE  req_id = ?" />
+
+				<entry key="SQL_UPDATE_FORCEFUL_CHQ_FAIL_RES"
+					   value="UPDATE pe.forceful_realize_cheques fcr SET command_read= ?, error_code= ? , error_desc= ?  , update_date=(CURRENT_TIMESTAMP + INTERVAL '20 minutes') , updated_user=current_user WHERE  req_id = ?" />
+
+				<entry key="SQL_UPDATE_FORCEFUL_CHQ_NO_CX_FOUND"
+					   value="UPDATE pe.forceful_realize_cheques SET command_read= ?, error_code= ? , error_desc= ?  , update_date=(CURRENT_TIMESTAMP + INTERVAL '10 minutes') , updated_user=current_user WHERE  req_id = ?" />
+
+				<entry key="SQL_UPDATE_FAIL_FORCEFUL_CHQ"
+					   value="UPDATE pe.forceful_realize_cheques SET command_read ='F', update_date=(CURRENT_TIMESTAMP + INTERVAL '20 minutes') WHERE  req_id = ?" />
+
+
+				<entry key="SQL_SEL_FORCEFUL_CHQ_PARTIAL"
+					   value="SELECT distinct subscriber_node_id,chq_no FROM pe.forceful_realize_cheques WHERE ((command_read ='X' AND realtime ='N' AND(update_date IS NULL OR update_date &lt; current_timestamp)) OR (command_read ='P' AND realtime ='Y' AND update_date &lt; (current_timestamp - interval '5 minutes'))) group by chq_no, subscriber_node_id limit 200" />
+
+				<entry key="SQL_SEL_FORCEFUL_CHQ_FULL"
+					   value="SELECT * FROM pe.forceful_realize_cheques WHERE subscriber_node_id = ? AND chq_no = ? AND ((command_read = 'N' AND realtime = 'N' AND (update_date IS NULL OR update_date &lt; current_timestamp)) OR (command_read = 'P' AND realtime = 'Y')) order by subscriber_node_id,chq_no" />
+
+				<entry key="SQL_DEL_FORCEFUL_CHQ"
+					   value="DELETE FROM pe.forceful_realize_cheques frc WHERE frc.req_id = ?" />
+
+				<!-- DBN table related queries -->
+
+				<entry key="SQL_SEL_DBN_PAYMENT"
+					   value="SELECT * FROM pe.dbn_payment dp WHERE dp.command_read ='XX' AND rownum &lt; 100  order by dp.req_id ASC" />
+
+				<entry key="SQL_SEL_DBN_FAIL_PAYMENT"
+					   value="SELECT *
+						    FROM pe.dbn_payment dp, pe.retry_error_desc red
+						   WHERE     dp.command_read = 'F'
+						         AND ERROR_CODE = '2'
+						         AND (created_date + INTERVAL '2 days' &gt; current_timestamp)
+						         AND (update_date IS NULL OR update_date &lt; current_timestamp)
+						         AND (dp.error_desc LIKE '%' || red.error_desc || '%')
+						         AND ROWNUM &lt; 100
+						ORDER BY dp.req_id ASC" />
+
+				<entry key="SQL_UPDATE_DBN_PAYMENT"
+					   value="UPDATE pe.dbn_payment dp SET dp.command_read = 'Y' WHERE  dp.req_id = ?" />
+
+				<entry key="SQL_UPDATE_DBN_PAYMENT_RES"
+					   value="UPDATE pe.dbn_payment dp SET dp.command_read= ?, dp.pay_seq_id= ? , dp.error_code= ? , dp.error_desc= ?  , dp.update_date=current_timestamp , dp.updated_user=current_user WHERE  dp.req_id = ?" />
+
+				<entry key="SQL_UPDATE_DBN_PAYMENT_FAIL_RES"
+					   value="UPDATE pe.dbn_payment dp SET dp.command_read= ?, dp.pay_seq_id= ? , dp.error_code= ? , dp.error_desc= ?  , dp.update_date=(CURRENT_TIMESTAMP + INTERVAL '20 minutes') , dp.updated_user=current_user WHERE  dp.req_id = ?" />
+
+				<entry key="SQL_DEL_DBN_PAYMENT" value="DELETE FROM pe.dbn_payment dp WHERE dp.req_id = ?" />
+
+				<entry key="SQL_UPDATE_DBN_FAIL_PAYMENT"
+					   value="UPDATE pe.dbn_payment dp SET dp.command_read ='F', dp.update_date=(CURRENT_TIMESTAMP + INTERVAL '20 minutes') WHERE  dp.req_id = ?" />
+
+				<entry key="SQL_DBN_PAYMENT_POST"
+					   value="{call PKG_CPOS_PG.payment_posting(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}" />
+
+				<entry key="SQL_DBN_PAYMENT_POST_DBN"
+					   value="{call PKG_CPOS_PG.payment_posting(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}" />
+
+				<entry key="SQL_DBN_PAYMENT_CANCEL"
+					   value="{call PKG_CPOS_PG.payment_cancellation(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}" />
+
+				<entry key="SQL_DBN_PAYMENT_CANCEL_DBN"
+					   value="{call PKG_CPOS_PG.payment_cancellation(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}" />
+
+				<!-- Payment cancellations related queries -->
+
+				<entry key="SQL_SEL_CANCEL_PAYMENT"
+					   value="SELECT cp.*  ,(SELECT rmap.description FROM pe.cancel_adj_reason_map rmap WHERE rmap.cpos_id=cp.cancelled_reason) as cancelled_reason_desc FROM cancel_payment  cp WHERE cp.command_read ='X' AND (cp.update_date IS NULL OR  cp.update_date &lt; current_timestamp) order by cp.req_id ASC limit 100" />
+
+				<entry key="SQL_UPDATE_CANCEL_PAYMENT_READ"
+					   value="UPDATE pe.cancel_payment SET command_read = 'Y' WHERE  req_id = ?" />
+
+				<entry key="SQL_UPDATE_CANCEL_PAYMENT_RES"
+					   value="UPDATE pe.cancel_payment SET command_read= ?, rbm_physical_seq= ?, error_code= ? , error_desc= ?  , update_date=current_timestamp , updated_user=current_user WHERE  req_id = ?" />
+
+				<entry key="SQL_UPDATE_CANCEL_FAIL_PAYMENT_RES"
+					   value="UPDATE pe.cancel_payment  SET command_read= ?, rbm_physical_seq= ?, error_code= ? , error_desc= ?  , update_date=(CURRENT_TIMESTAMP + INTERVAL '10 minutes') , updated_user=current_user WHERE  req_id = ?" />
+
+				<entry key="SQL_DEL_CANCEL_PAYMENT" value="DELETE FROM pe.cancel_payment cp WHERE cp.req_id = ?" />
+
+				<entry key="SQL_DEL_CANCEL_TELBIZ_PAYMENT_SEQ"
+					   value="select a.payment_id from pe.payments a where a.reference = ?" />
+
+				<entry key="SQL_SEL_CHQ_RETURN_LOG"
+					   value="SELECT count(*) count FROM pe.cheque_return_log crl WHERE crl.chq_no=? AND crl.chq_bank = ?  and crl.chq_branch= ?" />
+
+				<entry key="SQL_INSERT_CHQ_RETURN"
+					   value="INSERT INTO pe.cheque_return_log (CONTRACT_ID,CHQ_BANK,CHQ_BRANCH,CHQ_NO,RECEIPT_NUMBER) values (?,?,?,?,?)" />
+
+				<entry key="SQL_PE_SEND_SMS"
+					   value="Insert into API.KEY_SMS_MESSAGE_LIST_HP (MODULE_ID, PHONE_NO, MESSAGE, READ, ACTION_DATE) Values (?, ?,?, ?, sysdate)" />
+
+				<!--entry key="SQL_PE_DTV_CONTACT_NO"
+					value="select distinct dccn.CONTACT_NO from DTV_CONTRACT_CONTACT_NUMBERS dccn, dyn_1_connection d1c where  to_char(dccn.CONTACT_NO) = D1C.MOBILE_NO and dccn.CONTACT_NO_TYPE='CONTACT_NO' and dccn.contract_id=?" /-->
+
+				<entry key="SQL_PE_DTV_CONTACT_NO"
+					   value="select nvl(d.contact_no,(select contact_no
+                from dtv_contract_contact_numbers
+                where contact_no_type in('SMS_Notify_No','CONTACT_NO') and
+                contract_id = ? and contact_no like '7%' and rownum &lt; 2 )) as contact_no
+                from DTV_CONTRACT_CONTACT_NUMBERS c
+                left outer join
+                (select contract_id,contact_no from DTV_CONTRACT_CONTACT_NUMBERS where contract_id=? and contact_no_type='MOBILE_NO' )d
+                on c.contract_id=d.contract_id
+                where c.contract_id=? and rownum &lt; 2"/>
+
+				<!--entry key="SQL_PE_DTV_CONTACT_NO"
+					value="SELECT CONTACT_NO FROM DTV_CONTRACT_CONTACT_NUMBERS WHERE UPPER(contact_no_type)=UPPER('MOBILE_NO')  AND contract_id=? and rownum=1" /-->
+
+				<entry key="SQL_SEL_CRE_TYPE"
+					   value="SELECT cc.credit_type FROM cam_contract cc WHERE cc.contract_id = ?" />
+
+				<entry key="SQL_PE_OTC_PAYMENT"
+					   value="{?=call CCBS2.insert_rbm_otc_commands(?,sysdate,?,?,?,?,?,?,?,?,?,?,?)}" />
+
+				<entry key="SQL_TELBIZ_OTC_PAYMENT"
+					   value="{call PKG_CPOS_PG.add_vas_charging(?,?,?,?)}" />
+
+				<entry key="SQL_TBIZ_MIN_PAYMENT"
+					   value="{call TIMS.PKG_CPOS_PG.CALC_PROC(?,?,?,?,?)}" />
+
+				<entry key="SQL_OCS_COMMAND_STATUS"
+					   value="SELECT COMMAND_READ FROM pe.OCS_PAYMENT op WHERE (OP.REQ_ID=?) union (SELECT COMMAND_READ FROM OCS_PAYMENT_H oph WHERE (OPH.REQ_ID=?))"/>
+
+				<!--entry key="SQL_PE_VOLTE_CONTACT_NO"
+					   value="select contact_no from DTV_CONTRACT_CONTACT_NUMBERS where contract_id=? and contact_no_type='MOBILE_NO'" /-->
+
+				<entry key="SQL_PE_VOLTE_CONTACT_NO"
+					   value="SELECT FIXED_VOLTE_DID_NO FROM CAM_CONTRACT WHERE CONTRACT_ID=?" />
+
+				<entry key="SQL_SEL_CONN_REF_NO_EXCLUSION"
+					   value="SELECT count(*) count FROM ccbs2.exclusion_list_connref cr WHERE cr.CONTRACT_ID = ?" />
+
+				<entry key="SQL_GET_IMG_ID_FROM_CONTRACT"
+					   value="{?=call DTV_FB_BILL_TRAN_API.get_image_id_from_contract(?,?)}"/>
+
+				<entry key="SQL_CHECK_RECON_CHR_NEEDED"
+					   value="{?=call DTV_FB_BILL_TRAN_API.is_recon_charge_needed(?)}"/>
+
+				<entry key="SQL_GET_DTV_REMINDER_BAL"
+					   value="{?=call dtv_fb_bill_tran_api.get_current_bal_after_payment(?,?,?,?,?,?,?)}"/>
+
+				<entry key="SQL_GET_GSM_REMINDER_BAL"
+					   value="{?=call Fb_Bill_Tran_Api.GET_REMINDER_BALANCE(?,?,?,?,?,?)}"/>
+
+				<entry key="SQL_GET_DISCON_REASON"
+					   value="SELECT pv.status_reason_id FROM CAM_CONTRACT C, CAM_CONTRACT_PACKAGE CCP , CAM_CONNECTION CC, DYN_1_CONNECTION DC , PROV_SWITCH_IMAGE PV
+						WHERE C.CONTRACT_ID = CCP.CONTRACT_ID AND CCP.CONTRACT_PACKAGE_ID = CC.PACKAGE_CONTRACT_ID AND CC.CONNECTION_ID = DC.CONNECTION_ID AND
+						CC.IMAGE_ID = PV.IMAGE_ID AND DC.SERVICE_ID IN (1, 2, 3, 450, 500) AND C.CONTRACT_ID = ?" />
+
+				<entry key="SQL_GET_ID_TYPE_BY_CONTRACT"
+					   value="SELECT CSP.IDENTIFICATION_TYPE
+						FROM CAM_CONTRACT CC, CAM_SUBSCRIBER_NODE CSN, CAM_SUBSCRIBER_PROFILE CSP
+						WHERE CC.SUBSCRIBER_NODE_ID = CSN.SUBSCRIBER_NODE_ID AND CSN.SUBSCRIBER_PROFILE_ID = CSP.SUBSCRIBER_PROFILE_ID
+						AND CC.CONTRACT_ID=?"/>
+
+				<entry key="SQL_INS_DTV_OFFER_ACT_REC"
+					   value="INSERT INTO DTV_FREEBEE_ON_PAYMENT(RECORD_ID,CONTRACT_NO,PAYMENT_VALUE,CONNECTION_STATUS,INSERT_DATE)
+                VALUES(?,?,?,?,sysdate)"/>
+
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>
+

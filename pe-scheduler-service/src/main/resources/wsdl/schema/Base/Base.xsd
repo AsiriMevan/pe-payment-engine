@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for base type definitions -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-Base"
+  xmlns="urn:Convergys-Interface-Base"
+  xmlns:base="urn:Convergys-Interface-Base"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+  <!-- Imports -->
+
+  <!-- Enumeration Types -->
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="BaseStructure">
+  </xsd:complexType>
+
+  <xsd:complexType name="BaseException">
+  </xsd:complexType>
+
+
+  <xsd:complexType name="VoidType">
+    <xsd:sequence>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- Array Types -->
+
+</xsd:schema>
+
+<!-- eof Base.xsd -->

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component CommonIML -->
+<!-- that are service independent. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-CommonIML"
+  xmlns="urn:Convergys-Interface-CommonIML"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="NVPType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = String
+       2 = Int32
+       3 = Int64
+       4 = Boolean
+       5 = Double
+       6 = DateTime
+       7 = CalendarDate
+       8 = Binary
+       9 = Enum
+       10 = Array
+       11 = Structure
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="EntityLockVersion_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element name="componentName" type="xsd:string"/>
+          <xsd:element name="entityName" type="xsd:string"/>
+          <xsd:element name="lockVersion" type="xsd:string"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ExtensibleStructure">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element name="nameValuePair" type="commonIML:ArrayOfTypedNameValue" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="IntegratorContext_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element name="requestId" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalAPICallId" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalBusinessTransactionId" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalUserName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalTimestamp" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="context" type="commonIML:ArrayOfNameValuePair_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NameValuePair_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="value" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OptimisticLockContext_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element name="lockVersions" type="commonIML:ArrayOfEntityLockVersion_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TypedNameValue">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="type" type="commonIML:NVPType"/>
+          <xsd:element name="scopedName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="stringValue" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="int32Value" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="int64Value" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="booleanValue" type="xsd:boolean" minOccurs="0" nillable="true"/>
+          <xsd:element name="doubleValue" type="xsd:double" minOccurs="0" nillable="true"/>
+          <xsd:element name="dateTimeValue" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="calendarDateValue" type="xsd:date" minOccurs="0" nillable="true"/>
+          <xsd:element name="binaryValue" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="compositeValue" type="commonIML:ArrayOfTypedNameValue" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BoundsParameterException">
+    <xsd:complexContent>
+      <xsd:extension base="commonIML:ParameterException">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NullParameterException">
+    <xsd:complexContent>
+      <xsd:extension base="commonIML:ParameterException">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ParameterException">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseException">
+        <xsd:sequence>
+          <xsd:element name="parameter" type="xsd:string"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SystemException_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseException">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfEntityLockVersion_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="commonIML:EntityLockVersion_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfNameValuePair_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="commonIML:NameValuePair_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfTypedNameValue">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="commonIML:TypedNameValue"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof CommonIML.xsd -->

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service Operations. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-Operations"
+  xmlns="urn:Convergys-Interface-ECA-Operations"
+  xmlns:ecaOperations="urn:Convergys-Interface-ECA-Operations"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaProductInstance="urn:Convergys-Interface-ECA-ProductInstance"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-ProductInstance"
+    schemaLocation="../../schema/ECA/ECA_ProductInstance.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="AttributeData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="attributeNumber" type="xsd:int"/>
+          <xsd:element name="attributeValue" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateOutboundMessageInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="messageTypeId" type="xsd:int"/>
+          <xsd:element name="messageSubTypeId" type="xsd:int"/>
+          <xsd:element name="messageDtm" type="xsd:dateTime"/>
+          <xsd:element name="messageAttribute" type="ecaOperations:ArrayOfAttributeData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="domainId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="currencyCode" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageCode" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateOutboundMessageInput_2">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="messageTypeId" type="xsd:int"/>
+          <xsd:element name="messageSubTypeId" type="xsd:int"/>
+          <xsd:element name="messageDtm" type="xsd:dateTime"/>
+          <xsd:element name="messageAttribute" type="ecaOperations:ArrayOfAttributeData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="domainId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="currencyCode" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageCode" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalActionId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="DeleteProductInstanceNoRefundInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="productInstance" type="ecaProductInstance:ProductInstancePK"/>
+          <xsd:element name="terminatedProductsBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryUSTMissingURMConfigLogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="queryUSTMissingURMConfigLogSearchFields" type="ecaOperations:QueryUSTMissingURMConfigLogSearchFields_1"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryUSTMissingURMConfigLogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryUSTMissingURMConfigLogResult" type="ecaOperations:QueryUSTMissingURMConfigLogResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryUSTMissingURMConfigLogResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ustMissingURMConfigLogData" type="ecaOperations:ArrayOfUSTMissingURMConfigLogData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryUSTMissingURMConfigLogSearchFields_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="processInstanceId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="USTMissingURMConfigLogData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="processInstanceId" type="xsd:int"/>
+          <xsd:element name="runDtm" type="xsd:dateTime"/>
+          <xsd:element name="missingSeqNum" type="xsd:int"/>
+          <xsd:element name="authority" type="xsd:int"/>
+          <xsd:element name="externalTaxTypeId" type="xsd:int"/>
+          <xsd:element name="ustChargeGroupId" type="xsd:int"/>
+          <xsd:element name="taxJCodeState" type="xsd:string"/>
+          <xsd:element name="taxJCodeCounty" type="xsd:string"/>
+          <xsd:element name="taxJCodeCity" type="xsd:string"/>
+          <xsd:element name="classificationType" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfAttributeData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaOperations:AttributeData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfUSTMissingURMConfigLogData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaOperations:USTMissingURMConfigLogData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_Operations.xsd -->

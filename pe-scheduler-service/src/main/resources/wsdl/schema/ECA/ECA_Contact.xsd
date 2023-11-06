@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service Contact. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-Contact"
+  xmlns="urn:Convergys-Interface-ECA-Contact"
+  xmlns:ecaContact="urn:Convergys-Interface-ECA-Contact"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaAccount="urn:Convergys-Interface-ECA-Account"
+  xmlns:ecaAddress="urn:Convergys-Interface-ECA-Address"
+  xmlns:ecaConfig="urn:Convergys-Interface-ECA-Config"
+  xmlns:ecaCustomer="urn:Convergys-Interface-ECA-Customer"
+  xmlns:ecaProductInstance="urn:Convergys-Interface-ECA-ProductInstance"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Account"
+    schemaLocation="../../schema/ECA/ECA_Account.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Address"
+    schemaLocation="../../schema/ECA/ECA_Address.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Config"
+    schemaLocation="../../schema/ECA/ECA_Config.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Customer"
+    schemaLocation="../../schema/ECA/ECA_Customer.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-ProductInstance"
+    schemaLocation="../../schema/ECA/ECA_ProductInstance.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="PurgeRequestType">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = ArchiveAndPurge
+       2 = PurgeOnly
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="ContactData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="addressName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int"/>
+          <xsd:element name="contactNotesTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedContactData" type="ecaContact:HistoriedContactData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageData" type="ecaConfig:LanguageData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contactPK" type="ecaContact:ContactPK"/>
+          <xsd:element name="contactTypeId" type="xsd:int"/>
+          <xsd:element name="title" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="firstName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="initials" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="lastName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="namePostFix" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="salutationName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedContactSummary" type="ecaContact:HistoriedContactSummary_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contactTypeData" type="ecaContact:ContactTypeData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="contactSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ContactDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="contactSummaryJoin" type="ecaContact:ContactSummaryJoin_5_1"/>
+          <xsd:element name="historiedContactDataJoin" type="ecaContact:HistoriedContactDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageDataJoin" type="ecaConfig:LanguageDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ContactPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="contactSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ContactSummary_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="contactTypeId" type="xsd:int"/>
+          <xsd:element name="title" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="firstName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="initials" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="lastName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="namePostFix" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="salutationName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="historiedContactSummary" type="ecaContact:HistoriedContactSummary_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contactTypeData" type="ecaContact:ContactTypeData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="hint" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerRef" type="xsd:string"/>
+          <xsd:element name="contactSeq" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ContactSummaryJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="historiedContactSummaryJoin" type="ecaContact:HistoriedContactSummaryJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contactTypeDataJoin" type="ecaContact:ContactTypeDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ContactTypeData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="contactTypeId" type="xsd:int"/>
+          <xsd:element name="contactTypeName" type="xsd:string"/>
+          <xsd:element name="contactTypeDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ContactTypeDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateContactInput_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="newContactData" type="ecaContact:NewContactData_5_1"/>
+          <xsd:element name="newAddressData" type="ecaAddress:NewAddressData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateContactInput_2">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="newContactData" type="ecaContact:NewContactData_5_1"/>
+          <xsd:element name="newAddressData" type="ecaAddress:NewAddressData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateContactOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaContact:CreateContactResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateContactOutput_2">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaContact:CreateContactResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateContactResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="contactPK" type="ecaContact:ContactPK"/>
+          <xsd:element name="addressPK" type="ecaAddress:AddressPK"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedContactData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="daytimeContactTel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="daytimeExtension" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="eveningContactTel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="eveningExtension" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="mobileContactTel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="faxContactTel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="emailAddress" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ediAddress" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="addressPK" type="ecaAddress:AddressPK"/>
+          <xsd:element name="position" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="department" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="addressData" type="ecaAddress:AddressData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedContactDataJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="historiedContactSummaryJoin" type="ecaContact:HistoriedContactSummaryJoin_5_1"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedContactSummary_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="addressPK" type="ecaAddress:AddressPK"/>
+          <xsd:element name="position" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="department" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="addressData" type="ecaAddress:AddressData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="HistoriedContactSummaryJoin_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="addressDataJoin" type="ecaAddress:AddressDataJoin_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="IsContactBeingUsedInput_1">
+        <xsd:sequence>
+          <xsd:element name="contactPK" type="ecaContact:ContactPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxAccounts" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="IsContactBeingUsedOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyContactData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="contactTypeId" type="xsd:int"/>
+          <xsd:element name="contactNotesTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="title" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="firstName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="initials" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="lastName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="namePostFix" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="addressName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="salutationName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyContactDataParams_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="contactPK" type="ecaContact:ContactPK"/>
+          <xsd:element name="oldModifyContactData" type="ecaContact:ModifyContactData_5_1"/>
+          <xsd:element name="newModifyContactData" type="ecaContact:ModifyContactData_5_1"/>
+          <xsd:element
+            name="modifyHistoriedContactDataPair"
+            type="ecaContact:ModifyHistoriedContactDataPair_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyContactInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="contactPK" type="ecaContact:ContactPK"/>
+          <xsd:element name="oldModifyContactData" type="ecaContact:ModifyContactData_5_1"/>
+          <xsd:element name="newModifyContactData" type="ecaContact:ModifyContactData_5_1"/>
+          <xsd:element
+            name="modifyHistoriedContactDataPair"
+            type="ecaContact:ModifyHistoriedContactDataPair_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyContactSuperDataParams_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="oldAddressPK" type="ecaAddress:AddressPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="newAddressData" type="ecaAddress:NewAddressData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifyContactDataParams" type="ecaContact:ArrayOfModifyContactDataParams_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifyHistoriedCompanyDataPairs" type="ecaCustomer:ArrayOfModifyHistoriedCompanyDataPair_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newProductInstanceAddressDataParams" type="ecaProductInstance:ArrayOfNewProductInstanceAddressDataParams_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifyAddressParams" type="ecaAddress:ModifyAddressParams_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifyCustomerDataPair" type="ecaCustomer:ModifyCustomerDataPair_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifyFutureProdInsServiceAddress" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyContactSuperInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="newAddressData" type="ecaAddress:NewAddressData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="oldAddressPK" type="ecaAddress:AddressPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifyContactDataParams" type="ecaContact:ArrayOfModifyContactDataParams_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifyHistoriedCompanyDataPairArray" type="ecaCustomer:ArrayOfModifyHistoriedCompanyDataPair_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newProductInstanceAddressDataParams" type="ecaProductInstance:ArrayOfNewProductInstanceAddressDataParams_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifyAddressParams" type="ecaAddress:ModifyAddressParams_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifyCustomerDataPair" type="ecaCustomer:ModifyCustomerDataPair_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="isModifyFutureProductInstanceServiceAddress" type="xsd:boolean"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedContactData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="daytimeContactTel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="daytimeExtension" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="eveningContactTel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="eveningExtension" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="faxContactTel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="mobileContactTel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ediAddress" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="emailAddress" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="position" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="department" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="addressPK" type="ecaAddress:AddressPK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyHistoriedContactDataPair_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="oldModifyHistoriedContactData" type="ecaContact:ModifyHistoriedContactData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newModifyHistoriedContactData" type="ecaContact:ModifyHistoriedContactData_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewContactData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="contactTypeId" type="xsd:int"/>
+          <xsd:element name="title" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="firstName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="initials" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="lastName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="namePostFix" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="addressName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="salutationName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int"/>
+          <xsd:element name="contactNotesTxt" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="newHistoriedContactData" type="ecaContact:NewHistoriedContactData_5_1"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewContactOrModifyContactSuperData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="newContactData" type="ecaContact:NewContactData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newAddressData" type="ecaAddress:NewAddressData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifyContactSuperDataParams" type="ecaContact:ModifyContactSuperDataParams_5_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewHistoriedContactData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="daytimeContactTel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="daytimeExtension" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="eveningContactTel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="eveningExtension" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="faxContactTel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="mobileContactTel" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ediAddress" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="emailAddress" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="position" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="department" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="addressPK" type="ecaAddress:AddressPK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="PurgeContactRequestInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contactPK" type="ecaContact:ContactPK"/>
+          <xsd:element name="requestType" type="ecaContact:PurgeRequestType"/>
+          <xsd:element name="replacementContactPK" type="ecaContact:ContactPK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllContactsForCustomerInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="contactDataJoin" type="ecaContact:ContactDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contactSummaryJoin" type="ecaContact:ContactSummaryJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="lastContactPK" type="ecaContact:ContactPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="customerPK" type="ecaCustomer:CustomerPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllContactsForCustomerOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaContact:QueryAllContactsForCustomerResult_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllContactsForCustomerResult_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="contactDataArray" type="ecaContact:ArrayOfContactData_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contactSummaryArray" type="ecaContact:ArrayOfContactSummary_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryContactInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="contactDataJoin" type="ecaContact:ContactDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contactPK" type="ecaContact:ContactPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryContactInput_6">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contactDataJoin" type="ecaContact:ContactDataJoin_5_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="contactPK" type="ecaContact:ContactPK"/>
+          <xsd:element name="whenDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryContactOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaContact:ContactData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryContactOutput_6">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaContact:ContactData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadAllContactTypeDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaContact:ContactTypeData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadConnectedAsOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaContact:ContactPK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadContactTypeDataInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="contactTypeId" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadContactTypeDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaContact:ContactTypeData_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadHistoriedContactDataInput_5_1">
+        <xsd:sequence>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="contactPK" type="ecaContact:ContactPK"/>
+          <xsd:element name="beginDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadHistoriedContactDataOutput_5_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaContact:ReadHistoriedContactDataResult_5_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ReadHistoriedContactDataResult_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="dataSet"
+            type="ecaContact:HistoriedContactData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfContactData_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaContact:ContactData_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfContactSummary_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaContact:ContactSummary_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfModifyContactDataParams_5_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaContact:ModifyContactDataParams_5_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_Contact.xsd -->
